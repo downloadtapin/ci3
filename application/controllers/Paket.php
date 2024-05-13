@@ -48,8 +48,9 @@ class Paket extends CI_Controller {
     // Edit paket
     public function edit($id) {
         if ($this->input->post()) {
+            
             $data = array(
-                'Id_pokja' => $this->input->post('Id_pokja'),
+                'Id_pokja' => implode(",", $this->input->post('Id_pokja')),
                 'Nama_tender' => $this->input->post('Nama_tender'),
                 'Nilai_Pagu' => $this->input->post('Nilai_Pagu'),
                 'Kode_RUP' => $this->input->post('Kode_RUP'),
@@ -68,6 +69,9 @@ class Paket extends CI_Controller {
             redirect('paket');
         } else {
             $data['paket'] = $this->Paket_model->get_paket_by_id($id);
+            // Ambil data yang berkaitan dengan multiple values
+            $data['selected_pokjas'] = explode(',', $data['paket']->Id_pokja);
+            $data['all_pokjas'] = $this->PokjaMil_model->get_all_pokja(); // Contoh fungsi untuk mendapatkan semua data pokja
             $this->load->view('Header/NavBar');
             $this->load->view('paket/edit', $data);
         }
