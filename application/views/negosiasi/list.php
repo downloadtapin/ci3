@@ -12,8 +12,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>ID Pembuktian</th>
+                    <th>Nomor Evaluasi</th>
                     <th>Nomor Negosiasi</th>
                     <th>Tanggal</th>
                     <th>Harga Penawaran</th>
@@ -26,8 +25,17 @@
             <tbody>
                 <?php foreach ($negosiasis as $negosiasi): ?>
                     <tr>
-                        <td><?= $negosiasi->Id_negosiasi ?></td>
-                        <td><?= $negosiasi->Id_pembuktian ?></td>
+
+                        <td>
+                        <?php 
+                        foreach ($evaluasis as $evaluasi) {
+                            if ($evaluasi->Id_evaluasi_penawaran == $negosiasi->Id_evaluasi_penawaran) {
+                                echo $evaluasi->No_Evaluasi;
+                                break;
+                            }
+                        }
+                        ?>
+                    </td>
                         <td><?= $negosiasi->No_Negosiasi ?></td>
                         <td><?= $negosiasi->Tanggal ?></td>
                         <td><?= $negosiasi->harga_penawaran ?></td>
