@@ -11,8 +11,12 @@ class PokjaMil extends CI_Controller {
     // Index page showing all pokjas
     public function index() {
         $data['pokjas'] = $this->PokjaMil_model->get_all_pokja();
-        $this->load->view('Header/NavBar');
+
+        $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
         $this->load->view('pokjamil/list', $data);
+        $this->load->view('Footer/Footer');
+        
     }
     
     // Add new pokja
