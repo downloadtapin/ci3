@@ -63,6 +63,7 @@
                 <input type="text" class="form-control" id="No_sertifikat" name="No_sertifikat" value="<?= $pokjamil->No_sertifikat ?>" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="<?= site_url('PokjaMil') ?>" class="btn btn-secondary">Batal</a>
         </form>
     </div>
 </body>

@@ -43,8 +43,11 @@ class PokjaMil extends CI_Controller {
             $this->PokjaMil_model->create_pokja($data); // Ganti dengan nama model yang sesuai
             redirect('pokjamil'); // Redirect ke halaman daftar setelah berhasil menyimpan data
         } else {
-            $this->load->view('Header/NavBar');
-            $this->load->view('pokjamil/add'); // Ganti dengan nama view yang sesuai
+            $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
+        $this->load->view('pokjamil/add');
+        $this->load->view('Footer/Footer');
+             // Ganti dengan nama view yang sesuai
         }
     }
     
@@ -75,8 +78,11 @@ class PokjaMil extends CI_Controller {
             redirect('pokjamil');
         } else {
             $data['pokjamil'] = $this->PokjaMil_model->get_pokja_by_id($id);
-            $this->load->view('Header/NavBar');
-            $this->load->view('pokjamil/edit', $data);
+            $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
+        $this->load->view('pokjamil/edit', $data);
+        $this->load->view('Footer/Footer');
+            
         }
     }
     

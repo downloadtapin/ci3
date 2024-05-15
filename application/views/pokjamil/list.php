@@ -6,7 +6,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <a href="<?= site_url('pokjamil/add') ?>" class="btn btn-primary mb-3">Tambah PokjaMil</a>
+            <a href="<?= site_url('pokjamil/add') ?>" class="btn btn-primary mb-3">Tambah Data</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -44,12 +44,13 @@
                             <td><?= $pokjamil->Golongan ?></td>
                             <td><?= $pokjamil->No_sertifikat ?></td>
                             <td>
-                                <a href="<?= site_url('pokjamil/edit/' . $pokjamil->id) ?>" class="btn btn-primary"><i
-                                        class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                <a href="<?= site_url('pokjamil/edit/' . $pokjamil->id) ?>" class="btn btn-primary">
+                                    Edit
                                 </a>
                                 <a href="<?= site_url('pokjamil/delete/' . $pokjamil->id) ?>" class="btn btn-danger"
-                                    onclick="return confirm('Are you sure you want to delete this PokjaMil?')"><i class="fa fa-trash-o" aria-hidden="true"></i>
-</a>
+                                    onclick="return confirm('Are you sure you want to delete this PokjaMil?')">
+                                    Hapus
+                                </a>
 
                             </td>
                         </tr>
