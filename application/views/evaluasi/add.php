@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Add Evaluasi</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-
-<body>
     <div class="container">
-        <h2>Add Evaluasi</h2>
+    <div class="card-body">
+        <h2>Tambah Data Evaluasi</h2>
         <form action="<?= site_url('evaluasi/add') ?>" method="post">
             <div class="form-group">
-                <label for="Id_kode_tender">ID Kode Tender:</label>
+                <label for="Id_kode_tender">Nama Paket Tender:</label>
                 <select class="form-control" id="Id_kode_tender" name="Id_kode_tender" required>
                     <?php foreach($pakets as $paket): ?>
                     <option value="<?= $paket->Id_kode_tender ?>"><?= $paket->Nama_tender ?></option>
@@ -63,9 +55,4 @@
             <a href="<?= site_url('evaluasi') ?>" class="btn btn-secondary">Batal</a>
         </form>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+    </div>

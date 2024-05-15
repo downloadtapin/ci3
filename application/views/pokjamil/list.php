@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered"  id="example" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Level</th>
@@ -45,11 +45,11 @@
                             <td><?= $pokjamil->No_sertifikat ?></td>
                             <td>
                                 <a href="<?= site_url('pokjamil/edit/' . $pokjamil->id) ?>" class="btn btn-primary">
-                                    Edit
+                                <i class="bi bi-pencil-square"></i>
                                 </a>
                                 <a href="<?= site_url('pokjamil/delete/' . $pokjamil->id) ?>" class="btn btn-danger"
                                     onclick="return confirm('Are you sure you want to delete this PokjaMil?')">
-                                    Hapus
+                                    <i class="bi bi-trash"></i>
                                 </a>
 
                             </td>

@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Evaluasi</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-
-<body>
-    <div class="container">
+<div class="container">
+    <div class="card-body">
         <h2>Edit Evaluasi</h2>
         <form action="<?= site_url('evaluasi/edit/'.$evaluasi->Id_evaluasi_penawaran) ?>" method="post">
             <div class="form-group">
@@ -75,10 +66,5 @@
             <button type="submit" class="btn btn-primary">Submit</button>
             <a href="<?= site_url('evaluasi') ?>" class="btn btn-secondary">Batal</a>
         </form>
+        </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
-</html>

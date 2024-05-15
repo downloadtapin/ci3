@@ -13,8 +13,11 @@ class Klarifikasi extends CI_Controller {
     public function index() {
         $data['klarifikasis'] = $this->Klarifikasi_model->get_all();
         $data['evaluasis'] = $this->Evaluasi_model->get_all();
-        $this->load->view('Header/NavBar');
+        $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
         $this->load->view('klarifikasi/list', $data);
+        $this->load->view('Footer/Footer');
+        
     }
 
     public function add() {
@@ -25,8 +28,11 @@ class Klarifikasi extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $data['evaluasis'] = $this->Evaluasi_model->get_all();
-            $this->load->view('Header/NavBar');
+            $this->load->view('Header/Head');
+            $this->load->view('Header/Header');
             $this->load->view('klarifikasi/add', $data);
+            $this->load->view('Footer/Footer');
+            
         } else {
             $data = array(
                 'Id_evaluasi_penawaran' => $this->input->post('Id_evaluasi_penawaran'),
@@ -49,8 +55,11 @@ class Klarifikasi extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $data['klarifikasi'] = $this->Klarifikasi_model->get_by_id($id);
             $data['evaluasis'] = $this->Evaluasi_model->get_all();
-            $this->load->view('Header/NavBar');
+            $this->load->view('Header/Head');
+            $this->load->view('Header/Header');
             $this->load->view('klarifikasi/edit', $data);
+            $this->load->view('Footer/Footer');
+            
         } else {
             $data = array(
                 'Id_evaluasi_penawaran' => $this->input->post('Id_evaluasi_penawaran'),

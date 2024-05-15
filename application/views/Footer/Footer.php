@@ -45,5 +45,17 @@
 
 
 </body>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "processing": true,
+            "columnDefs": [{
+                    "width": "30%",
+                    "targets": [2]
+                } // Set width for the eighth column (Alamat)
+            ]
+        });
 
+    });
+    </script>
 </html>

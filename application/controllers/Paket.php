@@ -11,10 +11,14 @@ class Paket extends CI_Controller {
     
     // Index page showing all pakets
     public function index() {
-        $this->load->view('Header/NavBar');
+        
         $data['pokjas'] = $this->PokjaMil_model->get_all_pokja();
         $data['pakets'] = $this->Paket_model->get_all_paket();
+        $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
         $this->load->view('paket/list', $data);
+        $this->load->view('Footer/Footer');
+        
     }
     
     // Add new paket
@@ -45,7 +49,11 @@ class Paket extends CI_Controller {
             redirect('paket');
         } else {
             $data['pokjas'] = $this->PokjaMil_model->get_all_pokja(); 
+            $this->load->view('Header/Head');
+            $this->load->view('Header/Header');
             $this->load->view('paket/add', $data);
+            $this->load->view('Footer/Footer');
+            
         }
     }
     
@@ -76,8 +84,11 @@ class Paket extends CI_Controller {
             // Ambil data yang berkaitan dengan multiple values
             $data['selected_pokjas'] = explode(',', $data['paket']->Id_pokja);
             $data['all_pokjas'] = $this->PokjaMil_model->get_all_pokja(); // Contoh fungsi untuk mendapatkan semua data pokja
-            $this->load->view('Header/NavBar');
+            $this->load->view('Header/Head');
+            $this->load->view('Header/Header');
             $this->load->view('paket/edit', $data);
+            $this->load->view('Footer/Footer');
+            
         }
     }
     

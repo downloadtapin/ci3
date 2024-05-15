@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Add Penjelasan</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-
-<body>
     <div class="container">
-        <h2>Add Penjelasan</h2>
+        <h2>Tambah Penjelasan</h2>
         <?php if(isset($error)): ?>
         <div class="alert alert-danger"><?= $error ?></div>
         <?php endif; ?>
         <form action="<?= site_url('penjelasan/add') ?>" method="post">
             <div class="form-group">
-                <label for="Id_kode_tender">ID Kode Tender:</label>
+                <label for="Id_kode_tender">Nama Paket Tender:</label>
                 <select class="form-control" id="Id_kode_tender" name="Id_kode_tender" required>
                     <?php foreach($pakets as $paket): ?>
                     <option value="<?= $paket->Id_kode_tender ?>"><?= $paket->Nama_tender ?></option>
@@ -64,6 +55,3 @@
         });
     });
     </script>
-</body>
-
-</html>

@@ -13,8 +13,11 @@ class Evaluasi extends CI_Controller {
     public function index() {
         $data['evaluasis'] = $this->Evaluasi_model->get_all();
         $data['pakets'] = $this->Paket_model->get_all_paket();
-        $this->load->view('Header/NavBar');
+        $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
         $this->load->view('evaluasi/list', $data);
+        $this->load->view('Footer/Footer');
+        
     }
 
     public function add() {
@@ -27,8 +30,11 @@ class Evaluasi extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $data['pakets'] = $this->Paket_model->get_all_paket();
-            $this->load->view('Header/NavBar');
+            $this->load->view('Header/Head');
+            $this->load->view('Header/Header');
             $this->load->view('evaluasi/add',$data);
+            $this->load->view('Footer/Footer');
+            
         } else {
             $data = array(
                 'Id_kode_tender' => $this->input->post('Id_kode_tender'),
@@ -59,8 +65,11 @@ class Evaluasi extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $data['evaluasi'] = $this->Evaluasi_model->get_by_id($Id_evaluasi_penawaran);
             $data['pakets'] = $this->Paket_model->get_all_paket();
-            $this->load->view('Header/NavBar');
+            $this->load->view('Header/Head');
+            $this->load->view('Header/Header');
             $this->load->view('evaluasi/edit', $data);
+            $this->load->view('Footer/Footer');
+            
         } else {
             $data = array(
                 'Id_kode_tender' => $this->input->post('Id_kode_tender'),

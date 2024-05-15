@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="container-fluid">
 
-<head>
-    <meta charset="UTF-8">
-    <title>List Evaluasi</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-    .icon-custom {
-        color: #ff6600;
-        /* Warna kustom untuk ikon */
-    }
-    </style>
-</head>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Data Evaluasi</h1>
 
-<body>
-    <div class="container">
-        <h2>Data Evaluasi</h2>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
         <a href="<?= site_url('evaluasi/add') ?>" class="btn btn-primary mb-3">Tambah Data</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -69,9 +62,9 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+        </div>
+        </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-</body>
+</div>
 
-</html>
+</div>

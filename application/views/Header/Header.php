@@ -36,50 +36,72 @@
 
             <?php if ($this->session->userdata("level") === 'admin'): ?>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('PokjaMil') ?>"><i class="fa fa-bars" aria-hidden="true"></i>Data Anggota
+                <a class="nav-link" href="<?= site_url('PokjaMil') ?>"><i class="fa fa-bars" aria-hidden="true"></i>Data
+                    Anggota
                     Pokja</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Paket') ?>"><i class="fa fa-bars" aria-hidden="true"></i>Paket</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Penjelasan') ?>"><i class="fa fa-bars" aria-hidden="true"></i>Penjelasan</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Evaluasi') ?>"><i class="fa fa-bars" aria-hidden="true"></i>Evaluasi</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Klarifikasi') ?>"><i class="fa fa-bars" aria-hidden="true"></i>Klarifikasi</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Pembuktian') ?>"><i class="fa fa-bars" aria-hidden="true"></i>Pembuktian</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Negosiasi') ?>"><i class="fa fa-bars" aria-hidden="true"></i>Negosiasi</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Pemilihan') ?>"><i class="fa fa-bars" aria-hidden="true"></i>Pemilihan</a>
             </li>
             <?php else: ?>
             <p></p>
             <?php endif; ?>
-        
+            <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Paket') ?>"><i class="fa fa-bars"
+                        aria-hidden="true"></i>Paket</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Penjelasan') ?>"><i class="fa fa-bars"
+                        aria-hidden="true"></i>Penjelasan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Evaluasi') ?>"><i class="fa fa-bars"
+                        aria-hidden="true"></i>Evaluasi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Klarifikasi') ?>"><i class="fa fa-bars"
+                        aria-hidden="true"></i>Klarifikasi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Pembuktian') ?>"><i class="fa fa-bars"
+                        aria-hidden="true"></i>Pembuktian</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Negosiasi') ?>"><i class="fa fa-bars"
+                        aria-hidden="true"></i>Negosiasi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Pemilihan') ?>"><i class="fa fa-bars"
+                        aria-hidden="true"></i>Pemilihan</a>
+            </li>
+            
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-print"></i>
+                    <span>Cetak Dokumen</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Components:</h6>
+                        <a class="collapse-item" href="buttons.html">Buttons</a>
+                        <a class="collapse-item" href="cards.html">Cards</a>
+                    </div>
+                </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            
+
 
             <!-- Nav Item - Pages Collapse Menu -->
-            
+
 
             <!-- Nav Item - Charts -->
-            
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -143,7 +165,7 @@
                         <!--  -->
 
                         <!-- Nav Item - Messages -->
-                        
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -151,7 +173,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $this->session->userdata("level"); ?></span>
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $this->session->userdata("level"); ?></span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->

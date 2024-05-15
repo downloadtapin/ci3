@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Paket</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-</head>
-<body>
+
     <div class="container">
-        <h2>Add Paket</h2>
+        <h2>Tambah Paket Tender</h2>
         <form action="<?= site_url('paket/add') ?>" method="post">
             <div class="form-group">
                 <label for="Id_kode_tender">ID Kode Tender:</label>
