@@ -21,13 +21,19 @@ class Pemilihan extends CI_Controller {
         $data['negosiasis'] = $this->Negosiasi_model->get_all();
         $data['pakets'] = $this->Paket_model->get_all_paket();
         $data['pembuktians'] = $this->Pembuktian_model->get_all();
+        $data['klarifikasis'] = $this->Klarifikasi_model->get_all();
         $data['penjelasans'] = $this->Penjelasan_model->get_all();
         $this->load->view('Header/NavBar');
         $this->load->view('pemilihan/list', $data);
     }
 
     public function add() {
-        $this->form_validation->set_rules('Id_negosiasi', 'ID Negosiasi', 'required');
+        $this->form_validation->set_rules('Id_paket', 'Nama Tender', 'required');
+        $this->form_validation->set_rules('Id_penjelasan', 'Nomor Penjelasan', 'required');
+        $this->form_validation->set_rules('Id_evaluasi_Penawaran', 'Id Evaluasi Penawaran', 'required');
+        $this->form_validation->set_rules('Id_pembuktian', 'Id Pembuktian', 'required');
+        $this->form_validation->set_rules('Id_klarifikasi', 'Id Klarifikasi', 'required');
+        $this->form_validation->set_rules('Id_negosiasi', 'Id Negosiasi', 'required');
         $this->form_validation->set_rules('No_Pemilihan', 'Nomor Pemilihan', 'required');
         $this->form_validation->set_rules('Pertanyaan_sanggah', 'Pertanyaan Sanggah', 'required');
         $this->form_validation->set_rules('Jawaban_sanggah', 'Jawaban Sanggah', 'required');
@@ -45,6 +51,11 @@ class Pemilihan extends CI_Controller {
             $this->load->view('pemilihan/add',$data);
         } else {
             $data = array(
+                'Id_paket' => $this->input->post('Id_paket'),
+                'Id_penjelasan' => $this->input->post('Id_penjelasan'),
+                'Id_evaluasi_Penawaran' => $this->input->post('Id_evaluasi_Penawaran'),
+                'Id_pembuktian' => $this->input->post('Id_pembuktian'),
+                'Id_klarifikasi' => $this->input->post('Id_klarifikasi'),
                 'Id_negosiasi' => $this->input->post('Id_negosiasi'),
                 'No_Pemilihan' => $this->input->post('No_Pemilihan'),
                 'Pertanyaan_sanggah' => $this->input->post('Pertanyaan_sanggah'),

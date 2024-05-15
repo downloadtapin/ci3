@@ -52,11 +52,46 @@
                         }
                         ?>
                     </td>
-                    <td><?= $pemilihan->Id_Penjelasan  ?></td>
-                    <td><?= $pemilihan->Id_Evaluasi_Penawaran  ?></td>
-                    <td><?= $pemilihan->Id_Pembuktian  ?></td>
-                    <td><?= $pemilihan->Id_Klarifikasi  ?></td>
-                    <td><?= $pemilihan->Id_negosiasi ?></td>
+                    <td>
+                        <?php 
+                        foreach ($evaluasis as $evaluasi) {
+                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                echo $evaluasi->No_Evaluasi;
+                                break;
+                            }
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php 
+                        foreach ($pembuktians as $pembuktian) {
+                            if ($pembuktian->Id_pembuktian == $pemilihan->Id_pembuktian) {
+                                echo $pembuktian->No_Pembuktian;
+                                break;
+                            }
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php 
+                        foreach ($klarifikasis as $klarifikasi) {
+                            if ($klarifikasi->Id_klarifikasi == $pemilihan->Id_klarifikasi) {
+                                echo $klarifikasi->No_Klarifikasi;
+                                break;
+                            }
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php 
+                        foreach ($negosiasis as $negosiasi) {
+                            if ($negosiasi->Id_negosiasi == $pemilihan->Id_negosiasi) {
+                                echo $negosiasi->No_Negosiasi;
+                                break;
+                            }
+                        }
+                        ?>
+                    </td>
                     <td><?= $pemilihan->No_Pemilihan ?></td>
                     <td><?= $pemilihan->Pertanyaan_sanggah ?></td>
                     <td><?= $pemilihan->Jawaban_sanggah ?></td>
