@@ -7,10 +7,22 @@ class Pemilihan extends CI_Controller {
         parent::__construct();
         $this->load->model('Pemilihan_model');
         $this->load->library('form_validation');
+        $this->load->model('Evaluasi_model');
+        $this->load->model('Klarifikasi_model');
+        $this->load->model('Paket_model');
+        $this->load->model('Negosiasi_model');
+        $this->load->model('Pembuktian_model');
+        $this->load->model('Penjelasan_model');
     }
 
     public function index() {
         $data['pemilihans'] = $this->Pemilihan_model->get_all();
+        $data['evaluasis'] = $this->Evaluasi_model->get_all();
+        $data['negosiasis'] = $this->Negosiasi_model->get_all();
+        $data['pakets'] = $this->Paket_model->get_all_paket();
+        $data['pembuktians'] = $this->Pembuktian_model->get_all();
+        $data['penjelasans'] = $this->Penjelasan_model->get_all();
+        $this->load->view('Header/NavBar');
         $this->load->view('pemilihan/list', $data);
     }
 
@@ -23,7 +35,14 @@ class Pemilihan extends CI_Controller {
         $this->form_validation->set_rules('Cek_list', 'Cek List', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('pemilihan/add');
+            $data['evaluasis'] = $this->Evaluasi_model->get_all();
+            $data['klarifikasis'] = $this->Klarifikasi_model->get_all();
+            $data['negosiasis'] = $this->Negosiasi_model->get_all();
+            $data['pakets'] = $this->Paket_model->get_all_paket();
+            $data['pembuktians'] = $this->Pembuktian_model->get_all();
+            $data['penjelasans'] = $this->Penjelasan_model->get_all();
+            $this->load->view('Header/NavBar');
+            $this->load->view('pemilihan/add',$data);
         } else {
             $data = array(
                 'Id_negosiasi' => $this->input->post('Id_negosiasi'),
@@ -41,7 +60,6 @@ class Pemilihan extends CI_Controller {
     }
 
     public function edit($id) {
-        $data['pemilihan'] = $this->Pemilihan_model->get_by_id($id);
         if (empty($data['pemilihan'])) {
             show_404();
         }
@@ -54,6 +72,13 @@ class Pemilihan extends CI_Controller {
         $this->form_validation->set_rules('Cek_list', 'Cek List', 'required');
 
         if ($this->form_validation->run() === FALSE) {
+            $data['evaluasis'] = $this->Evaluasi_model->get_all();
+            $data['klarifikasis'] = $this->Klarifikasi_model->get_all();
+            $data['negosiasis'] = $this->Negosiasi_model->get_all();
+            $data['pakets'] = $this->Paket_model->get_all_paket();
+            $data['pembuktians'] = $this->Pembuktian_model->get_all();
+            $data['penjelasans'] = $this->Penjelasan_model->get_all();
+            $this->load->view('Header/NavBar');
             $this->load->view('pemilihan/edit', $data);
         } else {
             $data = array(
