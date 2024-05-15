@@ -68,9 +68,9 @@
                     <td><?= $paket->Tgl_penugasan ?></td>
                     <td><?= $paket->Pokja_pemilihan ?></td>
                     <td>
-                        <a href="<?= site_url('paket/edit/'.$paket->Id_kode_tender) ?>" class="btn btn-primary">Edit</a>
+                        <a href="<?= site_url('paket/edit/'.$paket->Id_kode_tender) ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
                         <a href="<?= site_url('paket/delete/'.$paket->Id_kode_tender) ?>" class="btn btn-danger"
-                            onclick="return confirm('Are you sure you want to delete this paket?')">Delete</a>
+                            onclick="return confirm('Are you sure you want to delete this paket?')"><i class="bi bi-trash"></i></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

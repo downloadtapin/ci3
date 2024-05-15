@@ -5,29 +5,14 @@
     <title>List Penjelasan</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Dashboard</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="<?= site_url('Dashboard') ?>">Home <span class="sr-only">(current)</span></a>
-            </li>
-            
-        </ul>
-    </div>
-</nav>
 <body>
     <div class="container">
-        <h2>List Penjelasan</h2>
+        <h2>Data Penjelasan</h2>
         <a href="<?= site_url('penjelasan/add') ?>" class="btn btn-primary mb-3">Add Penjelasan</a>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID Penjelasan</th>
-                    <th>ID Kode Tender</th>
+                    <th>Nama Tender</th>
                     <th>No. Penjelasan</th>
                     <th>Tanggal</th>
                     <th>Nama Penyedia</th>
@@ -40,8 +25,16 @@
             <tbody>
                 <?php foreach ($penjelasans as $penjelasan): ?>
                 <tr>
-                    <td><?= $penjelasan->Id_penjelasan ?></td>
-                    <td><?= $penjelasan->Id_kode_tender ?></td>
+                    <td>
+                        <?php 
+                        foreach ($pakets as $paket) {
+                            if ($paket->Id_kode_tender == $penjelasan->Id_kode_tender) {
+                                echo $paket->Nama_tender;
+                                break;
+                            }
+                        }
+                        ?>
+                    </td>
                     <td><?= $penjelasan->No_Penjelasan ?></td>
                     <td><?= $penjelasan->Tanggal ?></td>
                     <td><?= $penjelasan->Nama_penyedia ?></td>

@@ -7,10 +7,13 @@ class Penjelasan extends CI_Controller {
         parent::__construct();
         $this->load->model('Penjelasan_model');
         $this->load->library('form_validation');
+        $this->load->model('Paket_model');
+        
     }
 
     public function index() {
         $data['penjelasans'] = $this->Penjelasan_model->get_all();
+        $data['pakets'] = $this->Paket_model->get_all_paket();
         $this->load->view('Header/NavBar');
         $this->load->view('penjelasan/list', $data);
     }
@@ -24,8 +27,9 @@ class Penjelasan extends CI_Controller {
         $this->form_validation->set_rules('Jawaban', 'Jawaban', 'required');
 
         if ($this->form_validation->run() == FALSE) {
+            $data['pakets'] = $this->Paket_model->get_all_paket();
             $this->load->view('Header/NavBar');
-            $this->load->view('penjelasan/add');
+            $this->load->view('penjelasan/add',$data);
         } else {
             $data = array(
                 'Id_kode_tender' => $this->input->post('Id_kode_tender'),
@@ -50,6 +54,7 @@ class Penjelasan extends CI_Controller {
         $this->form_validation->set_rules('Jawaban', 'Jawaban', 'required');
 
         if ($this->form_validation->run() == FALSE) {
+            $data['pakets'] = $this->Paket_model->get_all_paket();
             $data['penjelasan'] = $this->Penjelasan_model->get_by_id($Id_penjelasan);
             $this->load->view('Header/NavBar');
             $this->load->view('penjelasan/edit', $data);
