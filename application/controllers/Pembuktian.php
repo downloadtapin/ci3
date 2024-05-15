@@ -7,10 +7,12 @@ class Pembuktian extends CI_Controller {
         parent::__construct();
         $this->load->model('Pembuktian_model');
         $this->load->library('form_validation');
+        $this->load->model('Evaluasi_model');
     }
 
     public function index() {
         $data['pembuktians'] = $this->Pembuktian_model->get_all();
+        $data['evaluasis'] = $this->Evaluasi_model->get_all();
         $this->load->view('Header/NavBar');
         $this->load->view('pembuktian/list', $data);
     }
@@ -27,8 +29,9 @@ class Pembuktian extends CI_Controller {
         $this->form_validation->set_rules('Keterangan_lain', 'Keterangan Lain', 'required');
 
         if ($this->form_validation->run() == FALSE) {
+            $data['evaluasis'] = $this->Evaluasi_model->get_all();
             $this->load->view('Header/NavBar');
-            $this->load->view('pembuktian/add');
+            $this->load->view('pembuktian/add',$data);
         } else {
             $data = array(
                 'Id_evaluasi_penawaran' => $this->input->post('Id_evaluasi_penawaran'),
@@ -59,6 +62,7 @@ class Pembuktian extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $data['pembuktian'] = $this->Pembuktian_model->get_by_id($id);
+            $data['evaluasis'] = $this->Evaluasi_model->get_all();
             $this->load->view('Header/NavBar');
             $this->load->view('pembuktian/edit', $data);
         } else {
