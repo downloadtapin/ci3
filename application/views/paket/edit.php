@@ -18,7 +18,7 @@
                 <label for="Id_pokja">ID Pokja:</label>
                 <select class="form-control" id="Id_pokja" name="Id_pokja[]" required multiple aria-label="multiple select example">
                     <?php foreach ($all_pokjas as $pokja) : ?>
-                        <option value="<?= $pokja->Id_pokja ?>" <?= in_array($pokja->Id_pokja, $selected_pokjas) ? 'selected' : '' ?>>
+                        <option value="<?= $pokja->id ?>" <?= in_array($pokja->id, $selected_pokjas) ? 'selected' : '' ?>>
                             <?= $pokja->Nama ?>
                         </option>
                     <?php endforeach; ?>

@@ -17,18 +17,18 @@ class PokjaMil_model extends CI_Model {
     }
     
     public function get_pokja_by_id($id) {
-        return $this->db->get_where('pokjamil', array('Id_pokja' => $id))->row();
+        return $this->db->get_where('pokjamil', array('Id' => $id))->row();
     }
     
     // UPDATE
     public function update_pokja($id, $data) {
-        $this->db->where('Id_pokja', $id);
+        $this->db->where('Id', $id);
         $this->db->update('pokjamil', $data);
     }
     
     // DELETE
     public function delete_pokja($id) {
-        $this->db->where('Id_pokja', $id);
+        $this->db->where('Id', $id);
         $this->db->delete('pokjamil');
     }
 }

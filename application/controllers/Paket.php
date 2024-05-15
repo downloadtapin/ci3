@@ -11,7 +11,6 @@ class Paket extends CI_Controller {
     
     // Index page showing all pakets
     public function index() {
-        $data['pakets'] = $this->Paket_model->get_all_paket();
         $this->load->view('Header/NavBar');
         $data['pokjas'] = $this->PokjaMil_model->get_all_pokja();
         $data['pakets'] = $this->Paket_model->get_all_paket();
@@ -21,8 +20,13 @@ class Paket extends CI_Controller {
     // Add new paket
     public function add() {
         if ($this->input->post()) {
+            // Get selected ID Pokja values from the form as an array
+        $selected_id_pokjas = $this->input->post('Id_pokja');
+
+        // Convert array to comma-separated string (if needed)
+        $selected_id_pokjas_str = implode(',', $selected_id_pokjas);
             $data = array(
-                'Id_pokja' => implode(",", $this->input->post('Id_pokja')),
+                'Id_pokja' => $selected_id_pokjas_str,
                 'Nama_tender' => $this->input->post('Nama_tender'),
                 'Nilai_Pagu' => $this->input->post('Nilai_Pagu'),
                 'Kode_RUP' => $this->input->post('Kode_RUP'),
