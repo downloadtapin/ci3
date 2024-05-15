@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="contaner">
         <h2>Edit Pemilihan</h2>
         <?php echo validation_errors(); ?>
         <form action="<?= site_url('pemilihan/edit/'.$pemilihan->Id_pemilihan) ?>" method="post">

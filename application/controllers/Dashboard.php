@@ -8,8 +8,10 @@ class Dashboard extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('Header/Navbar');
+        $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
         $this->load->view('dashboard');
+        $this->load->view('Footer/Footer');
     }
 }
 ?>
