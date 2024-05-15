@@ -71,28 +71,30 @@ class Pemilihan extends CI_Controller {
     }
 
     public function edit($id) {
-        if (empty($data['pemilihan'])) {
-            show_404();
-        }
-
         $this->form_validation->set_rules('Id_negosiasi', 'ID Negosiasi', 'required');
         $this->form_validation->set_rules('No_Pemilihan', 'Nomor Pemilihan', 'required');
         $this->form_validation->set_rules('Pertanyaan_sanggah', 'Pertanyaan Sanggah', 'required');
         $this->form_validation->set_rules('Jawaban_sanggah', 'Jawaban Sanggah', 'required');
         $this->form_validation->set_rules('Tanggal', 'Tanggal', 'required');
         $this->form_validation->set_rules('Cek_list', 'Cek List', 'required');
-
+    
         if ($this->form_validation->run() === FALSE) {
+            $data['pakets'] = $this->Paket_model->get_all_paket();
+            $data['penjelasans'] = $this->Penjelasan_model->get_all();
             $data['evaluasis'] = $this->Evaluasi_model->get_all();
+            $data['pembuktians'] = $this->Pembuktian_model->get_all();
             $data['klarifikasis'] = $this->Klarifikasi_model->get_all();
             $data['negosiasis'] = $this->Negosiasi_model->get_all();
-            $data['pakets'] = $this->Paket_model->get_all_paket();
-            $data['pembuktians'] = $this->Pembuktian_model->get_all();
-            $data['penjelasans'] = $this->Penjelasan_model->get_all();
+            $data['pemilihan'] = $this->Pemilihan_model->get_by_id($id); // Mengambil data pemilihan berdasarkan ID
             $this->load->view('Header/NavBar');
-            $this->load->view('pemilihan/edit', $data);
+            $this->load->view('pemilihan/edit', $data); // Mengirim data ke view
         } else {
             $data = array(
+                'Id_paket' => $this->input->post('Id_paket'),
+                'Id_penjelasan' => $this->input->post('Id_penjelasan'),
+                'Id_evaluasi_Penawaran' => $this->input->post('Id_evaluasi_Penawaran'),
+                'Id_pembuktian' => $this->input->post('Id_pembuktian'),
+                'Id_klarifikasi' => $this->input->post('Id_klarifikasi'),
                 'Id_negosiasi' => $this->input->post('Id_negosiasi'),
                 'No_Pemilihan' => $this->input->post('No_Pemilihan'),
                 'Pertanyaan_sanggah' => $this->input->post('Pertanyaan_sanggah'),
@@ -101,11 +103,12 @@ class Pemilihan extends CI_Controller {
                 'Cek_list' => $this->input->post('Cek_list'),
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
-
-            $this->Pemilihan_model->update($id, $data);
+    
+            $this->Pemilihan_model->update($id, $data); // Memanggil model untuk melakukan update data pemilihan
             redirect('pemilihan');
         }
     }
+    
 
     public function delete($id) {
         $this->Pemilihan_model->delete($id);

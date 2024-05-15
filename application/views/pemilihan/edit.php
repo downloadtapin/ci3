@@ -32,7 +32,7 @@
                 <label for="Id_evaluasi_Penawaran">Id_evaluasi_penawaran:</label>
                 <select class="form-control" id="Id_evaluasi_Penawaran" name="Id_evaluasi_Penawaran" required>
                     <?php foreach($evaluasis as $evaluasi): ?>
-                    <option value="<?= $evaluasi->Id_evaluasi_penawaran ?>" <?= ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_penawaran) ? 'selected' : '' ?>><?= $evaluasi->No_Evaluasi ?></option>
+                    <option value="<?= $evaluasi->Id_evaluasi_penawaran ?>" <?= ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) ? 'selected' : '' ?>><?= $evaluasi->No_Evaluasi ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
