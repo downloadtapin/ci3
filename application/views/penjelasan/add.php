@@ -48,6 +48,7 @@
                 <input type="text" class="form-control" id="Keterangan_lain" name="Keterangan_lain">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="<?= site_url('penjelasan') ?>" class="btn btn-secondary">Batal</a>
         </form>
     </div>
 

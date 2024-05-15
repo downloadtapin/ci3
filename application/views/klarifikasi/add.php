@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Add Klarifikasi</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
     <div class="container">
         <h2>Add Klarifikasi</h2>
         <?php echo validation_errors(); ?>
         <form action="<?= site_url('klarifikasi/add') ?>" method="post">
             <div class="form-group">
-                <label for="Id_pembuktian">ID Pembuktian</label>
-                <input type="text" class="form-control" id="Id_pembuktian" name="Id_pembuktian" required>
+                <label for="Id_evaluasi_penawaran">ID Kode Tender:</label>
+                <select class="form-control" id="Id_evaluasi_penawaran" name="Id_evaluasi_penawaran" required>
+                    <?php foreach($evaluasis as $evaluasi): ?>
+                    <option value="<?= $evaluasi->Id_evaluasi_penawaran ?>"><?= $evaluasi->No_Evaluasi ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
             <div class="form-group">
                 <label for="No_Klarifikasi">Nomor Klarifikasi</label>
@@ -37,4 +43,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

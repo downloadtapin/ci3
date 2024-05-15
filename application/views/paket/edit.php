@@ -78,6 +78,7 @@
                 <input type="text" class="form-control" id="Pokja_pemilihan" name="Pokja_pemilihan" value="<?= $paket->Pokja_pemilihan ?>" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="<?= site_url('paket') ?>" class="btn btn-secondary">Batal</a>
         </form>
     </div>
 

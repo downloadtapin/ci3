@@ -46,6 +46,15 @@
                 <a class="nav-link" href="<?= site_url('Klarifikasi') ?>">Klarifikasi</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Pembuktian') ?>">Pembuktian</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Negosiasi') ?>">Negosiasi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('Pemilihan') ?>">Pemilihan</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="<?= site_url('login/logout') ?>">Logout</a>
             </li>
         </ul>

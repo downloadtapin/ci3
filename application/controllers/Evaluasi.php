@@ -7,10 +7,12 @@ class Evaluasi extends CI_Controller {
         parent::__construct();
         $this->load->model('Evaluasi_model');
         $this->load->library('form_validation');
+        $this->load->model('Paket_model');
     }
 
     public function index() {
         $data['evaluasis'] = $this->Evaluasi_model->get_all();
+        $data['pakets'] = $this->Paket_model->get_all_paket();
         $this->load->view('Header/NavBar');
         $this->load->view('evaluasi/list', $data);
     }
@@ -24,8 +26,9 @@ class Evaluasi extends CI_Controller {
         $this->form_validation->set_rules('nilai_penawaran', 'Nilai Penawaran', 'required');
 
         if ($this->form_validation->run() == FALSE) {
+            $data['pakets'] = $this->Paket_model->get_all_paket();
             $this->load->view('Header/NavBar');
-            $this->load->view('evaluasi/add');
+            $this->load->view('evaluasi/add',$data);
         } else {
             $data = array(
                 'Id_kode_tender' => $this->input->post('Id_kode_tender'),
@@ -55,6 +58,7 @@ class Evaluasi extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $data['evaluasi'] = $this->Evaluasi_model->get_by_id($Id_evaluasi_penawaran);
+            $data['pakets'] = $this->Paket_model->get_all_paket();
             $this->load->view('Header/NavBar');
             $this->load->view('evaluasi/edit', $data);
         } else {
