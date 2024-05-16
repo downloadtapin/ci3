@@ -1,33 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>List Negosiasi</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container">
-        <h2>List Negosiasi</h2>
-        <a href="<?= site_url('negosiasi/add') ?>" class="btn btn-primary mb-3">Add Negosiasi</a>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nomor Evaluasi</th>
-                    <th>Nomor Negosiasi</th>
-                    <th>Tanggal</th>
-                    <th>Harga Penawaran</th>
-                    <th>Harga Terkoreksi</th>
-                    <th>Hasil Evaluasi</th>
-                    <th>Keterangan Lain</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($negosiasis as $negosiasi): ?>
-                    <tr>
+<div class="container-fluid">
 
-                        <td>
-                        <?php 
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Data Negosiasi</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a href="<?= site_url('negosiasi/add') ?>" class="btn btn-primary mb-3">Tambah Data Negosiasi</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table id="example" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nomor Evaluasi</th>
+                            <th>Nomor Negosiasi</th>
+                            <th>Tanggal</th>
+                            <th>Harga Penawaran</th>
+                            <th>Harga Terkoreksi</th>
+                            <th>Hasil Evaluasi</th>
+                            <th>Keterangan Lain</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($negosiasis as $negosiasi): ?>
+                        <tr>
+
+                            <td>
+                                <?php 
                         foreach ($evaluasis as $evaluasi) {
                             if ($evaluasi->Id_evaluasi_penawaran == $negosiasi->Id_evaluasi_penawaran) {
                                 echo $evaluasi->No_Evaluasi;
@@ -35,24 +37,26 @@
                             }
                         }
                         ?>
-                    </td>
-                        <td><?= $negosiasi->No_Negosiasi ?></td>
-                        <td><?= $negosiasi->Tanggal ?></td>
-                        <td><?= $negosiasi->harga_penawaran ?></td>
-                        <td><?= $negosiasi->harga_terkoreksi ?></td>
-                        <td><?= $negosiasi->hasil_evaluasi ?></td>
-                        <td><?= $negosiasi->Keterangan_lain ?></td>
-                        <td>
-                            <a href="<?= site_url('negosiasi/edit/'.$negosiasi->Id_negosiasi) ?>" class="btn btn-sm btn-info">Edit</a>
-                            <a href="<?= site_url('negosiasi/delete/'.$negosiasi->Id_negosiasi) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                            </td>
+                            <td><?= $negosiasi->No_Negosiasi ?></td>
+                            <td><?= $negosiasi->Tanggal ?></td>
+                            <td><?= $negosiasi->harga_penawaran ?></td>
+                            <td><?= $negosiasi->harga_terkoreksi ?></td>
+                            <td><?= $negosiasi->hasil_evaluasi ?></td>
+                            <td><?= $negosiasi->Keterangan_lain ?></td>
+                            <td>
+                                <a href="<?= site_url('negosiasi/edit/'.$negosiasi->Id_negosiasi) ?>"
+                                    class="btn btn-sm btn-info"><i class="bi bi-pencil text-white"></i></a>
+                                <a href="<?= site_url('negosiasi/delete/'.$negosiasi->Id_negosiasi) ?>"
+                                    class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this item?')"><i
+                                        class="bi bi-trash icon-custom"></i></a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>

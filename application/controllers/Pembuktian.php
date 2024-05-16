@@ -13,8 +13,11 @@ class Pembuktian extends CI_Controller {
     public function index() {
         $data['pembuktians'] = $this->Pembuktian_model->get_all();
         $data['evaluasis'] = $this->Evaluasi_model->get_all();
-        $this->load->view('Header/NavBar');
+        $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
         $this->load->view('pembuktian/list', $data);
+        $this->load->view('Footer/Footer');
+        
     }
 
     public function add() {
@@ -30,8 +33,11 @@ class Pembuktian extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $data['evaluasis'] = $this->Evaluasi_model->get_all();
-            $this->load->view('Header/NavBar');
+            $this->load->view('Header/Head');
+            $this->load->view('Header/Header');
             $this->load->view('pembuktian/add',$data);
+            $this->load->view('Footer/Footer');
+            
         } else {
             $data = array(
                 'Id_evaluasi_penawaran' => $this->input->post('Id_evaluasi_penawaran'),
@@ -63,8 +69,11 @@ class Pembuktian extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $data['pembuktian'] = $this->Pembuktian_model->get_by_id($id);
             $data['evaluasis'] = $this->Evaluasi_model->get_all();
-            $this->load->view('Header/NavBar');
+            $this->load->view('Header/Head');
+            $this->load->view('Header/Header');
             $this->load->view('pembuktian/edit', $data);
+            $this->load->view('Footer/Footer');
+            
         } else {
             $data = array(
                 'Id_evaluasi_penawaran' => $this->input->post('Id_evaluasi_penawaran'),
