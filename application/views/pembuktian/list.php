@@ -7,7 +7,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <a href="<?= site_url('pembuktian/add') ?>" class="btn btn-primary">Tambah Pembuktian</a>
-            <table class="table">
+
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -62,4 +62,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

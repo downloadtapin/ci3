@@ -23,8 +23,11 @@ class Pemilihan extends CI_Controller {
         $data['pembuktians'] = $this->Pembuktian_model->get_all();
         $data['klarifikasis'] = $this->Klarifikasi_model->get_all();
         $data['penjelasans'] = $this->Penjelasan_model->get_all();
-        $this->load->view('Header/NavBar');
+        $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
         $this->load->view('pemilihan/list', $data);
+        $this->load->view('Footer/Footer');
+        
     }
 
     public function add() {
@@ -47,8 +50,11 @@ class Pemilihan extends CI_Controller {
             $data['pakets'] = $this->Paket_model->get_all_paket();
             $data['pembuktians'] = $this->Pembuktian_model->get_all();
             $data['penjelasans'] = $this->Penjelasan_model->get_all();
-            $this->load->view('Header/NavBar');
+            $this->load->view('Header/Head');
+            $this->load->view('Header/Header');
             $this->load->view('pemilihan/add',$data);
+            $this->load->view('Footer/Footer');
+            
         } else {
             $data = array(
                 'Id_paket' => $this->input->post('Id_paket'),
@@ -86,8 +92,10 @@ class Pemilihan extends CI_Controller {
             $data['klarifikasis'] = $this->Klarifikasi_model->get_all();
             $data['negosiasis'] = $this->Negosiasi_model->get_all();
             $data['pemilihan'] = $this->Pemilihan_model->get_by_id($id); // Mengambil data pemilihan berdasarkan ID
-            $this->load->view('Header/NavBar');
-            $this->load->view('pemilihan/edit', $data); // Mengirim data ke view
+            $this->load->view('Header/Head');
+            $this->load->view('Header/Header');
+            $this->load->view('pemilihan/edit', $data);
+            $this->load->view('Footer/Footer');
         } else {
             $data = array(
                 'Id_paket' => $this->input->post('Id_paket'),

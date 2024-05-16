@@ -1,10 +1,14 @@
 <!-- End of Main Content -->
-
+<style>
+    .warna {
+        color : "red";
+    }
+</style>
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2024</span>
+            <span>Copyright &copy; U<span id="warna">K</span>PBJ Tapin 2024</span>
         </div>
     </div>
 </footer>
@@ -35,7 +39,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary"  href="<?= site_url('login/logout') ?>">Logout</a>
+                <a class="btn btn-primary" href="<?= site_url('login/logout') ?>">Logout</a>
             </div>
         </div>
     </div>
@@ -46,16 +50,17 @@
 
 </body>
 <script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            "processing": true,
-            "columnDefs": [{
-                    "width": "30%",
-                    "targets": [2]
-                } // Set width for the eighth column (Alamat)
-            ]
-        });
-
+$(document).ready(function() {
+    $('#example').DataTable({
+        "processing": true,
+        "columnDefs": [{
+                "width": "30%",
+                "targets": [2]
+            } // Set width for the eighth column (Alamat)
+        ]
     });
-    </script>
+
+});
+</script>
+
 </html>
