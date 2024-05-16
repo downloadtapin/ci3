@@ -36,7 +36,7 @@
 
             <?php if ($this->session->userdata("level") === 'admin'): ?>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('PokjaMil') ?>"><i class="fa fa-caret-right" aria-hidden="true"></i>Data
+                <a class="nav-link" href="<?= site_url('PokjaMil') ?>"><i class="fa fa-archive" aria-hidden="true"></i>Data
                     Anggota
                     Pokja</a>
             </li>
@@ -44,31 +44,31 @@
             <p></p>
             <?php endif; ?>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Paket') ?>"><i class="fa fa-caret-right"
+                <a class="nav-link" href="<?= site_url('Paket') ?>"><i class="fa fa-archive"
                         aria-hidden="true"></i>Paket</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Penjelasan') ?>"><i class="fa fa-caret-right"
+                <a class="nav-link" href="<?= site_url('Penjelasan') ?>"><i class="fa fa-archive"
                         aria-hidden="true"></i>Penjelasan</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Evaluasi') ?>"><i class="fa fa-caret-right"
+                <a class="nav-link" href="<?= site_url('Evaluasi') ?>"><i class="fa fa-archive"
                         aria-hidden="true"></i>Evaluasi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Klarifikasi') ?>"><i class="fa fa-caret-right"
+                <a class="nav-link" href="<?= site_url('Klarifikasi') ?>"><i class="fa fa-archive"
                         aria-hidden="true"></i>Klarifikasi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Pembuktian') ?>"><i class="fa fa-caret-right"
+                <a class="nav-link" href="<?= site_url('Pembuktian') ?>"><i class="fa fa-archive"
                         aria-hidden="true"></i>Pembuktian</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Negosiasi') ?>"><i class="fa fa-caret-right"
+                <a class="nav-link" href="<?= site_url('Negosiasi') ?>"><i class="fa fa-archive"
                         aria-hidden="true"></i>Negosiasi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Pemilihan') ?>"><i class="fa fa-caret-right"
+                <a class="nav-link" href="<?= site_url('Pemilihan') ?>"><i class="fa fa-archive"
                         aria-hidden="true"></i>Pemilihan</a>
             </li>
             
@@ -117,7 +117,7 @@
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-caret-right"></i>
+                        <i class="fa fa-archive"></i>
                     </button>
 
                     <!-- Topbar Search -->
