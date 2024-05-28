@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Tempat">Tempat:</label>
-                    <input type="text" class="form-control" id="Tempat" name="Tempat">
+                    <textarea class="form-control" id="Tempat" name="Tempat" required rows="3"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="Nama_penyedia">Nama Penyedia:</label>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Alamat">Alamat:</label>
-                    <input type="text" class="form-control" id="Alamat" name="Alamat">
+                    <textarea class="form-control" id="Alamat" name="Alamat" required rows="3"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="Nama_hadir">Nama Hadir:</label>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Keterangan_lain">Keterangan Lain:</label>
-                    <textarea class="form-control" id="Keterangan_lain" name="Keterangan_lain"></textarea>
+                    <textarea class="form-control" id="Keterangan_lain" name="Keterangan_lain" rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" name="submit">Simpan</button>
                 <a href="<?= site_url('pembuktian') ?>" class="btn btn-secondary">Batal</a>

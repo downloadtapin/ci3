@@ -42,7 +42,7 @@
                 <div class="form-group">
                     <label for="Keterangan_lain">Keterangan Lain:</label>
                     <textarea class="form-control" id="Keterangan_lain"
-                        name="Keterangan_lain"><?= $negosiasi->Keterangan_lain ?></textarea>
+                        name="Keterangan_lain" rows="3"><?= $negosiasi->Keterangan_lain ?></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" name="submit">Simpan</button>
                 <a href="<?= site_url('negosiasi') ?>" class="btn btn-secondary">Batal</a>

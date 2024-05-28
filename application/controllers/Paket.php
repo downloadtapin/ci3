@@ -31,6 +31,7 @@ class Paket extends CI_Controller {
         $selected_id_pokjas_str = implode(',', $selected_id_pokjas);
             $data = array(
                 'Id_pokja' => $selected_id_pokjas_str,
+                'no_dokumen_pemilihan' => $this->input->post('no_dokumen_pemilihan'),
                 'Nama_tender' => $this->input->post('Nama_tender'),
                 'Nilai_Pagu' => $this->input->post('Nilai_Pagu'),
                 'Kode_RUP' => $this->input->post('Kode_RUP'),
@@ -63,6 +64,7 @@ class Paket extends CI_Controller {
             
             $data = array(
                 'Id_pokja' => implode(",", $this->input->post('Id_pokja')),
+                'no_dokumen_pemilihan' => $this->input->post('no_dokumen_pemilihan'),
                 'Nama_tender' => $this->input->post('Nama_tender'),
                 'Nilai_Pagu' => $this->input->post('Nilai_Pagu'),
                 'Kode_RUP' => $this->input->post('Kode_RUP'),

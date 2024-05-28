@@ -8,14 +8,8 @@
                     <input type="text" class="form-control" id="Id_kode_tender" name="Id_kode_tender" required>
                 </div>
                 <div class="form-group">
-                    <label for="Id_pokja">Nama Pokja:</label>
-                    <select class="form-control" id="Id_pokja" name="Id_pokja[]" required multiple
-                        aria-label="multiple select example">
-                        <?php foreach ($pokjas as $pokja) : ?>
-                        <option value="<?php echo $pokja->id; ?>"><?php echo $pokja->Nama; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-
+                    <label for="no_dokumen_pemilihan">No Dokumen Pemilihan:</label>
+                    <input type="text" class="form-control" id="no_dokumen_pemilihan" name="no_dokumen_pemilihan" required>
                 </div>
                 <div class="form-group">
                     <label for="Nama_tender">Nama Tender:</label>
@@ -59,16 +53,26 @@
                 </div>
                 <div class="form-group">
                     <label for="Tgl_permohonan">Tanggal Permohonan:</label>
-                    <input type="text" class="form-control datepicker" id="Tgl_permohonan" name="Tgl_permohonan"
+                    <input type="date" class="form-control datepicker" id="Tgl_permohonan" name="Tgl_permohonan"
                         required>
                 </div>
                 <div class="form-group">
                     <label for="Tgl_penugasan">Tanggal Penugasan:</label>
-                    <input type="text" class="form-control datepicker" id="Tgl_penugasan" name="Tgl_penugasan" required>
+                    <input type="date" class="form-control datepicker" id="Tgl_penugasan" name="Tgl_penugasan" required>
                 </div>
                 <div class="form-group">
                     <label for="Pokja_pemilihan">Pokja Pemilihan:</label>
                     <input type="text" class="form-control" id="Pokja_pemilihan" name="Pokja_pemilihan" required>
+                </div>
+                <div class="form-group">
+                    <label for="Id_pokja">Nama Pokja:</label>
+                    <select class="form-control" id="Id_pokja" name="Id_pokja[]" required multiple
+                        aria-label="multiple select example">
+                        <?php foreach ($pokjas as $pokja) : ?>
+                        <option value="<?php echo $pokja->id; ?>"><?php echo $pokja->Nama; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+
                 </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
                 <a href="<?= site_url('paket') ?>" class="btn btn-secondary">Batal</a>

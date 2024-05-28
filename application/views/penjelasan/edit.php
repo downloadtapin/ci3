@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Tanggal">Tanggal:</label>
-                    <input type="text" class="form-control datepicker" id="Tanggal" name="Tanggal"
+                    <input type="date" class="form-control datepicker" id="Tanggal" name="Tanggal"
                         value="<?= $penjelasan->Tanggal ?>" required>
                 </div>
                 <div class="form-group">
@@ -33,19 +33,18 @@
                         value="<?= $penjelasan->Nama_penyedia ?>" required>
                 </div>
                 <div class="form-group">
-                    <label for="Pertanyaan">Pertanyaan:</label>
-                    <input type="text" class="form-control" id="Pertanyaan" name="Pertanyaan"
-                        value="<?= $penjelasan->Pertanyaan ?>" required>
+                    <label for="Pertanyaan">Daftar Pertanyaan:</label>
+                    <textarea class="form-control" id="Pertanyaan" name="Pertanyaan" required
+                        rows="3"><?= $penjelasan->Pertanyaan ?></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="Jawaban">Jawaban:</label>
-                    <input type="text" class="form-control" id="Jawaban" name="Jawaban"
-                        value="<?= $penjelasan->Jawaban ?>" required>
+                    <label for="Jawaban">Daftar Jawaban:</label>
+                    <textarea class="form-control" id="Jawaban" name="Jawaban" required
+                        rows="3"><?= $penjelasan->Jawaban ?></textarea>
                 </div>
                 <div class="form-group">
                     <label for="Keterangan_lain">Keterangan Lain:</label>
-                    <input type="text" class="form-control" id="Keterangan_lain" name="Keterangan_lain"
-                        value="<?= $penjelasan->Keterangan_lain ?>">
+                    <textarea class="form-control" id="Keterangan_lain" name="Keterangan_lain" required rows="3"><?= $penjelasan->Keterangan_lain ?></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
                 <a href="<?= site_url('penjelasan') ?>" class="btn btn-secondary">Batal</a>
