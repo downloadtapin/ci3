@@ -45,7 +45,7 @@
 
 
 </body>
-<script>
+<!-- <script>
 $(document).ready(function() {
     $('#example').DataTable({
         "processing": true,
@@ -57,6 +57,6 @@ $(document).ready(function() {
     });
 
 });
-</script>
+</script> -->
 
 </html>

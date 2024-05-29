@@ -9,6 +9,13 @@ class Pembuktian extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->model('Evaluasi_model');
     }
+    public function get_nama_penyedia() {
+        $id_evaluasi_penawaran = $this->input->post('Id_evaluasi_penawaran');
+        $this->load->model('Evaluasi_model');
+        $evaluasi = $this->Evaluasi_model->get_by_id($id_evaluasi_penawaran);
+        
+        echo json_encode($evaluasi);
+    }
 
     public function index() {
         $data['pembuktians'] = $this->Pembuktian_model->get_all();
@@ -26,9 +33,9 @@ class Pembuktian extends CI_Controller {
         $this->form_validation->set_rules('Tanggal', 'Tanggal', 'required');
         $this->form_validation->set_rules('Waktu', 'Waktu', 'required');
         $this->form_validation->set_rules('Tempat', 'Tempat', 'required');
-        $this->form_validation->set_rules('Nama_penyedia', 'Nama Penyedia', 'required');
         $this->form_validation->set_rules('Alamat', 'Alamat', 'required');
         $this->form_validation->set_rules('Nama_hadir', 'Nama Hadir', 'required');
+        $this->form_validation->set_rules('jabatan', 'jabatan', 'required');
         $this->form_validation->set_rules('Keterangan_lain', 'Keterangan Lain', 'required');
 
         if ($this->form_validation->run() == FALSE) {
@@ -45,9 +52,9 @@ class Pembuktian extends CI_Controller {
                 'Tanggal' => $this->input->post('Tanggal'),
                 'Waktu' => $this->input->post('Waktu'),
                 'Tempat' => $this->input->post('Tempat'),
-                'Nama_penyedia' => $this->input->post('Nama_penyedia'),
                 'Alamat' => $this->input->post('Alamat'),
                 'Nama_hadir' => $this->input->post('Nama_hadir'),
+                'jabatan' => $this->input->post('jabatan'),
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
             $this->Pembuktian_model->add($data);
@@ -61,9 +68,9 @@ class Pembuktian extends CI_Controller {
         $this->form_validation->set_rules('Tanggal', 'Tanggal', 'required');
         $this->form_validation->set_rules('Waktu', 'Waktu', 'required');
         $this->form_validation->set_rules('Tempat', 'Tempat', 'required');
-        $this->form_validation->set_rules('Nama_penyedia', 'Nama Penyedia', 'required');
         $this->form_validation->set_rules('Alamat', 'Alamat', 'required');
         $this->form_validation->set_rules('Nama_hadir', 'Nama Hadir', 'required');
+        $this->form_validation->set_rules('jabatan', 'jabatan', 'required');
         $this->form_validation->set_rules('Keterangan_lain', 'Keterangan Lain', 'required');
 
         if ($this->form_validation->run() == FALSE) {
@@ -81,9 +88,9 @@ class Pembuktian extends CI_Controller {
                 'Tanggal' => $this->input->post('Tanggal'),
                 'Waktu' => $this->input->post('Waktu'),
                 'Tempat' => $this->input->post('Tempat'),
-                'Nama_penyedia' => $this->input->post('Nama_penyedia'),
                 'Alamat' => $this->input->post('Alamat'),
                 'Nama_hadir' => $this->input->post('Nama_hadir'),
+                'jabatan' => $this->input->post('jabatan'),
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
             $this->Pembuktian_model->update($id, $data);
