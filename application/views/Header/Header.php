@@ -83,7 +83,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sub :</h6>
                         <a class="collapse-item" href="<?= site_url('Report') ?>">Laporan Paket</a>
-                        <a class="collapse-item" href="<?= site_url('Report') ?>">Berita Acara Reviu</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaReviu') ?>">Berita Acara Reviu</a>
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>

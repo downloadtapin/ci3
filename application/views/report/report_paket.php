@@ -29,6 +29,21 @@
             width: 100%;
             height: auto;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        .no-border td {
+            border: none;
+        }
     }
 
     .container {
@@ -68,34 +83,43 @@
                 style="background: white; padding: 2em 5em 5em 5em;width: 24cm; height: 29cm">
 
                 <table style="font-family:Bookman Old Style, serif;color:black;">
-                    <tr>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td colspan="2">
-                                        <table width="100%" style="text-align: center;line-height:1.2em">
+                    <tr class="no-border">
+                        <td class="no-border">
+                            <table class="no-border" style="line-height:1em">
+                                <tr style="border-bottom: 1px solid black">
+                                    <td colspan="2" class="no-border">
+                                        <table width="100%" style="text-align: center;line-height:1em">
                                             <tr>
-                                                <td rowspan="5">
-                                                    <img style="max-width: 80px; max-height: 80px;"
+                                                <td rowspan="7">
+                                                    <img style="max-width: 90px; max-height: 90px;"
                                                         src="<?php echo base_url('assets/img/tapin.png'); ?>"
                                                         alt="Deskripsi Gambar" />
                                                 </td>
                                             </tr>
-                                            <tr style="font-weight: bold; ">
+                                            <tr style="font-size:  18px;">
                                                 <td>
                                                     PEMERINTAH KABUPATEN TAPIN
                                                 </td>
                                             </tr>
-                                            <tr style="font-size: 30px;font-weight: bold;">
+                                            <tr style="font-size:  18px;">
                                                 <td>
                                                     SEKRETARIAT DAERAH
                                                 </td>
                                             </tr>
+                                            <tr style="font-weight: bold;font-size:  18px; ">
+                                                <td>
+                                                    UNIT KERJA PENGADAAN BARANG/JASA
+                                                </td>
+                                            </tr>
+                                            <tr style="font-size:  18px;">
+                                                <td>
+                                                    KELOMPOK KERJA PEMILIHAN 354
+                                                </td>
+                                            </tr>
                                             <tr>
-                                                <td style="font-size: 15px;">
+                                                <td style="font-size: 13px;">
                                                     Jalan Brigjend H. Hasan Basry, Komp. Islamic Center No. 22 Telp.
-                                                    (0517)
-                                                    31961-31966
+                                                    (0517) 31961-31966
                                                 </td>
                                             </tr>
                                             <tr>
@@ -103,217 +127,226 @@
                                                     Rantau - Kode Pos 71111
                                                 </td>
                                             </tr>
+                                            
                                         </table>
-
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">
+                                                <td style="text-transform: underline">&nbsp; </td>
+                                            </tr>
+                                <tr>
+                                    <td colspan="2" class="no-border">
                                         <table width="100%" style="line-height:1.2em">
                                             <tr>
-                                                <td colspan="2" style="text-align: center; font-weight: bold">LEMBAR
-                                                    PENUGASAN POKJA
-                                                    PEMILIHAN</td>
+                                                <td colspan="2"
+                                                    style="text-align: center; font-weight: bold;font-size: 20px; text-decoration: underline">
+                                                    BERITA ACARA REVIU DOKUMEN PERSIAPAN PENGADAAN
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td>
-                                                    <table>
-                                                        <tr>
-                                                            <td>
-                                                                Surat Dari
-                                                            </td>
-                                                            <td>
-                                                                : DPUPR
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                Nomor Surat
-                                                            </td>
-                                                            <td>
-                                                                : 12312/adas/2131/123
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                Tanggal Surat
-                                                            </td>
-                                                            <td>
-                                                                : 30 oktober 2023
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                                <td>
-                                                    <table>
-                                                        <tr>
-                                                            <td>
-                                                                Diterima Tanggal
-                                                            </td>
-                                                            <td>
-                                                                : 30 Oktober 2023
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                &nbsp;
-                                                            </td>
-                                                            <td>
-                                                                &nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                Sifat
-                                                            </td>
-                                                            <td>
-                                                                : Penting
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                <td colspan="2" style="text-align: center; font-size: 13px">
+                                                    Nomor : 0003.3/02/Pokja354/Reviu-Nor.sei.Sakaray.CLS/X/2023
                                                 </td>
                                             </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <table width="100%">
                                             <tr>
                                                 <td>&nbsp; </td>
                                             </tr>
                                             <tr>
-                                                <td width="150px">
-                                                    Nama Paket :
-                                                </td>
-                                                <td style="font-weight: bold; font-size: 18px; line-height: 1em">
-                                                    Normalisasi Sungai Saka Datu Beserta Ray Desa Sungai Salai Kecamatan
-                                                    Candi
-                                                    Laras Utara
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp; </td>
-                                            </tr>
-
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <table width="100%">
-                                            <tr>
-                                                <td>
-                                                    Nomor
-                                                </td>
-                                                <td>
-                                                    : 000.3.3/535/PP-354/BPBJ/2023
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Diteruskan kepada pokja pemilihan
-                                                </td>
-                                                <td>
-                                                    : 354
+                                                <td style="text-align: center; font-size: 15px">
+                                                    kami yang bertanda tangan di bawah ini Pokja Pemilihan 354 Unit
+                                                    Kerja Pengadaan Barang/Jasa Kabupaten Tapin bersama dengan Pejabat
+                                                    Pembuat Komitmen (PPK), yaitu:
                                                 </td>
                                             </tr>
                                         </table>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style=" font-size: 15px">
                                         <table>
-
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                            <td>&nbsp; </td>
-                                            </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <table width="100%" style="line-height:2em">
                                             <tr>
-                                                <td colspan="2">
-                                                    Dengan Hormat Harap :
+                                                <td style="width: 200px">
+                                                    Tanggal
                                                 </td>
-                                            </tr>
-                                            <tr>
-
                                                 <td>
-                                                    <span style="font-size:30px; vertical-align: middle">O</span>
-                                                    Tanggapan dan Saran
+                                                    :
+                                                </td>
+                                                <td>
+                                                    25 Oktober 2023
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <span style="font-size:30px; vertical-align: middle">O</span> Proses
-                                                    lebih Lanjut
+                                                    Nama PPK
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>
+                                                    MULKAN ADLI, ST
                                                 </td>
                                             </tr>
-                                            <tr>
 
+                                            <tr>
                                                 <td>
-                                                    <span style="font-size:30px; vertical-align: middle">O</span>
-                                                    Koordinasi /Konfirmasikan
+                                                    SKPD/OPD
                                                 </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 50%">
-
-                                    </td>
-                                    <td>
-                                        <table width="100%" style="text-align: center">
-                                            <tr>
                                                 <td>
-                                                    Rantau, 30 October 2023
+                                                    :
+                                                </td>
+                                                <td>
+                                                    Bidang SDA, Dinas PUPR Kabupaten Tapin
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Kepala Bagian Pengadaan Barang /Jasa
+                                                    Nomor SK PPK
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="height: 100px">
-
+                                                <td>
+                                                    :
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="font-weight:bold; text-decoration: underline;">
-                                                    IHYA INNAL AKRIMULLAH, SH, MM
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="font-weight:bold">
-                                                    NIP. 198104152005011004
+                                                <td>
+                                                    15/SK/PPK/DPUPR/SEKRT/1/2023
                                                 </td>
                                             </tr>
                                         </table>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">
-                                        <table width="100%">
+                                    <td>&nbsp; </td>
+                                </tr>
+                                <tr>
+                                    <td class="no-border">
+                                        telah mengadakan Reviu Dokumen Persiapan Pengadaan untuk:
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp; </td>
+                                </tr>
+                                <tr>
+                                    <td style=" font-size: 15px; vertical-align: top">
+                                        <table style=" font-size: 15px">
                                             <tr>
-                                                <td>
-                                                    Catatan :
+                                                <td style="width: 200px;vertical-align: top">
+                                                    Nama Paket Pekerjaan
+                                                </td>
+                                                <td style="vertical-align: top">
+                                                    :
+                                                </td>
+                                                <td style="vertical-align: top">
+                                                    Normalisasi Sungai Saka Datu Beserta Ray Desa Sungai Salai Kecamatan
+                                                    Candi Laras Utara
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Penugasan Nama-Nama Ybs Pokja Pemilihan Dapat Di Lihat Di Aplikasi :
-                                                    Ipse.tapinkab.go.id
+                                                    Sumber Dana
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>
+                                                    APBD Kabupaten Tapin Tahun Anggaran 2023
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Kode Rekening
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>
+                                                    1.03.02.2.01.46.5.1.02.03.04.0051.0.0.0.00.00.00.000.00000
                                                 </td>
                                             </tr>
                                         </table>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>&nbsp; </td>
+                                </tr>
+                                <tr>
+                                    <td style=" font-size: 15px">
+                                        Dalam pembahasan ini telah dilakukan reviu terhadap Dokumen Persiapan Pengadaan
+                                        meliputi Spesifikasi Teknis, Harga Perkiraan Sendiri (HPS), Rancangan Kontrak,
+                                        Dokumen Anggaran Belanja, ID paket RUP, waktu penggunaan barang/jasa, serta
+                                        analisis pasar. Hasil reviu terhadap dokumen-dokumen tersebut adalah sesuai
+                                        dengan lampiran.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp; </td>
+                                </tr>
+                                <tr>
+                                    <td style=" font-size: 15px">
+                                        Demikian Berita Acara ini dibuat dan ditanda tangani pada Hari , Tanggal , Bulan
+                                        dan Tahun sebagaimana tersebut diatas untuk di pergunakan sebagaimana mestinya.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp; </td>
+                                </tr>
+                                <tr>
+                                    <td class="no-border">
+                                        <table style="text-align: center; font-size: 15px; width:100%">
+                                            <tr>
+                                                <td>
+                                                    Pejabat Pembuat Komitmen
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Bidang SDA, Dinas PUPR Kabupaten Tapin
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    MULKAN ADLI, ST
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    NIP. 19731114 201001 1 006
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    UKPBJ Kabupaten Tapin
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ttd
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Pokja Pemilihan 354
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
                             </table>
                         </td>
                     </tr>
