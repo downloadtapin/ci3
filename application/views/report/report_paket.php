@@ -69,8 +69,8 @@
 
                 <table style="font-family:Bookman Old Style, serif;color:black;">
                     <tr>
-                        <td style="border: 1px solid black">
-                            <table border>
+                        <td>
+                            <table>
                                 <tr>
                                     <td colspan="2">
                                         <table width="100%" style="text-align: center;line-height:1.2em">
@@ -109,13 +109,13 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <table width="100%" style="line-height:1.2em" border>
-                                            <tr style="border: 1px solid black">
+                                        <table width="100%" style="line-height:1.2em">
+                                            <tr>
                                                 <td colspan="2" style="text-align: center; font-weight: bold">LEMBAR
                                                     PENUGASAN POKJA
                                                     PEMILIHAN</td>
                                             </tr>
-                                            <tr style="border: 1px solid black">
+                                            <tr>
                                                 <td>
                                                     <table>
                                                         <tr>
@@ -180,20 +180,28 @@
                                     <td colspan="2">
                                         <table width="100%">
                                             <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
                                                 <td width="150px">
                                                     Nama Paket :
                                                 </td>
-                                                <td>
+                                                <td style="font-weight: bold; font-size: 18px; line-height: 1em">
                                                     Normalisasi Sungai Saka Datu Beserta Ray Desa Sungai Salai Kecamatan
                                                     Candi
                                                     Laras Utara
                                                 </td>
+
                                             </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+
                                         </table>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" style="border: 1px solid black">
+                                    <td colspan="2">
                                         <table width="100%">
                                             <tr>
                                                 <td>
@@ -222,6 +230,9 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                            <td>&nbsp; </td>
+                                            </tr>
+                                <tr>
                                     <td colspan="2">
                                         <table width="100%" style="line-height:2em">
                                             <tr>
@@ -232,18 +243,21 @@
                                             <tr>
 
                                                 <td>
-                                                    <span style="font-size:30px; vertical-align: middle">O</span> Tanggapan dan Saran
+                                                    <span style="font-size:30px; vertical-align: middle">O</span>
+                                                    Tanggapan dan Saran
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <span style="font-size:30px; vertical-align: middle">O</span> Proses lebih Lanjut
+                                                    <span style="font-size:30px; vertical-align: middle">O</span> Proses
+                                                    lebih Lanjut
                                                 </td>
                                             </tr>
                                             <tr>
 
                                                 <td>
-                                                    <span style="font-size:30px; vertical-align: middle">O</span> Koordinasi /Konfirmasikan
+                                                    <span style="font-size:30px; vertical-align: middle">O</span>
+                                                    Koordinasi /Konfirmasikan
                                                 </td>
                                             </tr>
                                         </table>
@@ -283,7 +297,7 @@
                                         </table>
                                     </td>
                                 </tr>
-                                <tr style="border: 1px solid black">
+                                <tr>
                                     <td colspan="2">
                                         <table width="100%">
                                             <tr>
