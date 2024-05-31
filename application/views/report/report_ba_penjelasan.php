@@ -38,7 +38,7 @@
 
 <body>
     <div class="container-fluid">
-        <h1 class="h3 mb-2 text-gray-800">BERITA ACARA REVIU</h1>
+        <h1 class="h3 mb-2 text-gray-800">BERITA ACARA PENJELASAN</h1>
 
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -46,58 +46,93 @@
                     <table id="example" class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Nama Pokja</th>
                                 <th>Nama Tender</th>
-                                <th>No Dokumen Pemilihan</th>
-                                <th>Nilai Pagu</th>
-                                <th>Kode RUP</th>
                                 <th>Nilai HPS</th>
-                                <th>Kode Anggaran</th>
                                 <th>Metode Tender</th>
-                                <th>Nama PPK</th>
-                                <th>Unit Kerja</th>
-                                <th>No SK</th>
-                                <th>NIP PPK</th>
-                                <th>Tanggal Penugasan</th>
+                                <th>Metode Evaluasi</th>
                                 <th>Pokja Pemilihan</th>
+                                <th>No. Penjelasan</th>
+                                <th>Tanggal</th>
+                                <th>Nama Penyedia</th>
+                                <th>Pertanyaan</th>
+                                <th>Jawaban</th>
+                                <th>Keterangan Lain</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($pakets as $paket): ?>
+                            <?php foreach ($penjelasans as $penjelasan): ?>
                             <tr>
-                                <td class="nama-pokja">
-                                    <?php
-                                    $selected_ids = explode(',', $paket->Id_pokja);
-                                    $pokja_names = array();
-                                    foreach ($selected_ids as $selected_id) {
-                                        foreach ($pokjas as $pokja) {
-                                            if ($pokja->id == $selected_id) {
-                                                $pokja_names[] = $pokja->Nama;
+                                <td class="nama-paket">
+                                    <?php 
+                        foreach ($pakets as $paket) {
+                            if ($paket->Id_kode_tender == $penjelasan->Id_kode_tender) {
+                                echo $paket->Nama_tender;
+                                break;
+                            }
+                        }
+                        ?>
+                                </td>
+                                <td class="hps">
+                                    <?php 
+                                        foreach ($pakets as $paket) {
+                                            if ($paket->Id_kode_tender == $penjelasan->Id_kode_tender) {
+                                                // Format Nilai HPS menjadi format mata uang Rupiah
+                                                echo 'Rp ' . number_format($paket->Nilai_HPS, 0, ',', '.');
                                                 break;
                                             }
                                         }
-                                    }
-                                    echo implode(', ', $pokja_names);
                                     ?>
                                 </td>
-                                <td class="nama-tender"><?= $paket->Nama_tender ?></td>
-                                <td class="no-dokumen-pemilihan"><?= $paket->no_dokumen_pemilihan ?></td>
-                                <td class="nilai-pagu"><?= $paket->Nilai_Pagu ?></td>
-                                <td class="kode-rup"><?= $paket->Kode_RUP ?></td>
-                                <td class="nilai-hps"><?= $paket->Nilai_HPS ?></td>
-                                <td class="kode-anggaran"><?= $paket->Kode_anggaran ?></td>
-                                <td class="metode-tender"><?= $paket->Metode_tender ?></td>
-                                <td class="nama-ppk"><?= $paket->Nama_PPK ?></td>
-                                <td class="unit-kerja"><?= $paket->Unit_kerja ?></td>
-
-                                <td class="no-sk"><?= $paket->No_SK ?></td>
-                                <td class="nip-ppk"><?= $paket->NIP_PPK ?></td>
-                                <td class="tgl-penugasan"><?= $paket->Tgl_penugasan ?></td>
-                                <td class="pokja-pemilihan"><?= $paket->Pokja_pemilihan ?></td>
+                                <td class="metode-tender">
+                                    <?php 
+                        foreach ($pakets as $paket) {
+                            if ($paket->Id_kode_tender == $penjelasan->Id_kode_tender) {
+                                echo $paket->Metode_tender;
+                                break;
+                            }
+                        }
+                        ?>
+                                </td>
+                                <td class="metode-evaluasi">
+                                    <?php 
+                        foreach ($evaluasis as $evaluasi) {
+                            if ($evaluasi->Id_kode_tender == $penjelasan->Id_kode_tender) {
+                                echo $evaluasi->Metode_evaluasi;
+                                break;
+                            }
+                        }
+                        ?>
+                                </td>
+                                <td class="pokja-pemilihan">
+                                    <?php 
+                        foreach ($pakets as $paket) {
+                            if ($paket->Id_kode_tender == $penjelasan->Id_kode_tender) {
+                                echo $paket->Pokja_pemilihan;
+                                break;
+                            }
+                        }
+                        ?>
+                                </td>
+                                <td class="no-penjelasan"><?= $penjelasan->No_Penjelasan ?></td>
+                                <td class="tanggal"><?= date('d-m-Y', strtotime($penjelasan->Tanggal)) ?></td>
+                                <td class="nama-penyedia"><?= $penjelasan->Nama_penyedia ?></td>
+                                <td style="vertical-align: top" class="pertanyaan">
+                                    <?php 
+                                            // Memisahkan pertanyaan menjadi array berdasarkan spasi
+                                            $pertanyaan_array = explode(";", $penjelasan->Pertanyaan);
+                                            
+                                            // Menampilkan setiap pertanyaan dalam baris tersendiri
+                                            foreach ($pertanyaan_array as $pertanyaan) {
+                                                echo "<br>$pertanyaan";
+                                            }
+                                            ?>
+                                </td>
+                                <td class="jawaban"><?= $penjelasan->Jawaban ?></td>
+                                <td class="keterangan-lain"><?= $penjelasan->Keterangan_lain ?></td>
                                 <td>
                                     <button class="btn btn-primary cetak-btn"
-                                        data-id="<?= $paket->Id_kode_tender ?>">
+                                        data-id="<?= $penjelasan->Id_penjelasan ?>">
                                         <i class="bi bi-printer"></i></button>
                                 </td>
                             </tr>
@@ -145,7 +180,7 @@
                                                 </td>
                                             </tr>
                                             <tr style="font-size:   27px;">
-                                                <td  style="text-transform: uppercase;">
+                                                <td style="text-transform: uppercase;">
                                                     <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
@@ -172,7 +207,8 @@
                                             <tr>
                                                 <td colspan="2"
                                                     style="text-align: center; font-weight: bold;font-size: 22px; text-decoration: underline">
-                                                    BERITA ACARA REVIU DOKUMEN PERSIAPAN PENGADAAN
+                                                    BERITA ACARA PEMBERIAN PENJELASAN
+
                                                 </td>
                                             </tr>
                                             <tr>
@@ -185,10 +221,9 @@
                                             </tr>
                                             <tr>
                                                 <td style="font-size: 17px; text-align : justify">
-                                                    kami yang bertanda tangan di bawah ini <span class="pokja-pemilihan"></span> Unit
-                                                    Kerja Pengadaan Barang/Jasa Kabupaten Tapin bersama dengan
-                                                    Pejabat
-                                                    Pembuat Komitmen (PPK), yaitu:
+                                                    kami <span class="pokja-pemilihan"></span> Unit Kerja Pengadaan
+                                                    Barang/Jasa Kabupaten
+                                                    Tapin melaksanakan Penjelasan:
                                                 </td>
                                             </tr>
                                         </table>
@@ -204,53 +239,67 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td class="tgl-penugasan">
+                                                <td class="tanggal">
 
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Nama PPK
+                                                    Kode Tender
                                                 </td>
                                                 <td>
                                                     :
                                                 </td>
-                                                <td class="nama-ppk">
+                                                <td class="nama-paket">
 
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td>
-                                                    SKPD/OPD
+                                                    Nama Paket
                                                 </td>
                                                 <td>
                                                     :
                                                 </td>
-                                                <td class="unit-kerja">
+                                                <td class="nama-paket">
 
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Nomor SK PPK
+                                                    HPS
                                                 </td>
                                                 <td>
                                                     :
                                                 </td>
-                                                <td class="no-sk">
+                                                <td class="hps">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Metode Pemilihan
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td class="metode-tender">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Metode Evaluasi
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td class="metode-evaluasi">
 
                                                 </td>
                                             </tr>
                                         </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp; </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        telah mengadakan Reviu Dokumen Persiapan Pengadaan untuk:
                                     </td>
                                 </tr>
                                 <tr>
@@ -260,35 +309,35 @@
                                     <td style=" font-size: 17px; vertical-align: top">
                                         <table style=" font-size: 17px">
                                             <tr>
-                                                <td style="width: 200px;vertical-align: top">
-                                                    Nama Paket Pekerjaan
+                                                <td style="vertical-align: top; width: 200px">
+                                                    A. Daftar Pertanyaan
                                                 </td>
                                                 <td style="vertical-align: top">
                                                     :
                                                 </td>
-                                                <td style="vertical-align: top" class="nama-tender">
-                                                    <!-- This will be filled dynamically -->
+                                                <td style="vertical-align: top">
+                                                    <span class="pertanyaan"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>
-                                                    Sumber Dana
+                                                <td style="width: 30px">
+                                                    B. Daftar Jawaban
                                                 </td>
                                                 <td>
                                                     :
                                                 </td>
-                                                <td>
-                                                    APBD Kabupaten Tapin Tahun Anggaran 2023
+                                                <td style="vertical-align: top" class="jawaban">
+
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Kode Rekening
+                                                    C. Keterangan Lain
                                                 </td>
                                                 <td>
                                                     :
                                                 </td>
-                                                <td class="kode-rup">
+                                                <td style="vertical-align: top" class="keterangan-lain">
 
                                                 </td>
                                             </tr>
@@ -300,24 +349,7 @@
                                 </tr>
                                 <tr>
                                     <td style=" font-size: 17px; text-align : justify">
-                                        Dalam pembahasan ini telah dilakukan reviu terhadap Dokumen Persiapan
-                                        Pengadaan
-                                        meliputi Spesifikasi Teknis, Harga Perkiraan Sendiri (HPS), Rancangan
-                                        Kontrak,
-                                        Dokumen Anggaran Belanja, ID paket RUP, waktu penggunaan barang/jasa, serta
-                                        analisis pasar. Hasil reviu terhadap dokumen-dokumen tersebut adalah sesuai
-                                        dengan lampiran.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp; </td>
-                                </tr>
-                                <tr>
-                                    <td style=" font-size: 17px; text-align : justify">
-                                        Demikian Berita Acara ini dibuat dan ditanda tangani pada Hari , Tanggal ,
-                                        Bulan
-                                        dan Tahun sebagaimana tersebut diatas untuk di pergunakan sebagaimana
-                                        mestinya.
+                                        Demikian Berita Acara ini dibuat untuk dapat dipergunakan sebagaimana mestinya.
                                     </td>
                                 </tr>
                                 <tr>
@@ -332,38 +364,6 @@
                                 <tr>
                                     <td>
                                         <table style="text-align: center; font-size: 17px; width:100%">
-                                            <tr>
-                                                <td>
-                                                    Pejabat Pembuat Komitmen
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-transform: uppercase">
-                                                    <span  class="unit-kerja"></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp; </td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp; </td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp; </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-transform: uppercase;">
-                                                    <u><span class="nama-ppk"></span></u>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="nip-ppk">
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp; </td>
-                                            </tr>
                                             <tr>
                                                 <td>
                                                     UKPBJ Kabupaten Tapin
@@ -422,18 +422,16 @@
     $(document).on('click', '.cetak-btn', function() {
         var row = $(this).closest('tr');
         var clone = $('#halamancetak').clone();
-        clone.find('.nama-tender').text(row.find('.nama-tender').text());
-        clone.find('.no-dokumen-pemilihan').text(row.find('.no-dokumen-pemilihan').text());
-        clone.find('.nilai-pagu').text(row.find('.nilai-pagu').text());
-        clone.find('.kode-rup').text(row.find('.kode-rup').text());
-        clone.find('.nilai-hps').text(row.find('.nilai-hps').text());
-        clone.find('.kode-anggaran').text(row.find('.kode-anggaran').text());
+        clone.find('.nama-paket').text(row.find('.nama-paket').text());
+        clone.find('.hps').text(row.find('.hps').text());
         clone.find('.metode-tender').text(row.find('.metode-tender').text());
-        clone.find('.nama-ppk').text(row.find('.nama-ppk').text());
-        clone.find('.unit-kerja').text(row.find('.unit-kerja').text());
-        clone.find('.no-sk').text(row.find('.no-sk').text());
-        clone.find('.nip-ppk').text(row.find('.nip-ppk').text());
-        clone.find('.tgl-penugasan').text(row.find('.tgl-penugasan').text());
+        clone.find('.metode-evaluasi').text(row.find('.metode-evaluasi').text());
+        clone.find('.no-penjelasan').text(row.find('.no-penjelasan').text());
+        clone.find('.tanggal').text(row.find('.tanggal').text());
+        clone.find('.nama-penyedia').text(row.find('.nama-penyedia').text());
+        clone.find('.pertanyaan').text(row.find('.pertanyaan').text());
+        clone.find('.jawaban').text(row.find('.jawaban').text());
+        clone.find('.keterangan-lain').text(row.find('.keterangan-lain').text());
         clone.find('.pokja-pemilihan').text(row.find('.pokja-pemilihan').text());
 
         $('#halamancetak').html(clone.html());
