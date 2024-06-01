@@ -85,6 +85,7 @@
                         <a class="collapse-item" href="<?= site_url('Report') ?>">Laporan Paket</a>
                         <a class="collapse-item" href="<?= site_url('Report/reportBaReviu') ?>">Berita Acara Reviu</a>
                         <a class="collapse-item" href="<?= site_url('Report/reportBaPenjelasan') ?>">Berita Acara Penjelasan</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaEvaluasi') ?>">Berita Acara Evaluasi</a>
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>

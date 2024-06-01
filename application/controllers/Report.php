@@ -32,12 +32,23 @@ class Report extends CI_Controller {
 
     public function reportBaPenjelasan() {
         
+        $data['pokjas'] = $this->PokjaMil_model->get_all_pokja();
+        $data['pakets'] = $this->Paket_model->get_all_paket();
+        $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
+        $this->load->view('report/report_ba_reviu', $data);
+        $this->load->view('Footer/Footer');
+        
+    }
+
+    public function reportBaEvaluasi() {
+        
         $data['penjelasans'] = $this->Penjelasan_model->get_all();
         $data['evaluasis'] = $this->Evaluasi_model->get_all();
         $data['pakets'] = $this->Paket_model->get_all_paket();
         $this->load->view('Header/Head');
         $this->load->view('Header/Header');
-        $this->load->view('report/report_ba_penjelasan', $data);
+        $this->load->view('report/report_ba_evaluasi', $data);
         $this->load->view('Footer/Footer');
         
     }
