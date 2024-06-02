@@ -4,8 +4,8 @@
             <h2>Tambah Paket Tender</h2>
             <form action="<?= site_url('paket/add') ?>" method="post">
                 <div class="form-group">
-                    <label for="Id_kode_tender">ID Kode Tender:</label>
-                    <input type="text" class="form-control" id="Id_kode_tender" name="Id_kode_tender" required>
+                    <label for="kode_tender">Kode Tender:</label>
+                    <input type="text" class="form-control" id="kode_tender" name="kode_tender" required>
                 </div>
                 <div class="form-group">
                     <label for="no_dokumen_pemilihan">No Dokumen Pemilihan:</label>

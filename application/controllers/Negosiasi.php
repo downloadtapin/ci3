@@ -42,6 +42,7 @@ class Negosiasi extends CI_Controller {
                 'Tanggal' => $this->input->post('Tanggal'),
                 'harga_penawaran' => $this->input->post('harga_penawaran'),
                 'harga_terkoreksi' => $this->input->post('harga_terkoreksi'),
+                'harga_negosiasi' => $this->input->post('harga_negosiasi'),
                 'hasil_evaluasi' => $this->input->post('hasil_evaluasi'),
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
@@ -78,6 +79,7 @@ class Negosiasi extends CI_Controller {
                 'Tanggal' => $this->input->post('Tanggal'),
                 'harga_penawaran' => $this->input->post('harga_penawaran'),
                 'harga_terkoreksi' => $this->input->post('harga_terkoreksi'),
+                'harga_negosiasi' => $this->input->post('harga_negosiasi'),
                 'hasil_evaluasi' => $this->input->post('hasil_evaluasi'),
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );

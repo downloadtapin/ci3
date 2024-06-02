@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Jun 2024 pada 07.54
+-- Waktu pembuatan: 02 Jun 2024 pada 10.49
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.0.30
 
@@ -50,7 +50,9 @@ INSERT INTO `evaluasi` (`Id_evaluasi_penawaran`, `Id_kode_tender`, `No_Evaluasi`
 (2, 4, 'EVAL002', '2024-05-11', 'Metode B', 'Penyedia B', 1500000, '0', '1', '1', '0', 'Keterangan 2'),
 (3, 3, 'EVAL003', '2024-05-12', 'Metode C', 'Penyedia C', 2000000, '1', '1', '0', '1', 'Keterangan 3'),
 (4, 4, 'EVAL004', '2024-05-13', 'Metode A', 'Penyedia D', 1200000, '0', '0', '1', '1', 'Keterangan 4'),
-(5, 5, 'EVAL005', '2024-05-14', 'Metode B', 'Penyedia E', 1800000, '1', '0', '0', '1', 'Keterangan 5');
+(5, 5, 'EVAL005', '2024-05-14', 'Metode B', 'Penyedia E', 1800000, '1', '0', '0', '1', 'Keterangan 5'),
+(12, 15, '2222222222', '2024-06-03', '12312', '1231', 12312, '1', '1', '1', '1', '12312'),
+(13, 15, 'q3123123', '2024-06-02', '123123', '12312313123', 123123, '1', '1', NULL, NULL, '12312');
 
 -- --------------------------------------------------------
 
@@ -136,7 +138,9 @@ INSERT INTO `negosiasi` (`Id_negosiasi`, `Id_evaluasi_penawaran`, `No_Negosiasi`
 (7, 5, 'NGS007', '2024-05-07', 70000000, 67000000, 0, 1, 'Keterangan 7'),
 (8, 4, 'NGS008', '2024-05-08', 80000000, 75000000, 0, 0, 'Keterangan 8'),
 (9, 4, 'NGS009', '2024-05-09', 90000000, 85000000, 0, 1, 'Keterangan 9'),
-(10, 4, 'NGS010', '2024-05-10', 100000000, 95000000, 0, 1, 'Keterangan 10');
+(10, 4, 'NGS010', '2024-05-10', 100000000, 95000000, 0, 1, 'Keterangan 10'),
+(12, 2, '123', '2024-06-02', 123, 123, 123, 123, '123'),
+(13, 12, '123123', '2024-06-04', 1231, 12312, 123123, 123123, '12321');
 
 -- --------------------------------------------------------
 
@@ -173,7 +177,8 @@ INSERT INTO `paket` (`Id_kode_tender`, `kode_tender`, `Id_pokja`, `no_dokumen_pe
 (3, '', '2,3,4', '', 'Tender 3', 2000000, 0, 1600000, 0, 'Metode 3', 'PPK 3', 34567, 'SK-003', 'Unit 3', '2024-05-03', '2024-05-07', 'Pokja 3'),
 (4, '', '1,2,4', '', 'Tender 4', 2500000, 0, 2000000, 0, 'Metode 4', 'PPK 4', 45678, 'SK-004', 'Unit 4', '2024-05-04', '2024-05-08', 'Pokja 4'),
 (5, '', '2,3,5', '', 'Tender 5', 3000000, 0, 2400000, 0, 'Metode 5', 'PPK 5', 56789, 'SK-005', 'Unit 5', '2024-05-05', '2024-05-09', 'Pokja 5'),
-(14, '', '1,2,3', '', '123', 12312, 12312, 1231, 1231, '123', '123', 12, '123', '123', '2024-05-14', '2024-05-15', '123');
+(14, '', '1,2,3', '', '123', 12312, 12312, 1231, 1231, '123', '123', 12, '123', '123', '2024-05-14', '2024-05-15', '123'),
+(15, '123123', '2,3,4', '213', '123', 123, 12, 123, 123, '12123', '123', 123, '123', '123', '2024-06-03', '2024-06-03', '123');
 
 -- --------------------------------------------------------
 
@@ -191,6 +196,7 @@ CREATE TABLE `pembuktian` (
   `Nama_penyedia` varchar(200) DEFAULT NULL,
   `Alamat` varchar(200) DEFAULT NULL,
   `Nama_hadir` varchar(200) DEFAULT NULL,
+  `jabatan` text NOT NULL,
   `Keterangan_lain` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
@@ -198,17 +204,19 @@ CREATE TABLE `pembuktian` (
 -- Dumping data untuk tabel `pembuktian`
 --
 
-INSERT INTO `pembuktian` (`Id_pembuktian`, `Id_evaluasi_penawaran`, `No_Pembuktian`, `Tanggal`, `Waktu`, `Tempat`, `Nama_penyedia`, `Alamat`, `Nama_hadir`, `Keterangan_lain`) VALUES
-(1, 4, 'PBKT001', '2024-05-01', '12:12:00', 'Gedung A', 'PT ABC', 'Jalan Merdeka No. 123', 'John Doe', 'Keterangan 1'),
-(2, 4, 'PBKT002', '2024-05-02', '12:12:12', 'Gedung B', 'PT XYZ', 'Jalan Jenderal Sudirman No. 456', 'Jane Doe', 'Keterangan 2'),
-(3, 3, 'PBKT003', '2024-05-03', '00:00:00', 'Gedung C', 'PT LMN', 'Jalan Gatot Subroto No. 789', 'Foo Bar', 'Keterangan 3'),
-(4, 4, 'PBKT004', '2024-05-04', '00:00:00', 'Gedung D', 'PT QRS', 'Jalan Asia Afrika No. 1011', 'Baz Quux', 'Keterangan 4'),
-(5, 5, 'PBKT005', '2024-05-05', '00:00:00', 'Gedung E', 'PT TUV', 'Jalan Diponegoro No. 1213', 'Alice Smith', 'Keterangan 5'),
-(6, 4, 'PBKT006', '2024-05-06', '00:00:00', 'Gedung F', 'PT WXY', 'Jalan Thamrin No. 1415', 'Bob Johnson', 'Keterangan 6'),
-(7, 4, 'PBKT007', '2024-05-07', '00:00:00', 'Gedung G', 'PT ZZZ', 'Jalan Sudirman No. 1617', 'Carol Williams', 'Keterangan 7'),
-(8, 4, 'PBKT008', '2024-05-08', '00:00:00', 'Gedung H', 'PT AAA', 'Jalan Pahlawan No. 1819', 'David Brown', 'Keterangan 8'),
-(9, 4, 'PBKT009', '2024-05-09', '00:00:00', 'Gedung I', 'PT BBB', 'Jalan Merak No. 2021', 'Eve Taylor', 'Keterangan 9'),
-(10, 4, 'PBKT010', '2024-05-10', '00:00:00', 'Gedung J', 'PT CCC', 'Jalan Garuda No. 2223', 'Frank Martin', 'Keterangan 10');
+INSERT INTO `pembuktian` (`Id_pembuktian`, `Id_evaluasi_penawaran`, `No_Pembuktian`, `Tanggal`, `Waktu`, `Tempat`, `Nama_penyedia`, `Alamat`, `Nama_hadir`, `jabatan`, `Keterangan_lain`) VALUES
+(1, 4, 'PBKT001', '2024-05-01', '12:12:00', 'Gedung A', 'PT ABC', 'Jalan Merdeka No. 123', 'John Doe', 'adasd', 'Keterangan 1'),
+(2, 4, 'PBKT002', '2024-05-02', '12:12:12', 'Gedung B', 'PT XYZ', 'Jalan Jenderal Sudirman No. 456', 'Jane Doe', '', 'Keterangan 2'),
+(3, 3, 'PBKT003', '2024-05-03', '00:00:00', 'Gedung C', 'PT LMN', 'Jalan Gatot Subroto No. 789', 'Foo Bar', '', 'Keterangan 3'),
+(4, 4, 'PBKT004', '2024-05-04', '00:00:00', 'Gedung D', 'PT QRS', 'Jalan Asia Afrika No. 1011', 'Baz Quux', '', 'Keterangan 4'),
+(5, 5, 'PBKT005', '2024-05-05', '00:00:00', 'Gedung E', 'PT TUV', 'Jalan Diponegoro No. 1213', 'Alice Smith', '', 'Keterangan 5'),
+(6, 4, 'PBKT006', '2024-05-06', '00:00:00', 'Gedung F', 'PT WXY', 'Jalan Thamrin No. 1415', 'Bob Johnson', '', 'Keterangan 6'),
+(7, 4, 'PBKT007', '2024-05-07', '00:00:00', 'Gedung G', 'PT ZZZ', 'Jalan Sudirman No. 1617', 'Carol Williams', '', 'Keterangan 7'),
+(8, 4, 'PBKT008', '2024-05-08', '00:00:00', 'Gedung H', 'PT AAA', 'Jalan Pahlawan No. 1819', 'David Brown', '', 'Keterangan 8'),
+(9, 4, 'PBKT009', '2024-05-09', '00:00:00', 'Gedung I', 'PT BBB', 'Jalan Merak No. 2021', 'Eve Taylor', '', 'Keterangan 9'),
+(10, 4, 'PBKT010', '2024-05-10', '00:00:00', 'Gedung J', 'PT CCC', 'Jalan Garuda No. 2223', 'Frank Martin', '', 'Keterangan 10'),
+(12, 12, '1424124', '2024-06-03', '12:01:00', '12214', NULL, '1241', '1241', '12412', '12412'),
+(13, 13, '12312312', '2024-06-03', '12:12:00', '123123', NULL, '123123123', '213123', '123123123131', '1231312');
 
 -- --------------------------------------------------------
 
@@ -397,7 +405,7 @@ ALTER TABLE `userlogin`
 -- AUTO_INCREMENT untuk tabel `evaluasi`
 --
 ALTER TABLE `evaluasi`
-  MODIFY `Id_evaluasi_penawaran` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id_evaluasi_penawaran` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `klarifikasi`
@@ -415,19 +423,19 @@ ALTER TABLE `nama_tabel`
 -- AUTO_INCREMENT untuk tabel `negosiasi`
 --
 ALTER TABLE `negosiasi`
-  MODIFY `Id_negosiasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id_negosiasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `paket`
 --
 ALTER TABLE `paket`
-  MODIFY `Id_kode_tender` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `Id_kode_tender` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembuktian`
 --
 ALTER TABLE `pembuktian`
-  MODIFY `Id_pembuktian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id_pembuktian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `pemilihan`

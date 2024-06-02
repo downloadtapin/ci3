@@ -3,10 +3,14 @@
         <div class="card-body">
             <h2>Edit Paket Tender</h2>
             <form action="<?= site_url('paket/edit/'.$paket->Id_kode_tender) ?>" method="post">
-                <div class="form-group">
+                <div class="form-group" hidden="true">
                     <label for="Id_kode_tender">ID Kode Tender:</label>
                     <input type="text" class="form-control" id="Id_kode_tender" name="Id_kode_tender"
-                        value="<?= $paket->Id_kode_tender ?>" readonly>
+                        value="<?= $paket->Id_kode_tender ?>" >
+                </div>
+                <div class="form-group">
+                    <label for="kode_tender">Kode Tender:</label>
+                    <input type="text" class="form-control" value="<?= $paket->kode_tender ?>" id="kode_tender" name="kode_tender" required>
                 </div>
                 <div class="form-group">
                     <label for="no_dokumen_pemilihan">No Dokumen Pemilihan:</label>

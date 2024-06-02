@@ -28,11 +28,16 @@
                     <label for="harga_penawaran">Harga Penawaran:</label>
                     <input type="text" class="form-control" id="harga_penawaran" name="harga_penawaran"
                         value="<?= $negosiasi->harga_penawaran ?>" required>
-                </div>
+                </div>harga_negosiasi
                 <div class="form-group">
                     <label for="harga_terkoreksi">Harga Terkoreksi:</label>
                     <input type="text" class="form-control" id="harga_terkoreksi" name="harga_terkoreksi"
                         value="<?= $negosiasi->harga_terkoreksi ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="harga_negosiasi">Harga negosiasi:</label>
+                    <input type="text" class="form-control" id="harga_negosiasi" name="harga_negosiasi"
+                        value="<?= $negosiasi->harga_negosiasi ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="hasil_evaluasi">Hasil Evaluasi:</label>

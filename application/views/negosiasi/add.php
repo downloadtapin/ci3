@@ -28,6 +28,10 @@
                     <input type="text" class="form-control" id="harga_terkoreksi" name="harga_terkoreksi" required>
                 </div>
                 <div class="form-group">
+                    <label for="harga_terkoreksi">Harga negosiasi:</label>
+                    <input type="text" class="form-control" id="harga_negosiasi" name="harga_negosiasi" required>
+                </div>
+                <div class="form-group">
                     <label for="hasil_evaluasi">Hasil Evaluasi:</label>
                     <input type="text" class="form-control" id="hasil_evaluasi" name="hasil_evaluasi" required>
                 </div>

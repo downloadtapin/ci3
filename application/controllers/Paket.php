@@ -30,6 +30,7 @@ class Paket extends CI_Controller {
         // Convert array to comma-separated string (if needed)
         $selected_id_pokjas_str = implode(',', $selected_id_pokjas);
             $data = array(
+                'kode_tender' => $this->input->post('kode_tender'),
                 'Id_pokja' => $selected_id_pokjas_str,
                 'no_dokumen_pemilihan' => $this->input->post('no_dokumen_pemilihan'),
                 'Nama_tender' => $this->input->post('Nama_tender'),
@@ -63,6 +64,7 @@ class Paket extends CI_Controller {
         if ($this->input->post()) {
             
             $data = array(
+                'kode_tender' => $this->input->post('kode_tender'),
                 'Id_pokja' => implode(",", $this->input->post('Id_pokja')),
                 'no_dokumen_pemilihan' => $this->input->post('no_dokumen_pemilihan'),
                 'Nama_tender' => $this->input->post('Nama_tender'),

@@ -14,6 +14,7 @@
                 <table id="example" class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>Nomor Evaluasi</th>
                             <th>Nomor Negosiasi</th>
                             <th>Tanggal</th>
@@ -25,11 +26,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($negosiasis as $negosiasi): ?>
+                        <?php $counter = 1; foreach ($negosiasis as $negosiasi): ?>
                         <tr>
-
+                        <td><?= $counter ?></td>
                             <td>
                                 <?php 
+                                
                         foreach ($evaluasis as $evaluasi) {
                             if ($evaluasi->Id_evaluasi_penawaran == $negosiasi->Id_evaluasi_penawaran) {
                                 echo $evaluasi->No_Evaluasi;
@@ -38,6 +40,7 @@
                         }
                         ?>
                             </td>
+                            
                             <td><?= $negosiasi->No_Negosiasi ?></td>
                             <td><?= $negosiasi->Tanggal ?></td>
                             <td><?= $negosiasi->harga_penawaran ?></td>
@@ -53,7 +56,7 @@
                                         class="bi bi-trash icon-custom"></i></a>
                             </td>
                         </tr>
-                        <?php endforeach; ?>
+                        <?php $counter++; endforeach; ?>
                     </tbody>
                 </table>
             </div>

@@ -94,7 +94,7 @@
                                         }
                                         ?>
                                 </td>
-                                <td class="nama-paket" hidden="true">
+                                <td class="kode-tender" hidden="true">
                                     <?php 
                                         // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
                                         foreach ($evaluasis as $evaluasi) {
@@ -104,7 +104,7 @@
                                                 // Cari nama tender di tabel paket menggunakan Id_kode_tender
                                                 foreach ($pakets as $paket) {
                                                     if ($paket->Id_kode_tender == $Id_kode_tender) {
-                                                        echo $paket->Nama_tender;
+                                                        echo $paket->kode_tender;
                                                         break;
                                                     }
                                                 }
@@ -172,6 +172,25 @@
                                         }
                                         ?>
                                 </td>
+                                <td class="unit-kerja" hidden="true">
+                                    <?php 
+                                        // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pembuktian->Id_evaluasi_penawaran) {
+                                                // Dapatkan Id_kode_tender
+                                                $Id_kode_tender = $evaluasi->Id_kode_tender;
+                                                // Cari nama tender di tabel paket menggunakan Id_kode_tender
+                                                foreach ($pakets as $paket) {
+                                                    if ($paket->Id_kode_tender == $Id_kode_tender) {
+                                                        echo $paket->Unit_kerja;
+                                                        break;
+                                                    }
+                                                }
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
                                 <td class="nama-penyedia">
                                     <?php 
                                         foreach ($evaluasis as $evaluasi) {
@@ -182,7 +201,8 @@
                                         }
                                         ?>
                                 </td>
-                                <td class="nama-jabatan"><?= $pembuktian->Nama_hadir ?></td>
+                                <td class="nama-hadir"><?= $pembuktian->Nama_hadir ?></td>
+                                <td class="jabatan" hidden="true"><?= $pembuktian->jabatan ?></td>
                                 <td class="alamat"><?= $pembuktian->Alamat ?></td>
 
                                 <td class="ket"><?= $pembuktian->Keterangan_lain ?></td>
@@ -367,7 +387,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td class="skpd">
+                                                <td class="unit-kerja">
 
                                                 </td>
                                             </tr>
@@ -403,7 +423,10 @@
 
                                                 <td class="alamat"></td>
 
-                                                <td class="nama-jabatan"></td>
+                                                <td>
+                                                    <span  class="nama-hadir"></span>
+                                                    <br><span  class="jabatan"></span>
+                                                </td>
                                                 <td>Lulus</td>
                                             </tr>
                                     </td>
@@ -494,7 +517,9 @@
         clone.find('.hps').text(row.find('.hps').text());
         clone.find('.no-evaluasi').text(row.find('.no-evaluasi').text());
         clone.find('.tanggal').text(row.find('.tanggal').text());
-        clone.find('.nama-jabatan').text(row.find('.nama-jabatan').text());
+        clone.find('.unit-kerja').text(row.find('.unit-kerja').text());
+        clone.find('.nama-hadir').text(row.find('.nama-hadir').text());
+        clone.find('.jabatan').text(row.find('.jabatan').text());
         clone.find('.tahun-anggaran').text(row.find('.tahun-anggaran').text());
         clone.find('.pagu').text(row.find('.pagu').text());
         clone.find('.hps').text(row.find('.hps').text());
