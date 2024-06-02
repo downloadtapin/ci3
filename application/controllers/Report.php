@@ -14,6 +14,7 @@ class Report extends CI_Controller {
         $this->load->model('Pembuktian_model');
         
         
+        
     }
 
     public function index() {
@@ -67,6 +68,20 @@ class Report extends CI_Controller {
         $this->load->view('Header/Head');
         $this->load->view('Header/Header');
         $this->load->view('report/report_ba_klarifikasi', $data);
+        $this->load->view('Footer/Footer');
+        
+    }
+
+    public function reportBaPembuktian() {
+        $data['negosiasis'] = $this->Negosiasi_model->get_all();
+        $data['klarifikasis'] = $this->Klarifikasi_model->get_all();
+        $data['penjelasans'] = $this->Penjelasan_model->get_all();
+        $data['evaluasis'] = $this->Evaluasi_model->get_all();
+        $data['pakets'] = $this->Paket_model->get_all_paket();
+        $data['pembuktians'] = $this->Pembuktian_model->get_all();
+        $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
+        $this->load->view('report/report_ba_pembuktian', $data);
         $this->load->view('Footer/Footer');
         
     }

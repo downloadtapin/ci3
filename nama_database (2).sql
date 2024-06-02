@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Bulan Mei 2024 pada 08.14
+-- Waktu pembuatan: 02 Jun 2024 pada 07.54
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.0.30
 
@@ -117,6 +117,7 @@ CREATE TABLE `negosiasi` (
   `Tanggal` date DEFAULT NULL,
   `harga_penawaran` int(20) DEFAULT NULL,
   `harga_terkoreksi` int(20) DEFAULT NULL,
+  `harga_negosiasi` int(255) NOT NULL,
   `hasil_evaluasi` int(20) DEFAULT NULL,
   `Keterangan_lain` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -125,17 +126,17 @@ CREATE TABLE `negosiasi` (
 -- Dumping data untuk tabel `negosiasi`
 --
 
-INSERT INTO `negosiasi` (`Id_negosiasi`, `Id_evaluasi_penawaran`, `No_Negosiasi`, `Tanggal`, `harga_penawaran`, `harga_terkoreksi`, `hasil_evaluasi`, `Keterangan_lain`) VALUES
-(1, 3, 'NGS001', '2024-05-01', 10000000, 9500000, 1, 'Keterangan 1'),
-(2, 4, 'NGS002', '2024-05-02', 20000000, 19000000, 1, 'Keterangan 2'),
-(3, 3, 'NGS003', '2024-05-03', 30000000, 28000000, 0, 'Keterangan 3'),
-(4, 4, 'NGS004', '2024-05-04', 40000000, 38000000, 1, 'Keterangan 4'),
-(5, 5, 'NGS005', '2024-05-05', 50000000, 47000000, 0, 'Keterangan 5'),
-(6, 5, 'NGS006', '2024-05-06', 60000000, 55000000, 1, 'Keterangan 6'),
-(7, 5, 'NGS007', '2024-05-07', 70000000, 67000000, 1, 'Keterangan 7'),
-(8, 4, 'NGS008', '2024-05-08', 80000000, 75000000, 0, 'Keterangan 8'),
-(9, 4, 'NGS009', '2024-05-09', 90000000, 85000000, 1, 'Keterangan 9'),
-(10, 4, 'NGS010', '2024-05-10', 100000000, 95000000, 1, 'Keterangan 10');
+INSERT INTO `negosiasi` (`Id_negosiasi`, `Id_evaluasi_penawaran`, `No_Negosiasi`, `Tanggal`, `harga_penawaran`, `harga_terkoreksi`, `harga_negosiasi`, `hasil_evaluasi`, `Keterangan_lain`) VALUES
+(1, 3, 'NGS001', '2024-05-01', 10000000, 9500000, 0, 1, 'Keterangan 1'),
+(2, 4, 'NGS002', '2024-05-02', 20000000, 19000000, 0, 1, 'Keterangan 2'),
+(3, 3, 'NGS003', '2024-05-03', 30000000, 28000000, 0, 0, 'Keterangan 3'),
+(4, 4, 'NGS004', '2024-05-04', 40000000, 38000000, 0, 1, 'Keterangan 4'),
+(5, 5, 'NGS005', '2024-05-05', 50000000, 47000000, 0, 0, 'Keterangan 5'),
+(6, 5, 'NGS006', '2024-05-06', 60000000, 55000000, 0, 1, 'Keterangan 6'),
+(7, 5, 'NGS007', '2024-05-07', 70000000, 67000000, 0, 1, 'Keterangan 7'),
+(8, 4, 'NGS008', '2024-05-08', 80000000, 75000000, 0, 0, 'Keterangan 8'),
+(9, 4, 'NGS009', '2024-05-09', 90000000, 85000000, 0, 1, 'Keterangan 9'),
+(10, 4, 'NGS010', '2024-05-10', 100000000, 95000000, 0, 1, 'Keterangan 10');
 
 -- --------------------------------------------------------
 
@@ -145,7 +146,9 @@ INSERT INTO `negosiasi` (`Id_negosiasi`, `Id_evaluasi_penawaran`, `No_Negosiasi`
 
 CREATE TABLE `paket` (
   `Id_kode_tender` int(10) NOT NULL,
+  `kode_tender` text NOT NULL,
   `Id_pokja` varchar(10) DEFAULT NULL,
+  `no_dokumen_pemilihan` text NOT NULL,
   `Nama_tender` varchar(100) DEFAULT NULL,
   `Nilai_Pagu` int(30) DEFAULT NULL,
   `Kode_RUP` int(15) DEFAULT NULL,
@@ -165,12 +168,12 @@ CREATE TABLE `paket` (
 -- Dumping data untuk tabel `paket`
 --
 
-INSERT INTO `paket` (`Id_kode_tender`, `Id_pokja`, `Nama_tender`, `Nilai_Pagu`, `Kode_RUP`, `Nilai_HPS`, `Kode_anggaran`, `Metode_tender`, `Nama_PPK`, `NIP_PPK`, `No_SK`, `Unit_kerja`, `Tgl_permohonan`, `Tgl_penugasan`, `Pokja_pemilihan`) VALUES
-(2, '2,3,4', 'Tender 2', 1500000, 0, 1200000, 0, 'Metode 2', 'PPK 2', 23456, 'SK-002', 'Unit 2', '2024-05-02', '2024-05-06', 'Pokja 2'),
-(3, '2,3,4', 'Tender 3', 2000000, 0, 1600000, 0, 'Metode 3', 'PPK 3', 34567, 'SK-003', 'Unit 3', '2024-05-03', '2024-05-07', 'Pokja 3'),
-(4, '1,2,4', 'Tender 4', 2500000, 0, 2000000, 0, 'Metode 4', 'PPK 4', 45678, 'SK-004', 'Unit 4', '2024-05-04', '2024-05-08', 'Pokja 4'),
-(5, '2,3,5', 'Tender 5', 3000000, 0, 2400000, 0, 'Metode 5', 'PPK 5', 56789, 'SK-005', 'Unit 5', '2024-05-05', '2024-05-09', 'Pokja 5'),
-(14, '1,2,3', '123', 12312, 12312, 1231, 1231, '123', '123', 12, '123', '123', '2024-05-14', '2024-05-15', '123');
+INSERT INTO `paket` (`Id_kode_tender`, `kode_tender`, `Id_pokja`, `no_dokumen_pemilihan`, `Nama_tender`, `Nilai_Pagu`, `Kode_RUP`, `Nilai_HPS`, `Kode_anggaran`, `Metode_tender`, `Nama_PPK`, `NIP_PPK`, `No_SK`, `Unit_kerja`, `Tgl_permohonan`, `Tgl_penugasan`, `Pokja_pemilihan`) VALUES
+(2, '', '2,3,4', '', 'Tender 2', 1500000, 0, 1200000, 0, 'Metode 2', 'PPK 2', 23456, 'SK-002', 'Unit 2', '2024-05-02', '2024-05-06', 'Pokja 2'),
+(3, '', '2,3,4', '', 'Tender 3', 2000000, 0, 1600000, 0, 'Metode 3', 'PPK 3', 34567, 'SK-003', 'Unit 3', '2024-05-03', '2024-05-07', 'Pokja 3'),
+(4, '', '1,2,4', '', 'Tender 4', 2500000, 0, 2000000, 0, 'Metode 4', 'PPK 4', 45678, 'SK-004', 'Unit 4', '2024-05-04', '2024-05-08', 'Pokja 4'),
+(5, '', '2,3,5', '', 'Tender 5', 3000000, 0, 2400000, 0, 'Metode 5', 'PPK 5', 56789, 'SK-005', 'Unit 5', '2024-05-05', '2024-05-09', 'Pokja 5'),
+(14, '', '1,2,3', '', '123', 12312, 12312, 1231, 1231, '123', '123', 12, '123', '123', '2024-05-14', '2024-05-15', '123');
 
 -- --------------------------------------------------------
 

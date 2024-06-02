@@ -247,7 +247,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <table width="100%" style="">
+                                        <table width="100%" style="line-height: 1.2em">
                                             <tr>
                                                 <td colspan="2"
                                                     style="text-align: center; font-weight: bold;font-size: 20px; ">

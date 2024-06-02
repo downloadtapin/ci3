@@ -430,7 +430,7 @@
         clone.find('.no-evaluasi').text(row.find('.no-evaluasi').text());
         clone.find('.tanggal').text(row.find('.tanggal').text());
         clone.find('.nama-penyedia').text(row.find('.nama-penyedia').text());
-        clone.find('.nama-penyedia').text(row.find('.nama-penyedia').text());
+        clone.find('.tahun-anggaran').text(row.find('.tahun-anggaran').text());
         clone.find('.nilai-penawaran').text(row.find('.nilai-penawaran').text());
         clone.find('.kualifikasi').text(row.find('.kualifikasi').text());
         clone.find('.administrasi').text(row.find('.administrasi').text());
