@@ -9,6 +9,9 @@ class Report extends CI_Controller {
         $this->load->model('Penjelasan_model');
         $this->load->library('form_validation');
         $this->load->model('Evaluasi_model');
+        $this->load->model('Klarifikasi_model');
+        $this->load->model('Negosiasi_model');
+        
         
     }
 
@@ -49,6 +52,19 @@ class Report extends CI_Controller {
         $this->load->view('Header/Head');
         $this->load->view('Header/Header');
         $this->load->view('report/report_ba_evaluasi', $data);
+        $this->load->view('Footer/Footer');
+        
+    }
+
+    public function reportBaKlarifikasi() {
+        $data['negosiasis'] = $this->Negosiasi_model->get_all();
+        $data['klarifikasis'] = $this->Klarifikasi_model->get_all();
+        $data['penjelasans'] = $this->Penjelasan_model->get_all();
+        $data['evaluasis'] = $this->Evaluasi_model->get_all();
+        $data['pakets'] = $this->Paket_model->get_all_paket();
+        $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
+        $this->load->view('report/report_ba_klarifikasi', $data);
         $this->load->view('Footer/Footer');
         
     }
