@@ -11,6 +11,7 @@ class Report extends CI_Controller {
         $this->load->model('Evaluasi_model');
         $this->load->model('Klarifikasi_model');
         $this->load->model('Negosiasi_model');
+        $this->load->model('Pembuktian_model');
         
         
     }
@@ -62,6 +63,7 @@ class Report extends CI_Controller {
         $data['penjelasans'] = $this->Penjelasan_model->get_all();
         $data['evaluasis'] = $this->Evaluasi_model->get_all();
         $data['pakets'] = $this->Paket_model->get_all_paket();
+        $data['pembuktians'] = $this->Pembuktian_model->get_all();
         $this->load->view('Header/Head');
         $this->load->view('Header/Header');
         $this->load->view('report/report_ba_klarifikasi', $data);

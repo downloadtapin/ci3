@@ -81,11 +81,51 @@
                                         }
                                         ?>
                                 </td>
+                                <td class="alamat" hidden="true">
+                                    <?php 
+                                        foreach ($pembuktians as $pembuktian) {
+                                            if ($pembuktian->Id_evaluasi_penawaran == $klarifikasi->Id_evaluasi_penawaran) {
+                                                echo $pembuktian->Alamat;
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
                                 <td class="no-evaluasi">
                                     <?php 
                                         foreach ($evaluasis as $evaluasi) {
                                             if ($evaluasi->Id_evaluasi_penawaran == $klarifikasi->Id_evaluasi_penawaran) {
                                                 echo $evaluasi->No_Evaluasi;
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="tahun-anggaran" hidden="true">
+                                    <?php 
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $klarifikasi->Id_evaluasi_penawaran) {
+                                                // Ekstrak tahun dari tanggal
+                                                echo date('Y', strtotime($evaluasi->Tanggal));
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="hps" hidden="true">
+                                    <?php 
+                                        // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $klarifikasi->Id_evaluasi_penawaran) {
+                                                // Dapatkan Id_kode_tender
+                                                $Id_kode_tender = $evaluasi->Id_kode_tender;
+                                                // Cari nama tender di tabel paket menggunakan Id_kode_tender
+                                                foreach ($pakets as $paket) {
+                                                    if ($paket->Id_kode_tender == $Id_kode_tender) {
+                                                        echo 'Rp ' . number_format($paket->Nilai_HPS, 0, ',', '.');
+                                                        break;
+                                                    }
+                                                }
                                                 break;
                                             }
                                         }
@@ -157,7 +197,7 @@
                 <table style="font-family:Bookman Old Style, serif;color:black;">
                     <tr>
                         <td>
-                            <table>
+                            <table >
                                 <tr style="border-bottom: 1px solid black">
                                     <td colspan="2">
                                         <table width="100%" style="text-align: center;line-height:1.3em">
@@ -210,31 +250,22 @@
                                         <table width="100%" style="">
                                             <tr>
                                                 <td colspan="2"
-                                                    style="text-align: center; font-weight: bold;font-size: 22px; text-decoration: underline">
-                                                    BERITA ACARA PEMBERIAN PENJELASAN
-
+                                                    style="text-align: center; font-weight: bold;font-size: 20px; ">
+                                                    BERITA ACARA
+                                                    <br> KLARIFIKASI ADMINISTRASI, KUALIFIKASI, NEGOSIASI TEKNIS DAN
+                                                    HARGA/BIAYA
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2" style="text-align: center; font-size: 17px">
-                                                    Nomor : <span class="no-evaluasi"></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp; </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="font-size: 17px; text-align : justify">
-                                                    kami <span class="pokja-pemilihan"></span> Unit Kerja Pengadaan
-                                                    Barang/Jasa Kabupaten
-                                                    Tapin melaksanakan Penjelasan:
+                                                    Nomor : <span class="no-klarifikasi"></span>
                                                 </td>
                                             </tr>
                                         </table>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style=" font-size: 17px">
+                                    <td colspan="2" style=" font-size: 17px">
                                         <table>
                                             <tr>
                                                 <td style="width: 200px">
@@ -249,25 +280,36 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    Kode Tender
-                                                </td>
-                                                <td>
-                                                    :
-                                                </td>
-                                                <td class="kode-tender">
-
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td>
-                                                    Nama Paket
+                                                    Paket Pekerjaan
                                                 </td>
                                                 <td>
                                                     :
                                                 </td>
                                                 <td class="nama-paket">
 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Lokasi
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>
+                                                    Rantau
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Sumber Dana
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td>
+                                                    APBD Kabupaten Tapin Tahun Anggaran <span
+                                                        class="tahun-anggaran"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -281,26 +323,127 @@
 
                                                 </td>
                                             </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align: justify; line-height: 1em">
+                                        kami <span class="pokja-pemilihan"></span>, bertempat di Kantor UKPBJ Kabupaten
+                                        Tapin yang
+                                        beralamat di Jl. Brigjend. H.Hasan Basry Km.1,5 Komplek Islamic Center - Rantau,
+                                        yang bertanda tangan dibawah ini <span class="pokja-pemilihan"></span>, telah
+                                        melaksanakan
+                                        klarifikasi, administrasi, kualifikasi, teknis dan negosiasi harga/biaya untuk
+                                        paket pekerjaan tersebut diatas sebelum penetapan pemenang sesuai ketentuan IKP
+                                        34.3 dan 34.4 dengan hasil terlampir :
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <table style="width: 100%" >
                                             <tr>
-                                                <td>
-                                                    Metode Pemilihan
+                                                <td>1.</td>
+                                                <td>Aspek-aspek Administrasi dan Kualifikasi yaitu :
                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
                                                 <td>
-                                                    :
+                                                    a. Sisa Kepampuan Paket ( IKP 34.3 ), terlampir ;
                                                 </td>
-                                                <td class="metode-tender">
+                                            </tr>
+                                            <tr>
+                                                <td>2.</td>
+                                                <td>
+                                                    Aspek-aspek Teknis yaitu :
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    a. Peralatan Utama ( IKP 34.4 hurup a,b,c ) terlampir ;
+                                                    <br>b. Personil Manajerial ( IKP 34.4 hurup d,e,f ) terlampir ;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3.</td>
+                                                <td>
+                                                    Aspek-aspek harga /biaya negosiasi yaitu :
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td style="text-align: justify; line-height: 1em">
+                                                    a. Kesesuaian rencana kerja dengan jenis pengeluaran biaya
+                                                    <br>b. Volume kegiatan dan jenis pengeluaran
+                                                    <br>c. Biaya satuan dibandingkan dengan HPS dan biaya yang berlaku
+                                                    dipasaran
 
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>
-                                                    Metode Evaluasi
+                                                <td></td>
+                                                <td style="text-align: justify; line-height: 1em">
+                                                    Berdasarkan bukti dukung yang ada, Pokja Pemilihan 354 menilai bahwa
+                                                    harga
+                                                    penawaran tersebut sesuai dengan harga yang berlaku di pasaran
+                                                    sehingga masih
+                                                    dalam batas kewajaran.
                                                 </td>
-                                                <td>
-                                                    :
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td style="text-align: justify; line-height: 1em">
+                                                    Dalam hal terdapat harga satuan yang lebih tinggi dari 110% HPS,
+                                                    harga satuan
+                                                    tersebut hanya berlaku untuk volume sesuai dengan Daftar Kuantitas
+                                                    dan Harga.
+                                                    Jika terjadi penambahan volume, harga satuan yang berlaku
+                                                    disesuaikan dengan
+                                                    harga dalam HPS. Apabila terdapat mata pembayaran yang harganya nol
+                                                    atau tidak
+                                                    ditulis maka kegiatan tersebut harus tetap dilaksanakan. Harganya
+                                                    dianggap
+                                                    termasuk dalam harga pekerjaan lainnya.
                                                 </td>
-                                                <td class="metode-evaluasi">
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    d. Hasil negosiasi harga sebagai berikut
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="2">
+                                                    <table style="width: 100%"  border>
+                                                        <tr>
+                                                            <td>
+                                                                No.
+                                                            </td>
+                                                            <td>
+                                                                Nama Perusahaan
+                                                            </td>
+                                                            <td>
+                                                                Harga Terkoreksi
+                                                            </td>
+                                                            <td>
+                                                                Harga Negosiasi Pembulatan
+                                                            </td>
+                                                            <td>
+                                                                Ket.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1.</td>
+                                                            <td class="nama-penyedia"></td>
 
+                                                            <td class="harga-terkoreksi"></td>
+
+                                                            <td>-</td>
+                                                            <td>Terlampir</td>
+                                                        </tr>
+                                                    </table>
                                                 </td>
                                             </tr>
                                         </table>
@@ -310,76 +453,76 @@
                                     <td>&nbsp; </td>
                                 </tr>
                                 <tr>
-                                    <td style=" font-size: 17px; vertical-align: top">
-                                        <table style=" font-size: 17px; width:100%; text-align: center " border>
-                                            <tr>
-                                                <td>
-                                                    Nama Penyedia
-                                                </td>
-                                                <td>
-                                                    Nilai Penawaran
-                                                </td>
-                                                <td>
-                                                    kualifikasi
-                                                </td>
-                                                <td>
-                                                    Administrasi
-                                                </td>
-                                                <td>
-                                                    Teknis
-                                                </td>
-                                                <td>
-                                                    Harga
-                                                </td>
-                                                <td>
-                                                    Keterangan Lain
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="nama-penyedia" style="height: 200px">
-
-                                                </td>
-                                                <td class="nilai-penawaran">
-
-                                                </td>
-                                                <td class="kualifikasi">
-
-                                                </td>
-                                                <td class="administrasi">
-
-                                                </td>
-                                                <td class="teknis">
-
-                                                </td>
-                                                <td class="harga">
-
-                                                </td>
-                                                <td class="keterangan-lain">
-
-                                                </td>
-                                            </tr>
-                                        </table>
+                                    <td style="vertical-align: top">3.</td>
+                                    <td style="text-align: justify; line-height: 1em;">
+                                        Berdasarkan hasil klarifikasi kualifikasi, teknis dan negosiasi harga tersebut,
+                                        maka Pokja Pemilihan 354 berkesimpulan dapat ditetapkan sebagai pemenang dan
+                                        negosiasi harga merupakan harga yang dapat dipertanggungjawabkan dan telah
+                                        memenuhi syarat. Hasil akhir dari pemenang tender ini adalah sebagai berikut :
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>&nbsp; </td>
-                                </tr>
-                                <tr>
-                                    <td style=" font-size: 17px; text-align : justify">
-                                        Demikian Berita Acara ini dibuat untuk dapat dipergunakan sebagaimana mestinv.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp; </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp; </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp; </td>
-                                </tr>
-                                <tr>
+                                    <td></td>
                                     <td>
+                                        <table colspan="2" style="width: 100%" >
+                                            <tr>
+                                                <td>
+                                                    Nama Perusahaan
+                                                </td>
+                                                <td>:</td>
+                                                <td class="nama-penyedia">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ALamat
+                                                </td>
+                                                <td>:</td>
+                                                <td class="alamat"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Harga Penawaran
+                                                </td>
+                                                <td>:</td>
+                                                <td class="harga-terkoreksi"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Harga Negosiasi
+                                                </td>
+                                                <td>:</td>
+                                                <td class="harga-negosiasi"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Harga Pembulatan
+                                                </td>
+                                                <td>:</td>
+                                                <td>-</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="text-align: justify; line-height: 1em">
+                                        Demikian Berita Acara Klarifikasi Kualifikasi ( SKP ), Teknis (Personel,
+                                        Peralatan) Negosiasi Harga dibuat dan ditanda tangani pada Hari , Tanggal ,
+                                        Bulan dan Tahun sebagaimana tersebut diatas untuk di pergunakan sebagaimana
+                                        mestinya.
+                                    </td>
+                                </tr>
+
+                                
+                                <tr>
+                                    <td>&nbsp; </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp; </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
                                         <table
                                             style="text-align: center; font-size: 17px; width:100%; font-weight: bold">
                                             <tr>
