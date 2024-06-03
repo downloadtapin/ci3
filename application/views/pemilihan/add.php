@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <label for="no_dokumen_pemilihan">No Dokumen Pemilihan:</label>
                     <input type="text" class="form-control" id="no_dokumen_pemilihan" name="no_dokumen_pemilihan"
-                        required>
+                        readonly>
                 </div>
                 <div class="form-group">
                     <label for="Id_penjelasan">Nomor Penjelasan:</label>

@@ -38,7 +38,7 @@
 
 <body>
     <div class="container-fluid">
-        <h1 class="h3 mb-2 text-gray-800">BERITA ACARA PEMBUKTIAN</h1>
+        <h1 class="h3 mb-2 text-gray-800">PENETAPAN PEMENANG</h1>
 
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -46,29 +46,32 @@
                     <table id="example" class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>No Pembuktian</th>
+                                <th>No Pemilihan</th>
                                 <th>Nama Tender</th>
-
                                 <th>Pokja Pemilihan</th>
                                 <th>Tanggal</th>
                                 <th>Nama Penyedia</th>
-                                <th>Nama/Jabatan</th>
-                                <th>Alamat</th>
-                                <th>Ket</th>
+
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($pembuktians as $pembuktian): ?>
+                            <?php 
+                            function format_currency($amount) {
+                                $rounded_amount = round($amount, -5); // Round to nearest hundred thousand
+                                return 'Rp. ' . number_format($rounded_amount, 2, ',', '.');
+                            }
+                            foreach ($pemilihans as $pemilihan): ?>
                             <tr>
-                                <td class="no-pembuktian"><?= $pembuktian->No_Pembuktian ?></td>
+                                <td class="no-pembuktian"><?= $pemilihan->No_Pemilihan ?></td>
 
 
                                 <td class="nama-paket">
                                     <?php 
                                         // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
+                                        
                                         foreach ($evaluasis as $evaluasi) {
-                                            if ($evaluasi->Id_evaluasi_penawaran == $pembuktian->Id_evaluasi_penawaran) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
                                                 // Dapatkan Id_kode_tender
                                                 $Id_kode_tender = $evaluasi->Id_kode_tender;
                                                 // Cari nama tender di tabel paket menggunakan Id_kode_tender
@@ -86,9 +89,42 @@
                                 <td class="tahun-anggaran" hidden="true">
                                     <?php 
                                         foreach ($evaluasis as $evaluasi) {
-                                            if ($evaluasi->Id_evaluasi_penawaran == $pembuktian->Id_evaluasi_penawaran) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
                                                 // Ekstrak tahun dari tanggal
                                                 echo date('Y', strtotime($evaluasi->Tanggal));
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="harga-terkoreksi" hidden="true">
+                                    <?php 
+                                        foreach ($negosiasis as $negosiasi) {
+                                            if ($negosiasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                // Ekstrak tahun dari tanggal
+                                                echo 'Rp ' . number_format($negosiasi->harga_terkoreksi, 0, ',', '.');
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="harga-negosiasi" hidden="true">
+                                    <?php 
+                                        foreach ($negosiasis as $negosiasi) {
+                                            if ($negosiasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                // Ekstrak tahun dari tanggal
+                                                echo 'Rp ' . number_format($negosiasi->harga_negosiasi, 0, ',', '.');
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="harga-pembulatan" hidden="true">
+                                    <?php 
+                                        foreach ($negosiasis as $negosiasi) {
+                                            if ($negosiasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                // Ekstrak tahun dari tanggal
+                                                echo format_currency($negosiasi->harga_negosiasi);
                                                 break;
                                             }
                                         }
@@ -98,7 +134,7 @@
                                     <?php 
                                         // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
                                         foreach ($evaluasis as $evaluasi) {
-                                            if ($evaluasi->Id_evaluasi_penawaran == $pembuktian->Id_evaluasi_penawaran) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
                                                 // Dapatkan Id_kode_tender
                                                 $Id_kode_tender = $evaluasi->Id_kode_tender;
                                                 // Cari nama tender di tabel paket menggunakan Id_kode_tender
@@ -113,12 +149,13 @@
                                         }
                                         ?>
                                 </td>
-                                
+
+
                                 <td class="pokja-pemilihan">
                                     <?php 
                                         // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
                                         foreach ($evaluasis as $evaluasi) {
-                                            if ($evaluasi->Id_evaluasi_penawaran == $pembuktian->Id_evaluasi_penawaran) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
                                                 // Dapatkan Id_kode_tender
                                                 $Id_kode_tender = $evaluasi->Id_kode_tender;
                                                 // Cari nama tender di tabel paket menggunakan Id_kode_tender
@@ -133,12 +170,12 @@
                                         }
                                         ?>
                                 </td>
-                                <td class="tanggal"><?= $pembuktian->Tanggal ?></td>
+                                <td class="tanggal"><?= $pemilihan->Tanggal ?></td>
                                 <td class="hps" hidden="true">
                                     <?php 
                                         // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
                                         foreach ($evaluasis as $evaluasi) {
-                                            if ($evaluasi->Id_evaluasi_penawaran == $pembuktian->Id_evaluasi_penawaran) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
                                                 // Dapatkan Id_kode_tender
                                                 $Id_kode_tender = $evaluasi->Id_kode_tender;
                                                 // Cari nama tender di tabel paket menggunakan Id_kode_tender
@@ -157,7 +194,7 @@
                                     <?php 
                                         // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
                                         foreach ($evaluasis as $evaluasi) {
-                                            if ($evaluasi->Id_evaluasi_penawaran == $pembuktian->Id_evaluasi_penawaran) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
                                                 // Dapatkan Id_kode_tender
                                                 $Id_kode_tender = $evaluasi->Id_kode_tender;
                                                 // Cari nama tender di tabel paket menggunakan Id_kode_tender
@@ -176,7 +213,7 @@
                                     <?php 
                                         // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
                                         foreach ($evaluasis as $evaluasi) {
-                                            if ($evaluasi->Id_evaluasi_penawaran == $pembuktian->Id_evaluasi_penawaran) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
                                                 // Dapatkan Id_kode_tender
                                                 $Id_kode_tender = $evaluasi->Id_kode_tender;
                                                 // Cari nama tender di tabel paket menggunakan Id_kode_tender
@@ -194,21 +231,37 @@
                                 <td class="nama-penyedia">
                                     <?php 
                                         foreach ($evaluasis as $evaluasi) {
-                                            if ($evaluasi->Id_evaluasi_penawaran == $pembuktian->Id_evaluasi_penawaran) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
                                                 echo $evaluasi->nama_Penyedia;
                                                 break;
                                             }
                                         }
                                         ?>
                                 </td>
-                                <td class="nama-hadir"><?= $pembuktian->Nama_hadir ?></td>
-                                <td class="jabatan" hidden="true"><?= $pembuktian->jabatan ?></td>
-                                <td class="alamat"><?= $pembuktian->Alamat ?></td>
+                                <td class="nama-hadir" hidden="true">
+                                    <?php 
+                                        foreach ($pembuktians as $pembuktian) {
+                                            if ($pembuktian->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                echo $pembuktian->Nama_hadir;
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="alamat" hidden="true">
+                                    <?php 
+                                        foreach ($pembuktians as $pembuktian) {
+                                            if ($pembuktian->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                echo $pembuktian->Alamat;
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
 
-                                <td class="ket"><?= $pembuktian->Keterangan_lain ?></td>
+
                                 <td>
-                                    <button class="btn btn-primary cetak-btn"
-                                        data-id="<?= $pembuktian->Id_pembuktian ?>">
+                                    <button class="btn btn-primary cetak-btn" data-id="<?= $pemilihan->Id_pemilihan ?>">
                                         <i class="bi bi-printer"></i></button>
                                 </td>
                             </tr>
@@ -282,8 +335,8 @@
                                         <table width="100%" style="">
                                             <tr>
                                                 <td colspan="2"
-                                                    style="text-align: center; font-weight: bold;font-size: 20px; ">
-                                                    BERITA ACARA PEMBUKTIAN KUALIFIKASI
+                                                    style="text-align: center; font-weight: bold;font-size: 20px; text-decoration: underline ">
+                                                    PENETAPAN PEMENANG
                                                 </td>
                                             </tr>
                                             <tr>
@@ -298,137 +351,85 @@
                                     <td>&nbsp; </td>
                                 </tr>
                                 <tr>
-                                    <td style="font-size: 17px">
-                                        Kami <span class="pokja-pemilihan"></span> Unit Kerja Pengadaan Barang/Jasa
-                                        Kabupaten Tapin
-                                        melaksanakan pembuktian kualifikasi:
+                                    <td style="font-size: 17px;text-align: justify">
+                                        Berdasarkan hasil evaluasi penawaran
+                                        dan evaluasi kualifikasi pada Dokumen Penawaran dan Dokumen Kualifikasi dalam
+                                        e-Tender Pascakualifikasi, Satu File, Harga Terendah yang dilaksanakan oleh
+                                        <span class="pokja-pemilihan"></span> Bagian Pengadaan Barang/Jasa Pemerintah
+                                        Kabupaten Tapin Tahun Anggaran <span class="tahun-anggaran"></span> untuk <span
+                                            class="nama-paket"></span>, maka ditetapkan Pemenang pada
+                                        e-Tender Pascakualifikasi, Satu File, Harga Terendah adalah sebagai berikut :
+
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp; </td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp; </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" style=" font-size: 17px">
-                                        <table>
+                                        <table style=" width: 100%">
+                                            <tr style="text-align: center;">
+                                                <td rowspan="2" style="border : 1px solid black">Peringkat</td>
+                                                <td rowspan="2" colspan="4" style="border : 1px solid black">Data
+                                                    Perusahaan</td>
+                                                <td colspan="6" style="border : 1px solid black">Evaluasi</td>
+                                            </tr>
+                                            <tr style="text-align: center;">
+                                                <td style="border : 1px solid black">&nbsp;Administrasi&nbsp;</td>
+                                                <td style="border : 1px solid black">&nbsp;Teknis&nbsp;</td>
+                                                <td style="border : 1px solid black">&nbsp;Harga&nbsp;</td>
+                                                <td style="border : 1px solid black">&nbsp;Kualifikasi&nbsp;</td>
+                                            </tr>
                                             <tr>
-                                                <td style="width: 200px">
-                                                    Tanggal
+                                                <td rowspan="6" style="text-align: center;border : 1px solid black">
+                                                    &nbsp;Pemenang&nbsp;
                                                 </td>
-                                                <td>
-                                                    :
-                                                </td>
-                                                <td class="tanggal">
-
+                                                <td></td>
+                                                <td style="vertical-align: top">Nama Perusahaan</td>
+                                                <td style="vertical-align: top">:</td>
+                                                <td style="vertical-align: top"><span class="nama-penyedia"></span></td>
+                                                <td rowspan="6" style="text-align: center;border : 1px solid black">
+                                                    Lulus</td>
+                                                <td rowspan="6" style="text-align: center;border : 1px solid black">
+                                                    Lulus</td>
+                                                <td rowspan="6" style="text-align: center;border : 1px solid black">
+                                                    Lulus</td>
+                                                <td rowspan="6" style="text-align: center;border : 1px solid black">
+                                                    Lulus</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td style="vertical-align: top">Direktur</td>
+                                                <td style="vertical-align: top">:</td>
+                                                <td style="vertical-align: top"><span class="nama-hadir"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td style="vertical-align: top">Alamat</td>
+                                                <td style="vertical-align: top">:</td>
+                                                <td style="vertical-align: top"><span class="alamat"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td style="vertical-align: top">Harga Penawaran Terkoreksi</td>
+                                                <td style="vertical-align: top">:</td>
+                                                <td style="vertical-align: top"><span class="harga-terkoreksi"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="width: 200px">
-                                                    Kode Tender
-                                                </td>
-                                                <td>
-                                                    :
-                                                </td>
-                                                <td class="kode-tender">
-
+                                                <td></td>
+                                                <td style="vertical-align: top">Harga Negosiasi</td>
+                                                <td style="vertical-align: top">:</td>
+                                                <td style="vertical-align: top"><span class="harga-negosiasi"></span>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    Nama Paket
-                                                </td>
-                                                <td>
-                                                    :
-                                                </td>
-                                                <td class="nama-paket">
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Pagu
-                                                </td>
-                                                <td>
-                                                    :
-                                                </td>
-                                                <td class="pagu">
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    HPS
-                                                </td>
-                                                <td>
-                                                    :
-                                                </td>
-                                                <td class="hps">
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Sumber Dana
-                                                </td>
-                                                <td>
-                                                    :
-                                                </td>
-                                                <td>
-                                                    APBD Kabupaten Tapin Tahun Anggaran <span
-                                                        class="tahun-anggaran"></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    SKPD
-                                                </td>
-                                                <td>
-                                                    :
-                                                </td>
-                                                <td class="unit-kerja">
-
-                                                </td>
+                                            <tr style="border-bottom : 1px solid black">
+                                                <td></td>
+                                                <td style="vertical-align: top">Pembulatan</td>
+                                                <td style="vertical-align: top">:</td>
+                                                <td style="vertical-align: top"><span class="harga-pembulatan"></td>
                                             </tr>
                                         </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp; </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <table style="width: 100%; text-transform: uppercase;text-align: center " border>
-                                            <tr>
-                                                <td>
-                                                    No.
-                                                </td>
-                                                <td>
-                                                    Nama Perusahaan
-                                                </td>
-                                                <td>
-                                                    Alamat
-                                                </td>
-                                                <td>
-                                                    Nama Jabatan
-                                                </td>
-                                                <td>
-                                                    Keterangan
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="height: 100px">1.</td>
-                                                <td class="nama-penyedia"></td>
-
-                                                <td class="alamat"></td>
-
-                                                <td style="line-height: 1.2em">
-                                                    <span  class="nama-hadir"></span>
-                                                    <br>(<span  class="jabatan"></span>)
-                                                </td>
-                                                <td>Lulus</td>
-                                            </tr>
                                     </td>
                                 </tr>
                             </table>
@@ -439,10 +440,13 @@
                     </tr>
                     <tr>
                         <td colspan="2" style="text-align: justify; line-height: 1em">
-                            Demikian Berita Acara ini dibuat untuk dapat dipergunakan sebagaimana mestinya.
+                            Demikian Penetapan ini dibuat agar dapat dijadikan bahan dan dipergunakan sebagaimana
+                            mestinya.
                         </td>
                     </tr>
-
+                    <tr>
+                        <td>&nbsp; </td>
+                    </tr>
 
                     <tr>
                         <td>&nbsp; </td>
@@ -452,7 +456,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <table style="text-align: center; font-size: 17px; width:100%; font-weight: bold">
+                            <table style="text-align: center; font-size: 17px; font-weight: bold; margin-left: 600px">
                                 <tr>
                                     <td>
                                         UKPBJ Kabupaten Tapin
@@ -527,6 +531,7 @@
         clone.find('.nama-penyedia').text(row.find('.nama-penyedia').text());
         clone.find('.harga-terkoreksi').text(row.find('.harga-terkoreksi').text());
         clone.find('.harga-negosiasi').text(row.find('.harga-negosiasi').text());
+        clone.find('.harga-pembulatan').text(row.find('.harga-pembulatan').text());
         clone.find('.keterangan-lain').text(row.find('.keterangan-lain').text());
         clone.find('.pokja-pemilihan').text(row.find('.pokja-pemilihan').text());
 

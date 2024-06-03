@@ -166,7 +166,7 @@
                                     <?php 
                                         foreach ($negosiasis as $negosiasi) {
                                             if ($negosiasi->Id_negosiasi == $klarifikasi->Id_evaluasi_penawaran) {
-                                                echo 'Rp ' . number_format($negosiasi->harga_penawaran, 0, ',', '.');
+                                                echo 'Rp ' . number_format($negosiasi->harga_negosiasi, 0, ',', '.');
                                                 break;
                                             }
                                         }
