@@ -89,6 +89,7 @@
                         <a class="collapse-item" href="<?= site_url('Report/reportBaKlarifikasi') ?>">Berita Acara Klarifikasi</a>
                         <a class="collapse-item" href="<?= site_url('Report/reportBaPembuktian') ?>">Berita Acara Pembuktian</a>
                         <a class="collapse-item" href="<?= site_url('Report/reportPenetapanPemenang') ?>">Penetapan Pemenang</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaPemilihan') ?>">Berita Acara Pemilihan</a>
                         <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>

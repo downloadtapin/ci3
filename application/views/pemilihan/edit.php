@@ -70,6 +70,11 @@
                         value="<?= $pemilihan->No_Pemilihan ?>" required>
                 </div>
                 <div class="form-group">
+                    <label for="No_Pemilihan">Nomor Penetapan:</label>
+                    <input type="text" class="form-control" id="no_penetapan" name="no_penetapan"
+                        value="<?= $pemilihan->no_penetapan ?>" required>
+                </div>
+                <div class="form-group">
                     <label for="Pertanyaan_sanggah">Pertanyaan Sanggah:</label>
                     <textarea class="form-control" id="Pertanyaan_sanggah" name="Pertanyaan_sanggah"
                         required><?= $pemilihan->Pertanyaan_sanggah ?></textarea>

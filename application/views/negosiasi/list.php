@@ -26,9 +26,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $counter = 1; foreach ($negosiasis as $negosiasi): ?>
+                        <?php 
+                        $counter = 1; foreach ($negosiasis as $negosiasi): ?>
                         <tr>
-                        <td><?= $counter ?></td>
+                            <td><?= $counter ?></td>
                             <td>
                                 <?php 
                                 
@@ -40,11 +41,10 @@
                         }
                         ?>
                             </td>
-                            
                             <td><?= $negosiasi->No_Negosiasi ?></td>
                             <td><?= $negosiasi->Tanggal ?></td>
-                            <td><?= $negosiasi->harga_penawaran ?></td>
-                            <td><?= $negosiasi->harga_terkoreksi ?></td>
+                            <td><?= $negosiasi->harga_penawaran?></td>
+                            <td><?= $negosiasi->harga_terkoreksi?></td>
                             <td><?= $negosiasi->hasil_evaluasi ?></td>
                             <td><?= $negosiasi->Keterangan_lain ?></td>
                             <td>

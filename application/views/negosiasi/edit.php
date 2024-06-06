@@ -26,28 +26,28 @@
                 </div>
                 <div class="form-group">
                     <label for="harga_penawaran">Harga Penawaran:</label>
-                    <input type="text" class="form-control" id="harga_penawaran" name="harga_penawaran"
+                    <input type="text" class="form-control format-number" id="harga_penawaran" name="harga_penawaran"
                         value="<?= $negosiasi->harga_penawaran ?>" required>
-                </div>harga_negosiasi
+                </div>
                 <div class="form-group">
                     <label for="harga_terkoreksi">Harga Terkoreksi:</label>
-                    <input type="text" class="form-control" id="harga_terkoreksi" name="harga_terkoreksi"
+                    <input type="text" class="form-control format-number" id="harga_terkoreksi" name="harga_terkoreksi"
                         value="<?= $negosiasi->harga_terkoreksi ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="harga_negosiasi">Harga negosiasi:</label>
-                    <input type="text" class="form-control" id="harga_negosiasi" name="harga_negosiasi"
+                    <input type="text" class="form-control format-number" id="harga_negosiasi" name="harga_negosiasi"
                         value="<?= $negosiasi->harga_negosiasi ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="hasil_evaluasi">Hasil Evaluasi:</label>
-                    <input type="text" class="form-control" id="hasil_evaluasi" name="hasil_evaluasi"
+                    <input type="text" class="form-control format-number" id="hasil_evaluasi" name="hasil_evaluasi"
                         value="<?= $negosiasi->hasil_evaluasi ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="Keterangan_lain">Keterangan Lain:</label>
-                    <textarea class="form-control" id="Keterangan_lain"
-                        name="Keterangan_lain" rows="3"><?= $negosiasi->Keterangan_lain ?></textarea>
+                    <textarea class="form-control" id="Keterangan_lain" name="Keterangan_lain"
+                        rows="3"><?= $negosiasi->Keterangan_lain ?></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" name="submit">Simpan</button>
                 <a href="<?= site_url('negosiasi') ?>" class="btn btn-secondary">Batal</a>
@@ -55,4 +55,29 @@
         </div>
     </div>
 </div>
-</div>
+
+<script>
+$(document).ready(function() {
+    $(".format-number").keyup(function() {
+        var value = $(this).val().replace(/[^\d]/g, '');  // Remove everything except digits
+
+        if (value.length <= 2) {
+            $(this).val(value);
+            return;
+        }
+
+        var integerPart = value.slice(0, -2);
+        var fractionalPart = ',' + value.slice(-2);
+
+        var result = '';
+        for (var i = integerPart.length - 1; i >= 0; i--) {
+            result = integerPart[i] + result;
+            if ((integerPart.length - i) % 3 === 0 && i !== 0) {
+                result = '.' + result;
+            }
+        }
+
+        $(this).val(result + fractionalPart);
+    });
+});
+</script>

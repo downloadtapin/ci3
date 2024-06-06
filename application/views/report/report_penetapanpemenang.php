@@ -47,6 +47,7 @@
                         <thead>
                             <tr>
                                 <th>No Pemilihan</th>
+                                <th>No Penetapan</th>
                                 <th>Nama Tender</th>
                                 <th>Pokja Pemilihan</th>
                                 <th>Tanggal</th>
@@ -58,12 +59,13 @@
                         <tbody>
                             <?php 
                             function format_currency($amount) {
-                                $rounded_amount = round($amount, -5); // Round to nearest hundred thousand
+                                $rounded_amount = floor($amount / 1000) * 1000; // Round down to nearest thousand
                                 return 'Rp. ' . number_format($rounded_amount, 2, ',', '.');
                             }
                             foreach ($pemilihans as $pemilihan): ?>
                             <tr>
-                                <td class="no-pembuktian"><?= $pemilihan->No_Pemilihan ?></td>
+                                <td class="no-pemilihan"><?= $pemilihan->No_Pemilihan ?></td>
+                                <td class="no-penetapan"><?= $pemilihan->no_penetapan ?></td>
 
 
                                 <td class="nama-paket">
@@ -102,7 +104,7 @@
                                         foreach ($negosiasis as $negosiasi) {
                                             if ($negosiasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
                                                 // Ekstrak tahun dari tanggal
-                                                echo 'Rp ' . number_format($negosiasi->harga_terkoreksi, 0, ',', '.');
+                                                echo 'Rp '. $negosiasi->harga_terkoreksi;
                                                 break;
                                             }
                                         }
@@ -113,7 +115,7 @@
                                         foreach ($negosiasis as $negosiasi) {
                                             if ($negosiasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
                                                 // Ekstrak tahun dari tanggal
-                                                echo 'Rp ' . number_format($negosiasi->harga_negosiasi, 0, ',', '.');
+                                                echo 'Rp ' . $negosiasi->harga_negosiasi;
                                                 break;
                                             }
                                         }
@@ -123,13 +125,32 @@
                                     <?php 
                                         foreach ($negosiasis as $negosiasi) {
                                             if ($negosiasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
-                                                // Ekstrak tahun dari tanggal
-                                                echo format_currency($negosiasi->harga_negosiasi);
+                                                // Get the original price
+                                                $harga_negosiasi = $negosiasi->harga_negosiasi;
+
+                                                // Remove any non-numeric characters
+                                                $numeric_value = preg_replace('/[^\d]/', '', $harga_negosiasi);
+
+                                                // If the value is not long enough, pad with zeros on the left
+                                                $numeric_value = str_pad($numeric_value, 7, '0', STR_PAD_LEFT);
+
+                                                // Round the last five digits to '000'
+                                                $rounded_value = substr($numeric_value, 0, -5) . '000';
+
+                                                // Format the integer part with dots
+                                                $formatted_value = number_format($rounded_value, 0, ',', '.');
+
+                                                // Append the fixed fractional part ',00'
+                                                $formatted_value .= ',00';
+
+                                                // Print the formatted value with 'Rp ' prefix
+                                                echo 'Rp ' . $formatted_value;
                                                 break;
                                             }
                                         }
                                         ?>
                                 </td>
+
                                 <td class="kode-tender" hidden="true">
                                     <?php 
                                         // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
@@ -341,7 +362,7 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2" style="text-align: center; font-size: 17px">
-                                                    Nomor : <span class="no-pembuktian"></span>
+                                                    Nomor : <span class="no-penetapan"></span>
                                                 </td>
                                             </tr>
                                         </table>
@@ -516,6 +537,7 @@
         var row = $(this).closest('tr');
         var clone = $('#halamancetak').clone();
         clone.find('.no-pembuktian').text(row.find('.no-pembuktian').text());
+        clone.find('.no-penetapan').text(row.find('.no-penetapan').text());
         clone.find('.nama-paket').text(row.find('.nama-paket').text());
         clone.find('.kode-tender').text(row.find('.kode-tender').text());
         clone.find('.hps').text(row.find('.hps').text());

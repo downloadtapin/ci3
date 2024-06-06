@@ -38,6 +38,7 @@ class Pemilihan extends CI_Controller {
         $this->form_validation->set_rules('Id_klarifikasi', 'Id Klarifikasi', 'required');
         $this->form_validation->set_rules('Id_negosiasi', 'Id Negosiasi', 'required');
         $this->form_validation->set_rules('No_Pemilihan', 'Nomor Pemilihan', 'required');
+        $this->form_validation->set_rules('no_penetapan', 'Nomor Penetapan', 'required');
         $this->form_validation->set_rules('Pertanyaan_sanggah', 'Pertanyaan Sanggah', 'required');
         $this->form_validation->set_rules('Jawaban_sanggah', 'Jawaban Sanggah', 'required');
         $this->form_validation->set_rules('Tanggal', 'Tanggal', 'required');
@@ -64,6 +65,7 @@ class Pemilihan extends CI_Controller {
                 'Id_klarifikasi' => $this->input->post('Id_klarifikasi'),
                 'Id_negosiasi' => $this->input->post('Id_negosiasi'),
                 'No_Pemilihan' => $this->input->post('No_Pemilihan'),
+                'no_penetapan' => $this->input->post('no_penetapan'),
                 'Pertanyaan_sanggah' => $this->input->post('Pertanyaan_sanggah'),
                 'Jawaban_sanggah' => $this->input->post('Jawaban_sanggah'),
                 'Tanggal' => $this->input->post('Tanggal'),
@@ -105,6 +107,7 @@ class Pemilihan extends CI_Controller {
                 'Id_klarifikasi' => $this->input->post('Id_klarifikasi'),
                 'Id_negosiasi' => $this->input->post('Id_negosiasi'),
                 'No_Pemilihan' => $this->input->post('No_Pemilihan'),
+                'no_penetapan' => $this->input->post('no_penetapan'),
                 'Pertanyaan_sanggah' => $this->input->post('Pertanyaan_sanggah'),
                 'Jawaban_sanggah' => $this->input->post('Jawaban_sanggah'),
                 'Tanggal' => $this->input->post('Tanggal'),

@@ -79,7 +79,11 @@
                 </div>
                 <div class="form-group">
                     <label for="No_Pemilihan">Nomor Pemilihan:</label>
-                    <input type="text" class="form-control" id="No_Pemilihan" name="No_Pemilihan" required>
+                    <input type="text" class="form-control" id="No_Pemilihan" name="No_Pemilihan" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="no_penetapan">Nomor Penetapan:</label>
+                    <input type="text" class="form-control" id="no_penetapan" name="no_penetapan" required>
                 </div>
                 <div class="form-group">
                     <label for="Pertanyaan_sanggah">Pertanyaan Sanggah:</label>
@@ -113,11 +117,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     const paketSelect = document.getElementById('Id_paket');
     const noDokumenInput = document.getElementById('no_dokumen_pemilihan');
+    const noDokumenInput2 = document.getElementById('No_Pemilihan');
+
 
     paketSelect.addEventListener('change', function() {
         const selectedOption = paketSelect.options[paketSelect.selectedIndex];
         const noDokumen = selectedOption.getAttribute('data-no-dokumen');
         noDokumenInput.value = noDokumen;
+        const noDokumen2 = selectedOption.getAttribute('data-no-dokumen');
+        noDokumenInput2.value = noDokumen2;
     });
 
     // Trigger change event to set initial value if needed

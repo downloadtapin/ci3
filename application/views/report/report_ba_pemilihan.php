@@ -47,23 +47,24 @@
                         <thead>
                             <tr>
                                 <th>No Pemilihan</th>
+                                <th>No Penetapan</th>
                                 <th>Nama Tender</th>
                                 <th>Pokja Pemilihan</th>
                                 <th>Tanggal</th>
                                 <th>Nama Penyedia</th>
-
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php 
                             function format_currency($amount) {
-                                $rounded_amount = round($amount, -5); // Round to nearest hundred thousand
+                                $rounded_amount = floor($amount / 1000) * 1000; // Round down to nearest thousand
                                 return 'Rp. ' . number_format($rounded_amount, 2, ',', '.');
                             }
                             foreach ($pemilihans as $pemilihan): ?>
                             <tr>
-                                <td class="no-pembuktian"><?= $pemilihan->No_Pemilihan ?></td>
+                                <td class="no-pemilihan"><?= $pemilihan->No_Pemilihan ?></td>
+                                <td class="no-penetapan"><?= $pemilihan->no_penetapan ?></td>
 
 
                                 <td class="nama-paket">
@@ -97,12 +98,109 @@
                                         }
                                         ?>
                                 </td>
+                                <td class="metode-evaluasi" hidden="true">
+                                    <?php 
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                // Ekstrak tahun dari tanggal
+                                                echo $evaluasi->Metode_evaluasi;
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="nilai-penawaran" hidden="true">
+                                    <?php 
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                // Ekstrak tahun dari tanggal
+                                                echo 'Rp ' . number_format($evaluasi->nilai_penawaran, 0, ',', '.');
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="kualifikasi" hidden="true">
+                                    <?php 
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                // Ekstrak tahun dari tanggal
+                                                echo ($evaluasi->kualifikasi == 1) ? 'v' : 'x';
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="administrasi" hidden="true">
+                                    <?php 
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                // Ekstrak tahun dari tanggal
+                                                echo ($evaluasi->administrasi == 1) ? 'v' : 'x';
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="teknis" hidden="true">
+                                    <?php 
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                // Ekstrak tahun dari tanggal
+                                                echo ($evaluasi->teknis == 1) ? 'v' : 'x';
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="harga" hidden="true">
+                                    <?php 
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                // Ekstrak tahun dari tanggal
+                                                echo ($evaluasi->harga == 1) ? 'v' : 'x';
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="keterangan-lain" hidden="true">
+                                    <?php 
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                // Ekstrak tahun dari tanggal
+                                                echo $evaluasi->Keterangan_lain;
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
+                                <td class="metode-tender" hidden="true">
+                                    <?php 
+                                        // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
+                                        
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                // Dapatkan Id_kode_tender
+                                                $Id_kode_tender = $evaluasi->Id_kode_tender;
+                                                // Cari nama tender di tabel paket menggunakan Id_kode_tender
+                                                foreach ($pakets as $paket) {
+                                                    if ($paket->Id_kode_tender == $Id_kode_tender) {
+                                                        echo $paket->Metode_tender;
+                                                        break;
+                                                    }
+                                                }
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                                </td>
                                 <td class="harga-terkoreksi" hidden="true">
                                     <?php 
                                         foreach ($negosiasis as $negosiasi) {
                                             if ($negosiasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
                                                 // Ekstrak tahun dari tanggal
-                                                echo 'Rp ' . number_format($negosiasi->harga_terkoreksi, 0, ',', '.');
+                                                echo 'Rp '. $negosiasi->harga_terkoreksi;
                                                 break;
                                             }
                                         }
@@ -113,7 +211,7 @@
                                         foreach ($negosiasis as $negosiasi) {
                                             if ($negosiasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
                                                 // Ekstrak tahun dari tanggal
-                                                echo 'Rp ' . number_format($negosiasi->harga_negosiasi, 0, ',', '.');
+                                                echo 'Rp ' . $negosiasi->harga_negosiasi;
                                                 break;
                                             }
                                         }
@@ -123,13 +221,32 @@
                                     <?php 
                                         foreach ($negosiasis as $negosiasi) {
                                             if ($negosiasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
-                                                // Ekstrak tahun dari tanggal
-                                                echo format_currency($negosiasi->harga_negosiasi);
+                                                // Get the original price
+                                                $harga_negosiasi = $negosiasi->harga_negosiasi;
+
+                                                // Remove any non-numeric characters
+                                                $numeric_value = preg_replace('/[^\d]/', '', $harga_negosiasi);
+
+                                                // If the value is not long enough, pad with zeros on the left
+                                                $numeric_value = str_pad($numeric_value, 7, '0', STR_PAD_LEFT);
+
+                                                // Round the last five digits to '000'
+                                                $rounded_value = substr($numeric_value, 0, -5) . '000';
+
+                                                // Format the integer part with dots
+                                                $formatted_value = number_format($rounded_value, 0, ',', '.');
+
+                                                // Append the fixed fractional part ',00'
+                                                $formatted_value .= ',00';
+
+                                                // Print the formatted value with 'Rp ' prefix
+                                                echo 'Rp ' . $formatted_value;
                                                 break;
                                             }
                                         }
                                         ?>
                                 </td>
+
                                 <td class="kode-tender" hidden="true">
                                     <?php 
                                         // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
@@ -335,13 +452,133 @@
                                         <table width="100%" style="">
                                             <tr>
                                                 <td colspan="2"
-                                                    style="text-align: center; font-weight: bold;font-size: 20px; text-decoration: underline ">
-                                                    PENETAPAN PEMENANG
+                                                    style="text-align: center; font-weight: bold;font-size: 22px; text-decoration: underline">
+                                                    BERITA ACARA HASIL PEMILIHAN
+
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2" style="text-align: center; font-size: 17px">
-                                                    Nomor : <span class="no-dokumen-pemilihan"></span>
+                                                    Nomor : <span class="no-pemilihan"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="font-size: 17px; text-align : justify">
+                                                    kami <span class="pokja-pemilihan"></span> Unit Kerja Pengadaan
+                                                    Barang/Jasa Kabupaten
+                                                    Tapin melaksanakan Penjelasan:
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style=" font-size: 17px">
+                                        <table>
+                                            <tr>
+                                                <td style="width: 200px">
+                                                    Tanggal
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td class="tanggal">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Kode Tender
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td class="kode-tender">
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    Nama Paket
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td class="nama-paket">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    HPS
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td class="hps">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Metode Pemilihan
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td class="metode-tender">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Metode Evaluasi
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td class="metode-evaluasi">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Nama Perusahaan
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td class="nama-penyedia">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Direktur
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td class="nama-hadir">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Alamat
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td class="alamat">
+
                                                 </td>
                                             </tr>
                                         </table>
@@ -351,146 +588,147 @@
                                     <td>&nbsp; </td>
                                 </tr>
                                 <tr>
-                                    <td style="font-size: 17px;text-align: justify">
-                                        Berdasarkan hasil evaluasi penawaran
-                                        dan evaluasi kualifikasi pada Dokumen Penawaran dan Dokumen Kualifikasi dalam
-                                        e-Tender Pascakualifikasi, Satu File, Harga Terendah yang dilaksanakan oleh
-                                        <span class="pokja-pemilihan"></span> Bagian Pengadaan Barang/Jasa Pemerintah
-                                        Kabupaten Tapin Tahun Anggaran <span class="tahun-anggaran"></span> untuk <span
-                                            class="nama-paket"></span>, maka ditetapkan Pemenang pada
-                                        e-Tender Pascakualifikasi, Satu File, Harga Terendah adalah sebagai berikut :
+                                    <td style=" font-size: 17px; vertical-align: top">
+                                        <table style=" font-size: 17px; width:100%; text-align: center " border>
+                                            <tr style="font-weight: bold;">
+                                                <td>
+                                                    Nama Penyedia
+                                                </td>
+                                                <td>
+                                                    Nilai Penawaran
+                                                </td>
+                                                <td>
+                                                    Nilai Terkoreksi
+                                                </td>
+                                                <td>
+                                                    Nilai Negosiasi
+                                                </td>
+                                                <td>
+                                                    Pembulatan
+                                                </td>
+                                            <tr>
+                                                <td class="nama-penyedia" style="height: 100px">
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp; </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" style=" font-size: 17px">
-                                        <table style=" width: 100%">
-                                            <tr style="text-align: center;">
-                                                <td rowspan="2" style="border : 1px solid black">Peringkat</td>
-                                                <td rowspan="2" colspan="4" style="border : 1px solid black">Data
-                                                    Perusahaan</td>
-                                                <td colspan="6" style="border : 1px solid black">Evaluasi</td>
-                                            </tr>
-                                            <tr style="text-align: center;">
-                                                <td style="border : 1px solid black">&nbsp;Administrasi&nbsp;</td>
-                                                <td style="border : 1px solid black">&nbsp;Teknis&nbsp;</td>
-                                                <td style="border : 1px solid black">&nbsp;Harga&nbsp;</td>
-                                                <td style="border : 1px solid black">&nbsp;Kualifikasi&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td rowspan="6" style="text-align: center;border : 1px solid black">
-                                                    &nbsp;Pemenang&nbsp;
                                                 </td>
-                                                <td></td>
-                                                <td style="vertical-align: top">Nama Perusahaan</td>
-                                                <td style="vertical-align: top">:</td>
-                                                <td style="vertical-align: top"><span class="nama-penyedia"></span></td>
-                                                <td rowspan="6" style="text-align: center;border : 1px solid black">
-                                                    Lulus</td>
-                                                <td rowspan="6" style="text-align: center;border : 1px solid black">
-                                                    Lulus</td>
-                                                <td rowspan="6" style="text-align: center;border : 1px solid black">
-                                                    Lulus</td>
-                                                <td rowspan="6" style="text-align: center;border : 1px solid black">
-                                                    Lulus</td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td style="vertical-align: top">Direktur</td>
-                                                <td style="vertical-align: top">:</td>
-                                                <td style="vertical-align: top"><span class="nama-hadir"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td style="vertical-align: top">Alamat</td>
-                                                <td style="vertical-align: top">:</td>
-                                                <td style="vertical-align: top"><span class="alamat"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td style="vertical-align: top">Harga Penawaran Terkoreksi</td>
-                                                <td style="vertical-align: top">:</td>
-                                                <td style="vertical-align: top"><span class="harga-terkoreksi"></span>
+                                                <td class="nilai-penawaran">
+
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td style="vertical-align: top">Harga Negosiasi</td>
-                                                <td style="vertical-align: top">:</td>
-                                                <td style="vertical-align: top"><span class="harga-negosiasi"></span>
+                                                <td class="harga-terkoreksi">
+
                                                 </td>
-                                            </tr>
-                                            <tr style="border-bottom : 1px solid black">
-                                                <td></td>
-                                                <td style="vertical-align: top">Pembulatan</td>
-                                                <td style="vertical-align: top">:</td>
-                                                <td style="vertical-align: top"><span class="harga-pembulatan"></td>
+                                                <td class="harga-negosiasi">
+
+                                                </td>
+                                                <td class="harga-pembulatan">
                                             </tr>
                                         </table>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>&nbsp; </td>
+                                </tr>
+                                <tr>
+                                    <td style=" font-size: 17px; vertical-align: top">
+                                        <table style=" font-size: 17px; width:100%; text-align: center " border>
+                                            <tr style="font-weight: bold;">
+                                                <td>
+                                                    Kualifikasi
+                                                </td>
+                                                <td>
+                                                    Administrasi
+                                                </td>
+                                                <td>
+                                                    Teknis
+                                                </td>
+                                                <td>
+                                                    Harga
+                                                </td>
+                                                <td>
+                                                    Keterangan Lain
+                                                </td>
+                                            <tr>
+                                                <td class="kualifikasi" style="height: 100px">
+
+                                                </td>
+                                                <td class="administrasi">
+
+                                                </td>
+                                                <td class="teknis">
+
+                                                </td>
+                                                <td class="harga">
+
+                                                </td>
+                                                <td class="keterangan-lain">
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 70px">
+                                        A. Pertanyaan Sanggah :
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="height: 70px">
+                                        B. Jawaban Sanggah :
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp; </td>
+                                </tr>
+                                <tr>
+                                    <td style=" font-size: 17px; text-align : justify">
+                                        Demikian Berita Acara ini dibuat untuk dapat dipergunakan sebagaimana mestinya.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp; </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp; </td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp; </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table
+                                            style="text-align: center; font-size: 17px; width:100%; font-weight: bold">
+                                            <tr>
+                                                <td>
+                                                    UKPBJ Kabupaten Tapin
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    ttd
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span class="pokja-pemilihan"></span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
                             </table>
                         </td>
                     </tr>
-                    <tr>
-                        <td>&nbsp; </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="text-align: justify; line-height: 1em">
-                            Demikian Penetapan ini dibuat agar dapat dijadikan bahan dan dipergunakan sebagaimana
-                            mestinya.
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp; </td>
-                    </tr>
-
-                    <tr>
-                        <td>&nbsp; </td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp; </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <table style="text-align: center; font-size: 17px; font-weight: bold; margin-left: 600px">
-                                <tr>
-                                    <td>
-                                        UKPBJ Kabupaten Tapin
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp; </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp; </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        ttd
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp; </td>
-                                </tr>
-                                <tr>
-                                    <td>&nbsp; </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="pokja-pemilihan"></span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-
-                </table>
-                </td>
-                </tr>
                 </table>
             </div>
 
@@ -516,6 +754,7 @@
         var row = $(this).closest('tr');
         var clone = $('#halamancetak').clone();
         clone.find('.no-pembuktian').text(row.find('.no-pembuktian').text());
+        clone.find('.no-pemilihan').text(row.find('.no-pemilihan').text());
         clone.find('.nama-paket').text(row.find('.nama-paket').text());
         clone.find('.kode-tender').text(row.find('.kode-tender').text());
         clone.find('.hps').text(row.find('.hps').text());
@@ -532,8 +771,15 @@
         clone.find('.harga-terkoreksi').text(row.find('.harga-terkoreksi').text());
         clone.find('.harga-negosiasi').text(row.find('.harga-negosiasi').text());
         clone.find('.harga-pembulatan').text(row.find('.harga-pembulatan').text());
+        clone.find('.nilai-penawaran').text(row.find('.nilai-penawaran').text());
+        clone.find('.kualifikasi').text(row.find('.kualifikasi').text());
+        clone.find('.administrasi').text(row.find('.administrasi').text());
+        clone.find('.teknis').text(row.find('.teknis').text());
+        clone.find('.harga').text(row.find('.harga').text());
         clone.find('.keterangan-lain').text(row.find('.keterangan-lain').text());
         clone.find('.pokja-pemilihan').text(row.find('.pokja-pemilihan').text());
+        clone.find('.metode-tender').text(row.find('.metode-tender').text());
+        clone.find('.metode-evaluasi').text(row.find('.metode-evaluasi').text());
 
 
         $('#halamancetak').html(clone.html());
