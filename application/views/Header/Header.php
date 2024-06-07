@@ -7,7 +7,8 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('Dashboard') ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+                href="<?= site_url('Dashboard') ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -36,7 +37,7 @@
 
             <?php if ($this->session->userdata("level") === 'admin'): ?>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('PokjaMil') ?>"><i class="fa fa-archive" aria-hidden="true"></i>Data
+                <a class="nav-link" href="<?= site_url('PokjaMil') ?>"><i class="bi bi-microsoft-teams"></i>Data
                     Anggota
                     Pokja</a>
             </li>
@@ -44,53 +45,77 @@
             <p></p>
             <?php endif; ?>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Paket') ?>"><i class="fa fa-archive"
-                        aria-hidden="true"></i>Paket</a>
+                <a class="nav-link" href="<?= site_url('Paket') ?>"><i class="bi bi-box-seam"></i>Paket</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Penjelasan') ?>"><i class="fa fa-archive"
-                        aria-hidden="true"></i>Penjelasan</a>
+                <a class="nav-link" href="<?= site_url('Penjelasan') ?>"><i class="bi bi-body-text"></i>Penjelasan</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Evaluasi') ?>"><i class="fa fa-archive"
-                        aria-hidden="true"></i>Evaluasi</a>
+                <a class="nav-link" href="<?= site_url('Evaluasi') ?>"><i class="bi bi-book"></i>Evaluasi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Klarifikasi') ?>"><i class="fa fa-archive"
-                        aria-hidden="true"></i>Klarifikasi</a>
+                <a class="nav-link" href="<?= site_url('Klarifikasi') ?>"><i class="bi bi-card-list"></i>Klarifikasi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Pembuktian') ?>"><i class="fa fa-archive"
-                        aria-hidden="true"></i>Pembuktian</a>
+                <a class="nav-link" href="<?= site_url('Pembuktian') ?>"><i
+                        class="bi bi-clipboard-check"></i>Pembuktian</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Negosiasi') ?>"><i class="fa fa-archive"
-                        aria-hidden="true"></i>Negosiasi</a>
+                <a class="nav-link" href="<?= site_url('Negosiasi') ?>"><i class="bi bi-chat-left-dots-fill"></i>Negosiasi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Pemilihan') ?>"><i class="fa fa-archive"
-                        aria-hidden="true"></i>Pemilihan</a>
+                <a class="nav-link" href="<?= site_url('Pemilihan') ?>"><i class="bi bi-trophy"></i>Pemilihan</a>
             </li>
-            
+
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-print"></i>
-                    <span>Cetak Dokumen</span>
+                    <span>Cetak Laporan</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Sub :</h6>
+                        <h6 class="collapse-header"></h6>
                         <a class="collapse-item" href="<?= site_url('Report') ?>">Laporan Paket</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaReviu') ?>">Laporan Reviu</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaPenjelasan') ?>">Laporan
+                            Penjelasan</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaEvaluasi') ?>">Laporan Evaluasi</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaKlarifikasi') ?>">Laporan
+                            Klarifikasi</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaPembuktian') ?>">Laporan
+                            Pembuktian</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportPenetapanPemenang') ?>">Penetapan
+                            Pemenang</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaPemilihan') ?>">Laporan
+                            Pemilihan</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-print"></i>
+                    <span>Cetak Berita Acara</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header"></h6>
                         <a class="collapse-item" href="<?= site_url('Report/reportBaReviu') ?>">Berita Acara Reviu</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportBaPenjelasan') ?>">Berita Acara Penjelasan</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportBaEvaluasi') ?>">Berita Acara Evaluasi</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportBaKlarifikasi') ?>">Berita Acara Klarifikasi</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportBaPembuktian') ?>">Berita Acara Pembuktian</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportPenetapanPemenang') ?>">Penetapan Pemenang</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportBaPemilihan') ?>">Berita Acara Pemilihan</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaPenjelasan') ?>">Berita Acara
+                            Penjelasan</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaEvaluasi') ?>">Berita Acara
+                            Evaluasi</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaKlarifikasi') ?>">Berita Acara
+                            Klarifikasi</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaPembuktian') ?>">Berita Acara
+                            Pembuktian</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportPenetapanPemenang') ?>">Penetapan
+                            Pemenang</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaPemilihan') ?>">Berita Acara
+                            Pemilihan</a>
                     </div>
                 </div>
             </li>
