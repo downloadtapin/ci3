@@ -2,6 +2,27 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <h2>Tambah Data Evaluasi</h2>
+            <script>
+            $(document).ready(function() {
+                $(".format-number").keyup(function() {
+                    var value = $(this).val().replace(/[^\d,\.]/g, '');
+                    var parts = value.split(',');
+                    var integerPart = parts[0].replace(/\D+/g, '');
+                    var fractionalPart = parts.length > 1 ? ',' + parts[1] : '';
+
+                    var result = '';
+
+                    for (var i = integerPart.length - 1; i >= 0; i--) {
+                        if ((integerPart.length - i) % 3 === 0 && i !== integerPart.length - 1) {
+                            result = '.' + result;
+                        }
+                        result = integerPart[i] + result;
+                    }
+
+                    $(this).val(result + fractionalPart);
+                });
+            });
+            </script>
             <form action="<?= site_url('evaluasi/add') ?>" method="post">
                 <div class="form-group">
                     <label for="Id_kode_tender">Nama Paket Tender:</label>
@@ -29,7 +50,7 @@
                 </div>
                 <div class="form-group">
                     <label for="nilai_penawaran">Nilai Penawaran</label>
-                    <input type="number" class="form-control" id="nilai_penawaran" name="nilai_penawaran" required>
+                    <input type="text" class="form-control  format-number" id="nilai_penawaran" name="nilai_penawaran" required>
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="kualifikasi" name="kualifikasi" value="1">
