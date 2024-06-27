@@ -213,7 +213,7 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2" style="text-align: center; font-size: 17px">
-                                                    Nomor : <span class="no-dokumen-pemilihan"></span>
+                                                    Nomor : <span class="no-penjelasan"></span>
                                                 </td>
                                             </tr>
                                             <tr>

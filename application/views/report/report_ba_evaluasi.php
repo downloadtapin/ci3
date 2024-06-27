@@ -194,7 +194,7 @@
                                             <tr>
                                                 <td colspan="2"
                                                     style="text-align: center; font-weight: bold;font-size: 22px; text-decoration: underline">
-                                                    BERITA ACARA PEMBERIAN PENJELASAN
+                                                    BERITA ACARA EVALUASI PENAWARAN							
 
                                                 </td>
                                             </tr>

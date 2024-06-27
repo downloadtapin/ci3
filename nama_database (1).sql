@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Jun 2024 pada 10.49
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.0.30
+-- Generation Time: Jun 27, 2024 at 01:48 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,15 +24,15 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `evaluasi`
+-- Table structure for table `evaluasi`
 --
 
 CREATE TABLE `evaluasi` (
   `Id_evaluasi_penawaran` int(10) NOT NULL,
   `Id_kode_tender` int(10) DEFAULT NULL,
-  `No_Evaluasi` varchar(30) DEFAULT NULL,
+  `No_Evaluasi` varchar(200) DEFAULT NULL,
   `Tanggal` date DEFAULT NULL,
-  `Metode_evaluasi` varchar(20) DEFAULT NULL,
+  `Metode_evaluasi` varchar(200) DEFAULT NULL,
   `nama_Penyedia` varchar(20) DEFAULT NULL,
   `nilai_penawaran` int(20) DEFAULT NULL,
   `kualifikasi` varchar(20) DEFAULT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE `evaluasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `evaluasi`
+-- Dumping data for table `evaluasi`
 --
 
 INSERT INTO `evaluasi` (`Id_evaluasi_penawaran`, `Id_kode_tender`, `No_Evaluasi`, `Tanggal`, `Metode_evaluasi`, `nama_Penyedia`, `nilai_penawaran`, `kualifikasi`, `administrasi`, `teknis`, `harga`, `Keterangan_lain`) VALUES
@@ -57,20 +57,20 @@ INSERT INTO `evaluasi` (`Id_evaluasi_penawaran`, `Id_kode_tender`, `No_Evaluasi`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `klarifikasi`
+-- Table structure for table `klarifikasi`
 --
 
 CREATE TABLE `klarifikasi` (
   `Id_klarifikasi` int(10) NOT NULL,
   `Id_evaluasi_penawaran` int(10) DEFAULT NULL,
-  `No_Klarifikasi` varchar(30) DEFAULT NULL,
-  `Peralatan` varchar(20) DEFAULT NULL,
-  `Tenaga_ahli` varchar(20) DEFAULT NULL,
+  `No_Klarifikasi` varchar(200) DEFAULT NULL,
+  `Peralatan` text DEFAULT NULL,
+  `Tenaga_ahli` text DEFAULT NULL,
   `Keterangan_lain` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `klarifikasi`
+-- Dumping data for table `klarifikasi`
 --
 
 INSERT INTO `klarifikasi` (`Id_klarifikasi`, `Id_evaluasi_penawaran`, `No_Klarifikasi`, `Peralatan`, `Tenaga_ahli`, `Keterangan_lain`) VALUES
@@ -88,7 +88,7 @@ INSERT INTO `klarifikasi` (`Id_klarifikasi`, `Id_evaluasi_penawaran`, `No_Klarif
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `nama_tabel`
+-- Table structure for table `nama_tabel`
 --
 
 CREATE TABLE `nama_tabel` (
@@ -109,7 +109,7 @@ CREATE TABLE `nama_tabel` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `negosiasi`
+-- Table structure for table `negosiasi`
 --
 
 CREATE TABLE `negosiasi` (
@@ -117,35 +117,39 @@ CREATE TABLE `negosiasi` (
   `Id_evaluasi_penawaran` int(10) DEFAULT NULL,
   `No_Negosiasi` varchar(30) DEFAULT NULL,
   `Tanggal` date DEFAULT NULL,
-  `harga_penawaran` int(20) DEFAULT NULL,
-  `harga_terkoreksi` int(20) DEFAULT NULL,
-  `harga_negosiasi` int(255) NOT NULL,
-  `hasil_evaluasi` int(20) DEFAULT NULL,
+  `harga_penawaran` text DEFAULT NULL,
+  `harga_terkoreksi` text DEFAULT NULL,
+  `harga_negosiasi` text NOT NULL,
+  `hasil_evaluasi` text DEFAULT NULL,
   `Keterangan_lain` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `negosiasi`
+-- Dumping data for table `negosiasi`
 --
 
 INSERT INTO `negosiasi` (`Id_negosiasi`, `Id_evaluasi_penawaran`, `No_Negosiasi`, `Tanggal`, `harga_penawaran`, `harga_terkoreksi`, `harga_negosiasi`, `hasil_evaluasi`, `Keterangan_lain`) VALUES
-(1, 3, 'NGS001', '2024-05-01', 10000000, 9500000, 0, 1, 'Keterangan 1'),
-(2, 4, 'NGS002', '2024-05-02', 20000000, 19000000, 0, 1, 'Keterangan 2'),
-(3, 3, 'NGS003', '2024-05-03', 30000000, 28000000, 0, 0, 'Keterangan 3'),
-(4, 4, 'NGS004', '2024-05-04', 40000000, 38000000, 0, 1, 'Keterangan 4'),
-(5, 5, 'NGS005', '2024-05-05', 50000000, 47000000, 0, 0, 'Keterangan 5'),
-(6, 5, 'NGS006', '2024-05-06', 60000000, 55000000, 0, 1, 'Keterangan 6'),
-(7, 5, 'NGS007', '2024-05-07', 70000000, 67000000, 0, 1, 'Keterangan 7'),
-(8, 4, 'NGS008', '2024-05-08', 80000000, 75000000, 0, 0, 'Keterangan 8'),
-(9, 4, 'NGS009', '2024-05-09', 90000000, 85000000, 0, 1, 'Keterangan 9'),
-(10, 4, 'NGS010', '2024-05-10', 100000000, 95000000, 0, 1, 'Keterangan 10'),
-(12, 2, '123', '2024-06-02', 123, 123, 123, 123, '123'),
-(13, 12, '123123', '2024-06-04', 1231, 12312, 123123, 123123, '12321');
+(1, 3, 'NGS001', '2024-05-01', '123.123.123,12', '123.123.123,12', '123.123.123,12', '123.123.123,12', '123.123.123,12'),
+(2, 4, 'NGS002', '2024-05-02', '20000000', '19000000', '2147483647', '1', 'Keterangan 2'),
+(3, 3, 'NGS003', '2024-05-03', '30000000', '28000000', '2147483647', '0', 'Keterangan 3'),
+(4, 4, 'NGS004', '2024-05-04', '40000000', '38000000', '2147483647', '1', 'Keterangan 4'),
+(5, 5, 'NGS005', '2024-05-05', '50000000', '47000000', '2147483647', '0', 'Keterangan 5'),
+(6, 5, 'NGS006', '2024-05-06', '60000000', '55000000', '2147483647', '1', 'Keterangan 6'),
+(7, 5, 'NGS007', '2024-05-07', '70000000', '67000000', '2147483647', '1', 'Keterangan 7'),
+(8, 4, 'NGS008', '2024-05-08', '80000000', '75000000', '2147483647', '0', 'Keterangan 8'),
+(9, 4, 'NGS009', '2024-05-09', '90000000', '85000000', '2147483647', '1', 'Keterangan 9'),
+(10, 4, 'NGS010', '2024-05-10', '100000000', '95000000', '2147483647', '1', 'Keterangan 10'),
+(12, 2, '123', '2024-06-02', '123', '123', '2147483647', '123', '123'),
+(38, 2, 'qweqweqweqe', '2024-06-04', '12345678911', '12345678911', '12345678911', '12345678911', '131312'),
+(39, 2, '222222222222222', '2024-06-05', '123456', '123456', '123456', '123456', '234234234'),
+(44, 2, '1312312312', '2024-06-06', '12312312,31', '12312312,31', '12312312,31', '123.123.12,31', '123.123.12,31'),
+(45, 2, '213123123', '2024-06-06', '123.123.123,12', '123.123.123,12', '123.123.123,12', '123.123.123,12', '123.123.123,12'),
+(46, 3, '3.333.333.333.33', '2024-06-26', '3.333.333.333.33', '3.333.333.333.33', '3.333.333.333.33', '3.333.333.333.33', '3.333.333.333.33');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `paket`
+-- Table structure for table `paket`
 --
 
 CREATE TABLE `paket` (
@@ -160,8 +164,8 @@ CREATE TABLE `paket` (
   `Kode_anggaran` int(15) DEFAULT NULL,
   `Metode_tender` varchar(20) DEFAULT NULL,
   `Nama_PPK` varchar(50) DEFAULT NULL,
-  `NIP_PPK` int(20) DEFAULT NULL,
-  `No_SK` varchar(20) DEFAULT NULL,
+  `NIP_PPK` varchar(30) DEFAULT NULL,
+  `No_SK` text DEFAULT NULL,
   `Unit_kerja` varchar(50) DEFAULT NULL,
   `Tgl_permohonan` date DEFAULT NULL,
   `Tgl_penugasan` date DEFAULT NULL,
@@ -169,27 +173,28 @@ CREATE TABLE `paket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `paket`
+-- Dumping data for table `paket`
 --
 
 INSERT INTO `paket` (`Id_kode_tender`, `kode_tender`, `Id_pokja`, `no_dokumen_pemilihan`, `Nama_tender`, `Nilai_Pagu`, `Kode_RUP`, `Nilai_HPS`, `Kode_anggaran`, `Metode_tender`, `Nama_PPK`, `NIP_PPK`, `No_SK`, `Unit_kerja`, `Tgl_permohonan`, `Tgl_penugasan`, `Pokja_pemilihan`) VALUES
-(2, '', '2,3,4', '', 'Tender 2', 1500000, 0, 1200000, 0, 'Metode 2', 'PPK 2', 23456, 'SK-002', 'Unit 2', '2024-05-02', '2024-05-06', 'Pokja 2'),
-(3, '', '2,3,4', '', 'Tender 3', 2000000, 0, 1600000, 0, 'Metode 3', 'PPK 3', 34567, 'SK-003', 'Unit 3', '2024-05-03', '2024-05-07', 'Pokja 3'),
-(4, '', '1,2,4', '', 'Tender 4', 2500000, 0, 2000000, 0, 'Metode 4', 'PPK 4', 45678, 'SK-004', 'Unit 4', '2024-05-04', '2024-05-08', 'Pokja 4'),
-(5, '', '2,3,5', '', 'Tender 5', 3000000, 0, 2400000, 0, 'Metode 5', 'PPK 5', 56789, 'SK-005', 'Unit 5', '2024-05-05', '2024-05-09', 'Pokja 5'),
-(14, '', '1,2,3', '', '123', 12312, 12312, 1231, 1231, '123', '123', 12, '123', '123', '2024-05-14', '2024-05-15', '123'),
-(15, '123123', '2,3,4', '213', '123', 123, 12, 123, 123, '12123', '123', 123, '123', '123', '2024-06-03', '2024-06-03', '123');
+(2, '', '2,3,4', '', 'Tender 2', 1500000, 0, 1200000, 0, 'Metode 2', 'PPK 2', '23456', 'SK-002', 'Unit 2', '2024-05-02', '2024-05-06', 'Pokja 2'),
+(3, '', '2,3,4', '', 'Tender 3', 2000000, 0, 1600000, 0, 'Metode 3', 'PPK 3', '34567', 'SK-003', 'Unit 3', '2024-05-03', '2024-05-07', 'Pokja 3'),
+(4, '', '1,2,4', '', 'Tender 4', 2500000, 0, 2000000, 0, 'Metode 4', 'PPK 4', '45678', 'SK-004', 'Unit 4', '2024-05-04', '2024-05-08', 'Pokja 4'),
+(5, '', '2,3,5', '', 'Tender 5', 3000000, 0, 2400000, 0, 'Metode 5', 'PPK 5', '56789', 'SK-005', 'Unit 5', '2024-05-05', '2024-05-09', 'Pokja 5'),
+(14, '', '1,2,3', '', '123', 12312, 12312, 1231, 1231, '123', '123', '12', '123', '123', '2024-05-14', '2024-05-15', '123'),
+(15, '123123', '2,3,4', '213', '123', 123, 12, 123, 123, '12123', '123', '123', '123', '123', '2024-06-03', '2024-06-03', '123'),
+(16, '141412', '1,3,4', '4124124124124', '124124', 124124, 12412, 124124, 1412, '12412', '1231231231231', '124124 124124 12412 12412', '12412412421412412412414141414124124124qrqwrqrq341414', '14124', '2024-06-11', '2024-06-17', '123123123');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pembuktian`
+-- Table structure for table `pembuktian`
 --
 
 CREATE TABLE `pembuktian` (
   `Id_pembuktian` int(10) NOT NULL,
   `Id_evaluasi_penawaran` int(10) DEFAULT NULL,
-  `No_Pembuktian` varchar(30) DEFAULT NULL,
+  `No_Pembuktian` varchar(200) DEFAULT NULL,
   `Tanggal` date DEFAULT NULL,
   `Waktu` time DEFAULT NULL,
   `Tempat` varchar(200) DEFAULT NULL,
@@ -201,7 +206,7 @@ CREATE TABLE `pembuktian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `pembuktian`
+-- Dumping data for table `pembuktian`
 --
 
 INSERT INTO `pembuktian` (`Id_pembuktian`, `Id_evaluasi_penawaran`, `No_Pembuktian`, `Tanggal`, `Waktu`, `Tempat`, `Nama_penyedia`, `Alamat`, `Nama_hadir`, `jabatan`, `Keterangan_lain`) VALUES
@@ -221,7 +226,7 @@ INSERT INTO `pembuktian` (`Id_pembuktian`, `Id_evaluasi_penawaran`, `No_Pembukti
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pemilihan`
+-- Table structure for table `pemilihan`
 --
 
 CREATE TABLE `pemilihan` (
@@ -233,6 +238,7 @@ CREATE TABLE `pemilihan` (
   `Id_klarifikasi` int(11) DEFAULT NULL,
   `Id_negosiasi` int(11) DEFAULT NULL,
   `No_Pemilihan` int(11) DEFAULT NULL,
+  `no_penetapan` text NOT NULL,
   `Pertanyaan_sanggah` varchar(255) DEFAULT NULL,
   `Jawaban_sanggah` varchar(255) DEFAULT NULL,
   `Tanggal` date DEFAULT NULL,
@@ -241,17 +247,20 @@ CREATE TABLE `pemilihan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `pemilihan`
+-- Dumping data for table `pemilihan`
 --
 
-INSERT INTO `pemilihan` (`Id_pemilihan`, `Id_paket`, `Id_penjelasan`, `Id_evaluasi_Penawaran`, `Id_pembuktian`, `Id_klarifikasi`, `Id_negosiasi`, `No_Pemilihan`, `Pertanyaan_sanggah`, `Jawaban_sanggah`, `Tanggal`, `Cek_list`, `Keterangan_lain`) VALUES
-(4, 2, 1, 4, 1, 1, 1, 2312, '123', '12', '2024-05-16', '12312', '123'),
-(5, 4, 2, 3, 3, 3, 3, 23423, '234', '2344', '2024-05-16', '234', '234');
+INSERT INTO `pemilihan` (`Id_pemilihan`, `Id_paket`, `Id_penjelasan`, `Id_evaluasi_Penawaran`, `Id_pembuktian`, `Id_klarifikasi`, `Id_negosiasi`, `No_Pemilihan`, `no_penetapan`, `Pertanyaan_sanggah`, `Jawaban_sanggah`, `Tanggal`, `Cek_list`, `Keterangan_lain`) VALUES
+(4, 2, 1, 4, 1, 1, 1, 2312, '123123123131312', '123', '12', '2024-05-16', '12312', '123'),
+(5, 4, 2, 3, 3, 3, 3, 23423, '123123123131312', '234', '2344', '2024-05-16', '234', '234'),
+(6, 2, 1, 2, 1, 1, 1, 12312, '123123123131312', '123123', '123123', '2024-06-03', '12312', '2132'),
+(7, 15, 6, 13, 13, 10, 13, 213, '12312312312', '123123', '123123', '2024-06-05', '123123', '123123'),
+(8, 15, 6, 13, 13, 10, 45, 213, '1233123123123123123123', '1231312', '123123123', '2024-06-07', '12312312', '12312312');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penjelasan`
+-- Table structure for table `penjelasan`
 --
 
 CREATE TABLE `penjelasan` (
@@ -262,11 +271,11 @@ CREATE TABLE `penjelasan` (
   `Nama_penyedia` varchar(15) DEFAULT NULL,
   `Pertanyaan` varchar(200) DEFAULT NULL,
   `Jawaban` varchar(200) DEFAULT NULL,
-  `Keterangan_lain` varchar(200) DEFAULT NULL
+  `Keterangan_lain` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `penjelasan`
+-- Dumping data for table `penjelasan`
 --
 
 INSERT INTO `penjelasan` (`Id_penjelasan`, `Id_kode_tender`, `No_Penjelasan`, `Tanggal`, `Nama_penyedia`, `Pertanyaan`, `Jawaban`, `Keterangan_lain`) VALUES
@@ -280,7 +289,7 @@ INSERT INTO `penjelasan` (`Id_penjelasan`, `Id_kode_tender`, `No_Penjelasan`, `T
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pokjamil`
+-- Table structure for table `pokjamil`
 --
 
 CREATE TABLE `pokjamil` (
@@ -301,7 +310,7 @@ CREATE TABLE `pokjamil` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `pokjamil`
+-- Dumping data for table `pokjamil`
 --
 
 INSERT INTO `pokjamil` (`id`, `Level`, `Nama`, `NIK`, `NIP_Pokjamil`, `User_ID`, `Password`, `Alamat`, `No_telp`, `Email`, `Pangkat`, `Jabatan`, `Golongan`, `No_sertifikat`) VALUES
@@ -314,7 +323,7 @@ INSERT INTO `pokjamil` (`id`, `Level`, `Nama`, `NIK`, `NIP_Pokjamil`, `User_ID`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `userlogin`
+-- Table structure for table `userlogin`
 --
 
 CREATE TABLE `userlogin` (
@@ -326,7 +335,7 @@ CREATE TABLE `userlogin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `userlogin`
+-- Dumping data for table `userlogin`
 --
 
 INSERT INTO `userlogin` (`id_user`, `id_pokja`, `Username`, `Password`, `Level`) VALUES
@@ -338,125 +347,125 @@ INSERT INTO `userlogin` (`id_user`, `id_pokja`, `Username`, `Password`, `Level`)
 --
 
 --
--- Indeks untuk tabel `evaluasi`
+-- Indexes for table `evaluasi`
 --
 ALTER TABLE `evaluasi`
   ADD PRIMARY KEY (`Id_evaluasi_penawaran`);
 
 --
--- Indeks untuk tabel `klarifikasi`
+-- Indexes for table `klarifikasi`
 --
 ALTER TABLE `klarifikasi`
   ADD PRIMARY KEY (`Id_klarifikasi`);
 
 --
--- Indeks untuk tabel `nama_tabel`
+-- Indexes for table `nama_tabel`
 --
 ALTER TABLE `nama_tabel`
   ADD PRIMARY KEY (`Id_Paket`);
 
 --
--- Indeks untuk tabel `negosiasi`
+-- Indexes for table `negosiasi`
 --
 ALTER TABLE `negosiasi`
   ADD PRIMARY KEY (`Id_negosiasi`);
 
 --
--- Indeks untuk tabel `paket`
+-- Indexes for table `paket`
 --
 ALTER TABLE `paket`
   ADD PRIMARY KEY (`Id_kode_tender`);
 
 --
--- Indeks untuk tabel `pembuktian`
+-- Indexes for table `pembuktian`
 --
 ALTER TABLE `pembuktian`
   ADD PRIMARY KEY (`Id_pembuktian`);
 
 --
--- Indeks untuk tabel `pemilihan`
+-- Indexes for table `pemilihan`
 --
 ALTER TABLE `pemilihan`
   ADD PRIMARY KEY (`Id_pemilihan`);
 
 --
--- Indeks untuk tabel `penjelasan`
+-- Indexes for table `penjelasan`
 --
 ALTER TABLE `penjelasan`
   ADD PRIMARY KEY (`Id_penjelasan`);
 
 --
--- Indeks untuk tabel `pokjamil`
+-- Indexes for table `pokjamil`
 --
 ALTER TABLE `pokjamil`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `userlogin`
+-- Indexes for table `userlogin`
 --
 ALTER TABLE `userlogin`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `evaluasi`
+-- AUTO_INCREMENT for table `evaluasi`
 --
 ALTER TABLE `evaluasi`
   MODIFY `Id_evaluasi_penawaran` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `klarifikasi`
+-- AUTO_INCREMENT for table `klarifikasi`
 --
 ALTER TABLE `klarifikasi`
   MODIFY `Id_klarifikasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `nama_tabel`
+-- AUTO_INCREMENT for table `nama_tabel`
 --
 ALTER TABLE `nama_tabel`
   MODIFY `Id_Paket` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `negosiasi`
+-- AUTO_INCREMENT for table `negosiasi`
 --
 ALTER TABLE `negosiasi`
-  MODIFY `Id_negosiasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Id_negosiasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
--- AUTO_INCREMENT untuk tabel `paket`
+-- AUTO_INCREMENT for table `paket`
 --
 ALTER TABLE `paket`
-  MODIFY `Id_kode_tender` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Id_kode_tender` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT untuk tabel `pembuktian`
+-- AUTO_INCREMENT for table `pembuktian`
 --
 ALTER TABLE `pembuktian`
   MODIFY `Id_pembuktian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `pemilihan`
+-- AUTO_INCREMENT for table `pemilihan`
 --
 ALTER TABLE `pemilihan`
-  MODIFY `Id_pemilihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id_pemilihan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `penjelasan`
+-- AUTO_INCREMENT for table `penjelasan`
 --
 ALTER TABLE `penjelasan`
   MODIFY `Id_penjelasan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `pokjamil`
+-- AUTO_INCREMENT for table `pokjamil`
 --
 ALTER TABLE `pokjamil`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `userlogin`
+-- AUTO_INCREMENT for table `userlogin`
 --
 ALTER TABLE `userlogin`
   MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;

@@ -384,6 +384,40 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    1. Pagu Anggaran
+                                                </td>
+                                                <td>:</td>
+                                                <td class="pagu"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    2. H P S
+                                                </td>
+                                                <td>:</td>
+                                                <td class="hps"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    3. Tanggal
+                                                </td>
+                                                <td>:</td>
+                                                <td class="tanggal"></td>
+                                            </tr>
+
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Pemenang e-Tender Pascakualifikasi, Satu File, Harga
+                                        Terendah berdasarkan
+                                        urutannya :
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td>&nbsp; </td>
                                 </tr>
                                 <tr>

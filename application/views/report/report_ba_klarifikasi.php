@@ -112,6 +112,36 @@
                                         }
                                         ?>
                                 </td>
+                                <td class="harga-pembulatan" hidden="true">
+                                    <?php 
+                                        foreach ($negosiasis as $negosiasi) {
+                                            if ($negosiasi->Id_negosiasi == $klarifikasi->Id_evaluasi_penawaran) {
+                                                // Get the original price
+                                                $harga_negosiasi = $negosiasi->harga_negosiasi;
+
+                                                // Remove any non-numeric characters
+                                                $numeric_value = preg_replace('/[^\d]/', '', $harga_negosiasi);
+
+                                                // If the value is not long enough, pad with zeros on the left
+                                                $numeric_value = str_pad($numeric_value, 7, '0', STR_PAD_LEFT);
+
+                                                // Round the last five digits to '000'
+                                                $rounded_value = substr($numeric_value, 0, -5) . '000';
+
+                                                // Format the integer part with dots
+                                                $formatted_value = number_format($rounded_value, 0, ',', '.');
+
+                                                // Append the fixed fractional part ',00'
+                                                $formatted_value .= ',00';
+
+                                                // Print the formatted value with 'Rp ' prefix
+                                                echo 'Rp ' . $formatted_value;
+                                                break;
+                                            }
+                                        }
+                                        ?>
+                            
+                                </td>
                                 <td class="hps" hidden="true">
                                     <?php 
                                         // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
@@ -197,7 +227,7 @@
                 <table style="font-family:Bookman Old Style, serif;color:black;">
                     <tr>
                         <td>
-                            <table >
+                            <table>
                                 <tr style="border-bottom: 1px solid black">
                                     <td colspan="2">
                                         <table width="100%" style="text-align: center;line-height:1.3em">
@@ -340,7 +370,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <table style="width: 100%" >
+                                        <table style="width: 100%">
                                             <tr>
                                                 <td>1.</td>
                                                 <td>Aspek-aspek Administrasi dan Kualifikasi yaitu :
@@ -416,7 +446,7 @@
                                             <tr>
                                                 <td></td>
                                                 <td colspan="2">
-                                                    <table style="width: 100%"  border>
+                                                    <table style="width: 100%" border>
                                                         <tr>
                                                             <td>
                                                                 No.
@@ -440,7 +470,7 @@
 
                                                             <td class="harga-terkoreksi"></td>
 
-                                                            <td>-</td>
+                                                            <td class="harga-pembulatan"></td>
                                                             <td>Terlampir</td>
                                                         </tr>
                                                     </table>
@@ -464,7 +494,7 @@
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <table colspan="2" style="width: 100%" >
+                                        <table colspan="2" style="width: 100%">
                                             <tr>
                                                 <td>
                                                     Nama Perusahaan
@@ -500,7 +530,7 @@
                                                     Harga Pembulatan
                                                 </td>
                                                 <td>:</td>
-                                                <td>-</td>
+                                                <td class="harga-pembulatan"></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -514,7 +544,7 @@
                                     </td>
                                 </tr>
 
-                                
+
                                 <tr>
                                     <td>&nbsp; </td>
                                 </tr>
@@ -591,6 +621,7 @@
         clone.find('.nama-penyedia').text(row.find('.nama-penyedia').text());
         clone.find('.harga-terkoreksi').text(row.find('.harga-terkoreksi').text());
         clone.find('.harga-negosiasi').text(row.find('.harga-negosiasi').text());
+        clone.find('.harga-pembulatan').text(row.find('.harga-pembulatan').text());
         clone.find('.keterangan-lain').text(row.find('.keterangan-lain').text());
         clone.find('.pokja-pemilihan').text(row.find('.pokja-pemilihan').text());
 

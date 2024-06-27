@@ -56,7 +56,7 @@
                                 <th>Metode Tender</th>
                                 <th>Nama PPK</th>
                                 <th>Unit Kerja</th>
-                                <th>No SK</th>
+                                <th hidden="true">No SK</th>
                                 <th>NIP PPK</th>
                                 <th>Tanggal Penugasan</th>
                                 <th>Pokja Pemilihan</th>
@@ -91,13 +91,12 @@
                                 <td class="nama-ppk"><?= $paket->Nama_PPK ?></td>
                                 <td class="unit-kerja"><?= $paket->Unit_kerja ?></td>
 
-                                <td class="no-sk"><?= $paket->No_SK ?></td>
+                                <td hidden="true" class="no-sk"><?= $paket->No_SK ?></td>
                                 <td class="nip-ppk"><?= $paket->NIP_PPK ?></td>
                                 <td class="tgl-penugasan"><?= $paket->Tgl_penugasan ?></td>
                                 <td class="pokja-pemilihan"><?= $paket->Pokja_pemilihan ?></td>
                                 <td>
-                                    <button class="btn btn-primary cetak-btn"
-                                        data-id="<?= $paket->Id_kode_tender ?>">
+                                    <button class="btn btn-primary cetak-btn" data-id="<?= $paket->Id_kode_tender ?>">
                                         <i class="bi bi-printer"></i></button>
                                 </td>
                             </tr>
@@ -145,7 +144,7 @@
                                                 </td>
                                             </tr>
                                             <tr style="font-size:   27px;">
-                                                <td  style="text-transform: uppercase;">
+                                                <td style="text-transform: uppercase;">
                                                     <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
@@ -185,7 +184,8 @@
                                             </tr>
                                             <tr>
                                                 <td style="font-size: 17px; text-align : justify">
-                                                    kami yang bertanda tangan di bawah ini <span class="pokja-pemilihan"></span> Unit
+                                                    kami yang bertanda tangan di bawah ini <span
+                                                        class="pokja-pemilihan"></span> Unit
                                                     Kerja Pengadaan Barang/Jasa Kabupaten Tapin bersama dengan
                                                     Pejabat
                                                     Pembuat Komitmen (PPK), yaitu:
@@ -336,61 +336,41 @@
                                                 <td>
                                                     Pejabat Pembuat Komitmen
                                                 </td>
+                                                <td>
+                                                    UKPBJ Kabupaten Tapin
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td style="text-transform: uppercase">
-                                                    <span  class="unit-kerja"></span>
+                                                    <span class="unit-kerja"></span>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp; </td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp; </td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp; </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="text-transform: uppercase;">
-                                                    <u><span class="nama-ppk"></span></u>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td class="nip-ppk">
 
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>&nbsp; </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    UKPBJ Kabupaten Tapin
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td>&nbsp; </td>
                                             </tr>
                                             <tr>
                                                 <td>&nbsp; </td>
-                                            </tr>
-                                            <tr>
                                                 <td>
                                                     ttd
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>&nbsp; </td>
-                                            </tr>
-                                            <tr>
                                                 <td>&nbsp; </td>
                                             </tr>
                                             <tr>
+                                                <td style="text-transform: uppercase;">
+                                                    <u><span class="nama-ppk"></span></u>
+                                                </td>
                                                 <td class="pokja-pemilihan">
 
                                                 </td>
                                             </tr>
+
                                         </table>
                                     </td>
                                 </tr>

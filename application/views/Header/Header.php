@@ -61,14 +61,15 @@
                         class="bi bi-clipboard-check"></i>Pembuktian</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= site_url('Negosiasi') ?>"><i class="bi bi-chat-left-dots-fill"></i>Negosiasi</a>
+                <a class="nav-link" href="<?= site_url('Negosiasi') ?>"><i
+                        class="bi bi-chat-left-dots-fill"></i>Negosiasi</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?= site_url('Pemilihan') ?>"><i class="bi bi-trophy"></i>Pemilihan</a>
             </li>
 
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-print"></i>
@@ -92,7 +93,7 @@
                             Pemilihan</a>
                     </div>
                 </div>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
@@ -114,7 +115,7 @@
                             Pembuktian</a>
                         <a class="collapse-item" href="<?= site_url('Report/reportPenetapanPemenang') ?>">Penetapan
                             Pemenang</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportBaPemilihan') ?>">Berita Acara
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaPemilihan') ?>">Berita Acara Hasil
                             Pemilihan</a>
                     </div>
                 </div>
