@@ -69,7 +69,7 @@
             </li>
 
 
-            <!-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-print"></i>
@@ -78,8 +78,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"></h6>
-                        <a class="collapse-item" href="<?= site_url('Report') ?>">Laporan Paket</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportBaReviu') ?>">Laporan Reviu</a>
+                        <a class="collapse-item" href="<?= site_url('Laporan') ?>">Laporan Paket</a>
+                        <!-- <a class="collapse-item" href="<?= site_url('Report/reportBaReviu') ?>">Laporan Reviu</a>
                         <a class="collapse-item" href="<?= site_url('Report/reportBaPenjelasan') ?>">Laporan
                             Penjelasan</a>
                         <a class="collapse-item" href="<?= site_url('Report/reportBaEvaluasi') ?>">Laporan Evaluasi</a>
@@ -90,10 +90,10 @@
                         <a class="collapse-item" href="<?= site_url('Report/reportPenetapanPemenang') ?>">Penetapan
                             Pemenang</a>
                         <a class="collapse-item" href="<?= site_url('Report/reportBaPemilihan') ?>">Laporan
-                            Pemilihan</a>
+                            Pemilihan</a> -->
                     </div>
                 </div>
-            </li> -->
+            </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
