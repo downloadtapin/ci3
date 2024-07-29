@@ -1,20 +1,43 @@
 <div class="container">
     <div class="card shadow mb-4">
+        <script>
+        $(document).ready(function() {
+            $(".format-number").keyup(function() {
+                var value = $(this).val().replace(/[^\d,\.]/g, '');
+                var parts = value.split(',');
+                var integerPart = parts[0].replace(/\D+/g, '');
+                var fractionalPart = parts.length > 1 ? ',' + parts[1] : '';
+
+                var result = '';
+
+                for (var i = integerPart.length - 1; i >= 0; i--) {
+                    if ((integerPart.length - i) % 3 === 0 && i !== integerPart.length - 1) {
+                        result = '.' + result;
+                    }
+                    result = integerPart[i] + result;
+                }
+
+                $(this).val(result + fractionalPart);
+            });
+        });
+        </script>
         <div class="card-body">
             <h2>Edit Paket Tender</h2>
             <form action="<?= site_url('paket/edit/'.$paket->Id_kode_tender) ?>" method="post">
                 <div class="form-group" hidden="true">
                     <label for="Id_kode_tender">ID Kode Tender:</label>
                     <input type="text" class="form-control" id="Id_kode_tender" name="Id_kode_tender"
-                        value="<?= $paket->Id_kode_tender ?>" >
+                        value="<?= $paket->Id_kode_tender ?>">
                 </div>
                 <div class="form-group">
                     <label for="kode_tender">Kode Tender:</label>
-                    <input type="text" class="form-control" value="<?= $paket->kode_tender ?>" id="kode_tender" name="kode_tender" required>
+                    <input type="text" class="form-control" value="<?= $paket->kode_tender ?>" id="kode_tender"
+                        name="kode_tender" required>
                 </div>
                 <div class="form-group">
                     <label for="no_dokumen_pemilihan">No Dokumen Pemilihan:</label>
-                    <input type="text" class="form-control" value="<?= $paket->no_dokumen_pemilihan ?>" id="no_dokumen_pemilihan" name="no_dokumen_pemilihan" required>
+                    <input type="text" class="form-control" value="<?= $paket->no_dokumen_pemilihan ?>"
+                        id="no_dokumen_pemilihan" name="no_dokumen_pemilihan" required>
                 </div>
                 <div class="form-group">
                     <label for="Nama_tender">Nama Tender:</label>
@@ -23,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Nilai_Pagu">Nilai Pagu:</label>
-                    <input type="text" class="form-control" id="Nilai_Pagu" name="Nilai_Pagu"
+                    <input type="text" class="form-control format-number" id="Nilai_Pagu" name="Nilai_Pagu"
                         value="<?= $paket->Nilai_Pagu ?>" required>
                 </div>
                 <div class="form-group">
@@ -33,7 +56,7 @@
                 </div>
                 <div class="form-group">
                     <label for="Nilai_HPS">Nilai HPS:</label>
-                    <input type="text" class="form-control" id="Nilai_HPS" name="Nilai_HPS"
+                    <input type="text" class="form-control format-number" id="Nilai_HPS" name="Nilai_HPS"
                         value="<?= $paket->Nilai_HPS ?>" required>
                 </div>
                 <div class="form-group">

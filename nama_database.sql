@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2024 at 01:48 AM
+-- Generation Time: Jul 29, 2024 at 08:38 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -130,7 +130,7 @@ CREATE TABLE `negosiasi` (
 
 INSERT INTO `negosiasi` (`Id_negosiasi`, `Id_evaluasi_penawaran`, `No_Negosiasi`, `Tanggal`, `harga_penawaran`, `harga_terkoreksi`, `harga_negosiasi`, `hasil_evaluasi`, `Keterangan_lain`) VALUES
 (1, 3, 'NGS001', '2024-05-01', '123.123.123,12', '123.123.123,12', '123.123.123,12', '123.123.123,12', '123.123.123,12'),
-(2, 4, 'NGS002', '2024-05-02', '20000000', '19000000', '2147483647', '1', 'Keterangan 2'),
+(2, 4, 'NGS002', '2024-05-02', '20.000.000,12', '19.000.000,12', '2.147.483.647,12', '1', 'Keterangan 2'),
 (3, 3, 'NGS003', '2024-05-03', '30000000', '28000000', '2147483647', '0', 'Keterangan 3'),
 (4, 4, 'NGS004', '2024-05-04', '40000000', '38000000', '2147483647', '1', 'Keterangan 4'),
 (5, 5, 'NGS005', '2024-05-05', '50000000', '47000000', '2147483647', '0', 'Keterangan 5'),
@@ -158,9 +158,9 @@ CREATE TABLE `paket` (
   `Id_pokja` varchar(10) DEFAULT NULL,
   `no_dokumen_pemilihan` text NOT NULL,
   `Nama_tender` varchar(100) DEFAULT NULL,
-  `Nilai_Pagu` int(30) DEFAULT NULL,
+  `Nilai_Pagu` varchar(30) DEFAULT NULL,
   `Kode_RUP` int(15) DEFAULT NULL,
-  `Nilai_HPS` int(20) DEFAULT NULL,
+  `Nilai_HPS` varchar(20) DEFAULT NULL,
   `Kode_anggaran` int(15) DEFAULT NULL,
   `Metode_tender` varchar(20) DEFAULT NULL,
   `Nama_PPK` varchar(50) DEFAULT NULL,
@@ -177,13 +177,14 @@ CREATE TABLE `paket` (
 --
 
 INSERT INTO `paket` (`Id_kode_tender`, `kode_tender`, `Id_pokja`, `no_dokumen_pemilihan`, `Nama_tender`, `Nilai_Pagu`, `Kode_RUP`, `Nilai_HPS`, `Kode_anggaran`, `Metode_tender`, `Nama_PPK`, `NIP_PPK`, `No_SK`, `Unit_kerja`, `Tgl_permohonan`, `Tgl_penugasan`, `Pokja_pemilihan`) VALUES
-(2, '', '2,3,4', '', 'Tender 2', 1500000, 0, 1200000, 0, 'Metode 2', 'PPK 2', '23456', 'SK-002', 'Unit 2', '2024-05-02', '2024-05-06', 'Pokja 2'),
-(3, '', '2,3,4', '', 'Tender 3', 2000000, 0, 1600000, 0, 'Metode 3', 'PPK 3', '34567', 'SK-003', 'Unit 3', '2024-05-03', '2024-05-07', 'Pokja 3'),
-(4, '', '1,2,4', '', 'Tender 4', 2500000, 0, 2000000, 0, 'Metode 4', 'PPK 4', '45678', 'SK-004', 'Unit 4', '2024-05-04', '2024-05-08', 'Pokja 4'),
-(5, '', '2,3,5', '', 'Tender 5', 3000000, 0, 2400000, 0, 'Metode 5', 'PPK 5', '56789', 'SK-005', 'Unit 5', '2024-05-05', '2024-05-09', 'Pokja 5'),
-(14, '', '1,2,3', '', '123', 12312, 12312, 1231, 1231, '123', '123', '12', '123', '123', '2024-05-14', '2024-05-15', '123'),
-(15, '123123', '2,3,4', '213', '123', 123, 12, 123, 123, '12123', '123', '123', '123', '123', '2024-06-03', '2024-06-03', '123'),
-(16, '141412', '1,3,4', '4124124124124', '124124', 124124, 12412, 124124, 1412, '12412', '1231231231231', '124124 124124 12412 12412', '12412412421412412412414141414124124124qrqwrqrq341414', '14124', '2024-06-11', '2024-06-17', '123123123');
+(2, '12323123', '2,3,4', '123123123', 'Tender 2', '150.011.231.23', 0, '120.011.231.23', 12312, 'Metode 2', 'PPK 2', '23456', 'SK-002', 'Unit 2', '2024-05-02', '2024-05-06', 'Pokja 2'),
+(3, '', '2,3,4', '', 'Tender 3', '2000000', 0, '1600000', 0, 'Metode 3', 'PPK 3', '34567', 'SK-003', 'Unit 3', '2024-05-03', '2024-05-07', 'Pokja 3'),
+(4, '', '1,2,4', '', 'Tender 4', '2500000', 0, '2000000', 0, 'Metode 4', 'PPK 4', '45678', 'SK-004', 'Unit 4', '2024-05-04', '2024-05-08', 'Pokja 4'),
+(5, '', '2,3,5', '', 'Tender 5', '3000000', 0, '2400000', 0, 'Metode 5', 'PPK 5', '56789', 'SK-005', 'Unit 5', '2024-05-05', '2024-05-09', 'Pokja 5'),
+(14, '', '1,2,3', '', '123', '12312', 12312, '1231', 1231, '123', '123', '12', '123', '123', '2024-05-14', '2024-05-15', '123'),
+(15, '123123', '2,3,4', '213', '123', '123', 12, '123', 123, '12123', '123', '123', '123', '123', '2024-06-03', '2024-06-03', '123'),
+(16, '141412', '1,3,4', '4124124124124', '124124', '124124', 12412, '124124', 1412, '12412', '1231231231231', '124124 124124 12412 12412', '12412412421412412412414141414124124124qrqwrqrq341414', '14124', '2024-06-11', '2024-06-17', '123123123'),
+(17, '1232323123', '2,3,4', '2323232', '2323123', '123.123.123.23', 2147483647, '123.123.123.12', 12312312, '2323', '123213', '1232313', '2312312', '123123', '2024-07-29', '2024-07-29', '1231232');
 
 -- --------------------------------------------------------
 
@@ -438,7 +439,7 @@ ALTER TABLE `negosiasi`
 -- AUTO_INCREMENT for table `paket`
 --
 ALTER TABLE `paket`
-  MODIFY `Id_kode_tender` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `Id_kode_tender` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `pembuktian`
