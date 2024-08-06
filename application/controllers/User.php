@@ -25,6 +25,7 @@ class User extends CI_Controller {
                 'Level' => $this->input->post('Level')
             );
             $this->User_model->create_user($data);
+            $this->session->set_flashdata('success', 'User berhasil ditambahkan.');
             redirect('user');
         } else {
             $this->load->view('Header/NavBar');
@@ -42,6 +43,7 @@ class User extends CI_Controller {
                 'Level' => $this->input->post('Level')
             );
             $this->User_model->update_user($id, $data);
+            $this->session->set_flashdata('success', 'User berhasil diubah.');
             redirect('user');
         } else {
             $data['user'] = $this->User_model->get_user_by_id($id);
@@ -53,7 +55,9 @@ class User extends CI_Controller {
     // Delete user
     public function delete($id) {
         $this->User_model->delete_user($id);
+        $this->session->set_flashdata('success', 'User berhasil dihapus.');
         redirect('user');
     }
 }
+
 ?>

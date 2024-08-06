@@ -8,7 +8,9 @@ class Pembuktian extends CI_Controller {
         $this->load->model('Pembuktian_model');
         $this->load->library('form_validation');
         $this->load->model('Evaluasi_model');
+        $this->load->library('session');
     }
+    
     public function get_nama_penyedia() {
         $id_evaluasi_penawaran = $this->input->post('Id_evaluasi_penawaran');
         $this->load->model('Evaluasi_model');
@@ -24,7 +26,6 @@ class Pembuktian extends CI_Controller {
         $this->load->view('Header/Header');
         $this->load->view('pembuktian/list', $data);
         $this->load->view('Footer/Footer');
-        
     }
 
     public function add() {
@@ -44,7 +45,6 @@ class Pembuktian extends CI_Controller {
             $this->load->view('Header/Header');
             $this->load->view('pembuktian/add',$data);
             $this->load->view('Footer/Footer');
-            
         } else {
             $data = array(
                 'Id_evaluasi_penawaran' => $this->input->post('Id_evaluasi_penawaran'),
@@ -58,6 +58,7 @@ class Pembuktian extends CI_Controller {
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
             $this->Pembuktian_model->add($data);
+            $this->session->set_flashdata('success', 'Data berhasil disimpan.');
             redirect('pembuktian');
         }
     }
@@ -80,7 +81,6 @@ class Pembuktian extends CI_Controller {
             $this->load->view('Header/Header');
             $this->load->view('pembuktian/edit', $data);
             $this->load->view('Footer/Footer');
-            
         } else {
             $data = array(
                 'Id_evaluasi_penawaran' => $this->input->post('Id_evaluasi_penawaran'),
@@ -94,12 +94,15 @@ class Pembuktian extends CI_Controller {
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
             $this->Pembuktian_model->update($id, $data);
+            $this->session->set_flashdata('success', 'Data berhasil diubah.');
             redirect('pembuktian');
         }
     }
 
     public function delete($id) {
         $this->Pembuktian_model->delete($id);
+        $this->session->set_flashdata('success', 'Data berhasil dihapus.');
         redirect('pembuktian');
     }
 }
+?>

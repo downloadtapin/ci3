@@ -17,7 +17,6 @@ class Klarifikasi extends CI_Controller {
         $this->load->view('Header/Header');
         $this->load->view('klarifikasi/list', $data);
         $this->load->view('Footer/Footer');
-        
     }
 
     public function add() {
@@ -32,7 +31,6 @@ class Klarifikasi extends CI_Controller {
             $this->load->view('Header/Header');
             $this->load->view('klarifikasi/add', $data);
             $this->load->view('Footer/Footer');
-            
         } else {
             $data = array(
                 'Id_evaluasi_penawaran' => $this->input->post('Id_evaluasi_penawaran'),
@@ -42,6 +40,7 @@ class Klarifikasi extends CI_Controller {
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
             $this->Klarifikasi_model->add($data);
+            $this->session->set_flashdata('success', 'Data berhasil disimpan.');
             redirect('klarifikasi');
         }
     }
@@ -51,7 +50,7 @@ class Klarifikasi extends CI_Controller {
         $this->form_validation->set_rules('No_Klarifikasi', 'Nomor Klarifikasi', 'required');
         $this->form_validation->set_rules('Peralatan', 'Peralatan', 'required');
         $this->form_validation->set_rules('Tenaga_ahli', 'Tenaga Ahli', 'required');
-    
+
         if ($this->form_validation->run() == FALSE) {
             $data['klarifikasi'] = $this->Klarifikasi_model->get_by_id($id);
             $data['evaluasis'] = $this->Evaluasi_model->get_all();
@@ -59,7 +58,6 @@ class Klarifikasi extends CI_Controller {
             $this->load->view('Header/Header');
             $this->load->view('klarifikasi/edit', $data);
             $this->load->view('Footer/Footer');
-            
         } else {
             $data = array(
                 'Id_evaluasi_penawaran' => $this->input->post('Id_evaluasi_penawaran'),
@@ -69,13 +67,14 @@ class Klarifikasi extends CI_Controller {
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
             $this->Klarifikasi_model->update($id, $data);
+            $this->session->set_flashdata('success', 'Data berhasil diubah.');
             redirect('klarifikasi');
         }
     }
-    
 
     public function delete($id) {
         $this->Klarifikasi_model->delete($id);
+        $this->session->set_flashdata('success', 'Data berhasil dihapus.');
         redirect('klarifikasi');
     }
 }

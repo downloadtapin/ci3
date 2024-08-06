@@ -17,7 +17,6 @@ class Evaluasi extends CI_Controller {
         $this->load->view('Header/Header');
         $this->load->view('evaluasi/list', $data);
         $this->load->view('Footer/Footer');
-        
     }
 
     public function add() {
@@ -32,9 +31,8 @@ class Evaluasi extends CI_Controller {
             $data['pakets'] = $this->Paket_model->get_all_paket();
             $this->load->view('Header/Head');
             $this->load->view('Header/Header');
-            $this->load->view('evaluasi/add',$data);
+            $this->load->view('evaluasi/add', $data);
             $this->load->view('Footer/Footer');
-            
         } else {
             $data = array(
                 'Id_kode_tender' => $this->input->post('Id_kode_tender'),
@@ -50,6 +48,7 @@ class Evaluasi extends CI_Controller {
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
             $this->Evaluasi_model->add($data);
+            $this->session->set_flashdata('success', 'Data berhasil disimpan.');
             redirect('evaluasi');
         }
     }
@@ -69,7 +68,6 @@ class Evaluasi extends CI_Controller {
             $this->load->view('Header/Header');
             $this->load->view('evaluasi/edit', $data);
             $this->load->view('Footer/Footer');
-            
         } else {
             $data = array(
                 'Id_kode_tender' => $this->input->post('Id_kode_tender'),
@@ -85,12 +83,14 @@ class Evaluasi extends CI_Controller {
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
             $this->Evaluasi_model->update($Id_evaluasi_penawaran, $data);
+            $this->session->set_flashdata('success', 'Data berhasil diubah.');
             redirect('evaluasi');
         }
     }
 
     public function delete($Id_evaluasi_penawaran) {
         $this->Evaluasi_model->delete($Id_evaluasi_penawaran);
+        $this->session->set_flashdata('success', 'Data berhasil dihapus.');
         redirect('evaluasi');
     }
 }

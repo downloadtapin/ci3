@@ -7,28 +7,27 @@ class Paket extends CI_Controller {
         parent::__construct();
         $this->load->model('Paket_model');
         $this->load->model('PokjaMil_model'); // Load model PokjaMil
+        $this->load->library('session');
     }
     
     // Index page showing all pakets
     public function index() {
-        
         $data['pokjas'] = $this->PokjaMil_model->get_all_pokja();
         $data['pakets'] = $this->Paket_model->get_all_paket();
         $this->load->view('Header/Head');
         $this->load->view('Header/Header');
         $this->load->view('paket/list', $data);
         $this->load->view('Footer/Footer');
-        
     }
     
     // Add new paket
     public function add() {
         if ($this->input->post()) {
             // Get selected ID Pokja values from the form as an array
-        $selected_id_pokjas = $this->input->post('Id_pokja');
+            $selected_id_pokjas = $this->input->post('Id_pokja');
 
-        // Convert array to comma-separated string (if needed)
-        $selected_id_pokjas_str = implode(',', $selected_id_pokjas);
+            // Convert array to comma-separated string (if needed)
+            $selected_id_pokjas_str = implode(',', $selected_id_pokjas);
             $data = array(
                 'kode_tender' => $this->input->post('kode_tender'),
                 'Id_pokja' => $selected_id_pokjas_str,
@@ -48,6 +47,7 @@ class Paket extends CI_Controller {
                 'Pokja_pemilihan' => $this->input->post('Pokja_pemilihan')
             );
             $this->Paket_model->create_paket($data);
+            $this->session->set_flashdata('success', 'Data berhasil disimpan.');
             redirect('paket');
         } else {
             $data['pokjas'] = $this->PokjaMil_model->get_all_pokja(); 
@@ -55,14 +55,12 @@ class Paket extends CI_Controller {
             $this->load->view('Header/Header');
             $this->load->view('paket/add', $data);
             $this->load->view('Footer/Footer');
-            
         }
     }
     
     // Edit paket
     public function edit($id) {
         if ($this->input->post()) {
-            
             $data = array(
                 'kode_tender' => $this->input->post('kode_tender'),
                 'Id_pokja' => implode(",", $this->input->post('Id_pokja')),
@@ -82,6 +80,7 @@ class Paket extends CI_Controller {
                 'Pokja_pemilihan' => $this->input->post('Pokja_pemilihan')
             );
             $this->Paket_model->update_paket($id, $data);
+            $this->session->set_flashdata('success', 'Data berhasil diubah.');
             redirect('paket');
         } else {
             $data['paket'] = $this->Paket_model->get_paket_by_id($id);
@@ -92,13 +91,13 @@ class Paket extends CI_Controller {
             $this->load->view('Header/Header');
             $this->load->view('paket/edit', $data);
             $this->load->view('Footer/Footer');
-            
         }
     }
     
     // Delete paket
     public function delete($id) {
         $this->Paket_model->delete_paket($id);
+        $this->session->set_flashdata('success', 'Data berhasil dihapus.');
         redirect('paket');
     }
 }

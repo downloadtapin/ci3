@@ -13,6 +13,7 @@ class Pemilihan extends CI_Controller {
         $this->load->model('Negosiasi_model');
         $this->load->model('Pembuktian_model');
         $this->load->model('Penjelasan_model');
+        $this->load->library('session');
     }
 
     public function index() {
@@ -27,7 +28,6 @@ class Pemilihan extends CI_Controller {
         $this->load->view('Header/Header');
         $this->load->view('pemilihan/list', $data);
         $this->load->view('Footer/Footer');
-        
     }
 
     public function add() {
@@ -55,7 +55,6 @@ class Pemilihan extends CI_Controller {
             $this->load->view('Header/Header');
             $this->load->view('pemilihan/add',$data);
             $this->load->view('Footer/Footer');
-            
         } else {
             $data = array(
                 'Id_paket' => $this->input->post('Id_paket'),
@@ -74,6 +73,7 @@ class Pemilihan extends CI_Controller {
             );
 
             $this->Pemilihan_model->add($data);
+            $this->session->set_flashdata('success', 'Data berhasil disimpan.');
             redirect('pemilihan');
         }
     }
@@ -93,7 +93,7 @@ class Pemilihan extends CI_Controller {
             $data['pembuktians'] = $this->Pembuktian_model->get_all();
             $data['klarifikasis'] = $this->Klarifikasi_model->get_all();
             $data['negosiasis'] = $this->Negosiasi_model->get_all();
-            $data['pemilihan'] = $this->Pemilihan_model->get_by_id($id); // Mengambil data pemilihan berdasarkan ID
+            $data['pemilihan'] = $this->Pemilihan_model->get_by_id($id);
             $this->load->view('Header/Head');
             $this->load->view('Header/Header');
             $this->load->view('pemilihan/edit', $data);
@@ -115,14 +115,16 @@ class Pemilihan extends CI_Controller {
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
     
-            $this->Pemilihan_model->update($id, $data); // Memanggil model untuk melakukan update data pemilihan
+            $this->Pemilihan_model->update($id, $data);
+            $this->session->set_flashdata('success', 'Data berhasil diubah.');
             redirect('pemilihan');
         }
     }
-    
 
     public function delete($id) {
         $this->Pemilihan_model->delete($id);
+        $this->session->set_flashdata('success', 'Data berhasil dihapus.');
         redirect('pemilihan');
     }
 }
+?>

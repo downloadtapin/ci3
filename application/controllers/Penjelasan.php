@@ -8,7 +8,7 @@ class Penjelasan extends CI_Controller {
         $this->load->model('Penjelasan_model');
         $this->load->library('form_validation');
         $this->load->model('Paket_model');
-        
+        $this->load->library('session'); // Load the session library for flashdata
     }
 
     public function index() {
@@ -18,7 +18,6 @@ class Penjelasan extends CI_Controller {
         $this->load->view('Header/Header');
         $this->load->view('penjelasan/list', $data);
         $this->load->view('Footer/Footer');
-        
     }
 
     public function add() {
@@ -33,9 +32,8 @@ class Penjelasan extends CI_Controller {
             $data['pakets'] = $this->Paket_model->get_all_paket();
             $this->load->view('Header/Head');
             $this->load->view('Header/Header');
-            $this->load->view('penjelasan/add',$data);
+            $this->load->view('penjelasan/add', $data);
             $this->load->view('Footer/Footer');
-            
         } else {
             $data = array(
                 'Id_kode_tender' => $this->input->post('Id_kode_tender'),
@@ -47,6 +45,7 @@ class Penjelasan extends CI_Controller {
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
             $this->Penjelasan_model->add($data);
+            $this->session->set_flashdata('success', 'Data berhasil disimpan.');
             redirect('penjelasan');
         }
     }
@@ -66,7 +65,6 @@ class Penjelasan extends CI_Controller {
             $this->load->view('Header/Header');
             $this->load->view('penjelasan/edit', $data);
             $this->load->view('Footer/Footer');
-            
         } else {
             $data = array(
                 'Id_kode_tender' => $this->input->post('Id_kode_tender'),
@@ -78,12 +76,15 @@ class Penjelasan extends CI_Controller {
                 'Keterangan_lain' => $this->input->post('Keterangan_lain')
             );
             $this->Penjelasan_model->update($Id_penjelasan, $data);
+            $this->session->set_flashdata('success', 'Data berhasil diubah.');
             redirect('penjelasan');
         }
     }
 
     public function delete($Id_penjelasan) {
         $this->Penjelasan_model->delete($Id_penjelasan);
+        $this->session->set_flashdata('success', 'Data berhasil dihapus.');
         redirect('penjelasan');
     }
 }
+?>
