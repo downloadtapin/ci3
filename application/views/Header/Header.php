@@ -79,18 +79,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"></h6>
                         <a class="collapse-item" href="<?= site_url('Laporan') ?>">Laporan Paket</a>
-                        <!-- <a class="collapse-item" href="<?= site_url('Report/reportBaReviu') ?>">Laporan Reviu</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportBaPenjelasan') ?>">Laporan
-                            Penjelasan</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportBaEvaluasi') ?>">Laporan Evaluasi</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportBaKlarifikasi') ?>">Laporan
-                            Klarifikasi</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportBaPembuktian') ?>">Laporan
-                            Pembuktian</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportPenetapanPemenang') ?>">Penetapan
-                            Pemenang</a>
-                        <a class="collapse-item" href="<?= site_url('Report/reportBaPemilihan') ?>">Laporan
-                            Pemilihan</a> -->
+                        <a class="collapse-item" href="<?= site_url('Laporan/LaporanPokmil') ?>">Laporan Pokja
+                            Pemilihan</a>
                     </div>
                 </div>
             </li>
@@ -109,6 +99,8 @@
                             Penjelasan</a>
                         <a class="collapse-item" href="<?= site_url('Report/reportBaEvaluasi') ?>">Berita Acara
                             Evaluasi</a>
+                        <a class="collapse-item" href="<?= site_url('Report/reportBaNegosiasi') ?>">Berita Acara
+                            Negosiasi</a>
                         <a class="collapse-item" href="<?= site_url('Report/reportBaKlarifikasi') ?>">Berita Acara
                             Klarifikasi</a>
                         <a class="collapse-item" href="<?= site_url('Report/reportBaPembuktian') ?>">Berita Acara

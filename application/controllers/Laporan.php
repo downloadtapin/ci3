@@ -21,5 +21,16 @@ class Laporan extends CI_Controller {
         
     }
 
+    public function LaporanPokmil() {
+        
+        $data['pokjas'] = $this->PokjaMil_model->get_all_pokja();
+        $data['pakets'] = $this->Paket_model->get_all_paket();
+        $this->load->view('Header/Head');
+        $this->load->view('Header/Header');
+        $this->load->view('laporan/laporan_pokmil', $data);
+        $this->load->view('Footer/Footer');
+        
+    }
+
 }
 ?>
