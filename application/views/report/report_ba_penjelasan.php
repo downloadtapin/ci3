@@ -78,7 +78,7 @@
                                         foreach ($pakets as $paket) {
                                             if ($paket->Id_kode_tender == $penjelasan->Id_kode_tender) {
                                                 // Format Nilai HPS menjadi format mata uang Rupiah
-                                                echo 'Rp ' . number_format($paket->Nilai_HPS, 0, ',', '.');
+                                                echo 'Rp ' . $paket->Nilai_HPS;
                                                 break;
                                             }
                                         }
