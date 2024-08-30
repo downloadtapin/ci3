@@ -79,14 +79,21 @@
                                 </td>
                                 <td class="no-evaluasi"><?= $evaluasi->No_Evaluasi ?></td>
                                 <td class="tanggal"><?= $evaluasi->Tanggal ?></td>
-                                <td class="metode-tender"><?= $evaluasi->Metode_evaluasi ?></td>
+                                <td class="metode-tender"><?php 
+                                    foreach ($pakets as $paket) {
+                                        if ($paket->Id_kode_tender == $evaluasi->Id_kode_tender) {
+                                            echo $paket->Metode_tender;
+                                            break;
+                                        }
+                                    }
+                                    ?></td>
                                 <td class="metode-evaluasi"><?= $evaluasi->Metode_evaluasi ?></td>
                                 <td class="hps" hidden="true">
                                     <?php 
                                         foreach ($pakets as $paket) {
                                             if ($paket->Id_kode_tender == $evaluasi->Id_kode_tender) {
                                                 // Format Nilai HPS menjadi format mata uang Rupiah
-                                                echo 'Rp ' . number_format($paket->Nilai_HPS, 0, ',', '.');
+                                                echo 'Rp ' . $paket->Nilai_HPS;
                                                 break;
                                             }
                                         }
@@ -194,7 +201,7 @@
                                             <tr>
                                                 <td colspan="2"
                                                     style="text-align: center; font-weight: bold;font-size: 22px; text-decoration: underline">
-                                                    BERITA ACARA EVALUASI PENAWARAN							
+                                                    BERITA ACARA EVALUASI PENAWARAN
 
                                                 </td>
                                             </tr>
@@ -363,7 +370,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <table style="text-align: center; font-size: 17px; width:100%; font-weight: bold">
+                                        <table
+                                            style="text-align: center; font-size: 17px; width:100%; font-weight: bold">
                                             <tr>
                                                 <td>
                                                     UKPBJ Kabupaten Tapin
@@ -438,7 +446,7 @@
         clone.find('.harga').text(row.find('.harga').text());
         clone.find('.keterangan-lain').text(row.find('.keterangan-lain').text());
         clone.find('.pokja-pemilihan').text(row.find('.pokja-pemilihan').text());
-        
+
 
         $('#halamancetak').html(clone.html());
         printContent();

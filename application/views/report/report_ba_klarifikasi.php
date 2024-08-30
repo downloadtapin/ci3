@@ -129,7 +129,7 @@
                                                 $rounded_value = substr($numeric_value, 0, -5) . '000';
 
                                                 // Format the integer part with dots
-                                                $formatted_value = number_format($rounded_value, 0, ',', '.');
+                                                $formatted_value = number_format($rounded_value) ;
 
                                                 // Append the fixed fractional part ',00'
                                                 $formatted_value .= ',00';
@@ -152,7 +152,7 @@
                                                 // Cari nama tender di tabel paket menggunakan Id_kode_tender
                                                 foreach ($pakets as $paket) {
                                                     if ($paket->Id_kode_tender == $Id_kode_tender) {
-                                                        echo 'Rp ' . number_format($paket->Nilai_HPS, 0, ',', '.');
+                                                        echo 'Rp ' . $paket->Nilai_HPS;
                                                         break;
                                                     }
                                                 }
@@ -186,7 +186,7 @@
                                     <?php 
                                         foreach ($negosiasis as $negosiasi) {
                                             if ($negosiasi->Id_negosiasi == $klarifikasi->Id_evaluasi_penawaran) {
-                                                echo 'Rp ' . number_format($negosiasi->harga_penawaran, 0, ',', '.');
+                                                echo 'Rp '  . $negosiasi->harga_penawaran ;
                                                 break;
                                             }
                                         }
@@ -196,7 +196,7 @@
                                     <?php 
                                         foreach ($negosiasis as $negosiasi) {
                                             if ($negosiasi->Id_negosiasi == $klarifikasi->Id_evaluasi_penawaran) {
-                                                echo 'Rp ' . number_format($negosiasi->harga_negosiasi, 0, ',', '.');
+                                                echo 'Rp '  . $negosiasi->harga_negosiasi ;
                                                 break;
                                             }
                                         }

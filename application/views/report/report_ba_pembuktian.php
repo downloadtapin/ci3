@@ -144,7 +144,7 @@
                                                 // Cari nama tender di tabel paket menggunakan Id_kode_tender
                                                 foreach ($pakets as $paket) {
                                                     if ($paket->Id_kode_tender == $Id_kode_tender) {
-                                                        echo 'Rp ' . number_format($paket->Nilai_HPS, 0, ',', '.');
+                                                        echo 'Rp '  . $paket->Nilai_HPS ;
                                                         break;
                                                     }
                                                 }
@@ -163,7 +163,7 @@
                                                 // Cari nama tender di tabel paket menggunakan Id_kode_tender
                                                 foreach ($pakets as $paket) {
                                                     if ($paket->Id_kode_tender == $Id_kode_tender) {
-                                                        echo 'Rp ' . number_format($paket->Nilai_Pagu, 0, ',', '.');
+                                                        echo 'Rp '  . $paket->Nilai_Pagu ;
                                                         break;
                                                     }
                                                 }

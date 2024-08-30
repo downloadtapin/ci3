@@ -83,9 +83,9 @@
                                 </td>
                                 <td class="nama-tender"><?= $paket->Nama_tender ?></td>
                                 <td class="no-dokumen-pemilihan"><?= $paket->no_dokumen_pemilihan ?></td>
-                                <td class="nilai-pagu"><?= $paket->Nilai_Pagu ?></td>
+                                <td class="nilai-pagu">Rp. <?= $paket->Nilai_Pagu ?></td>
                                 <td class="kode-rup"><?= $paket->Kode_RUP ?></td>
-                                <td class="nilai-hps"><?= $paket->Nilai_HPS ?></td>
+                                <td class="nilai-hps">Rp. <?= $paket->Nilai_HPS ?></td>
                                 <td class="kode-anggaran"><?= $paket->Kode_anggaran ?></td>
                                 <td class="metode-tender"><?= $paket->Metode_tender ?></td>
                                 <td class="nama-ppk"><?= $paket->Nama_PPK ?></td>

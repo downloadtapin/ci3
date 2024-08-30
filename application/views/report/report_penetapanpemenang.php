@@ -58,10 +58,7 @@
                         </thead>
                         <tbody>
                             <?php 
-                            function format_currency($amount) {
-                                $rounded_amount = floor($amount / 1000) * 1000; // Round down to nearest thousand
-                                return 'Rp. ' . number_format($rounded_amount, 2, ',', '.');
-                            }
+
                             foreach ($pemilihans as $pemilihan): ?>
                             <tr>
                                 <td class="no-pemilihan"><?= $pemilihan->No_Pemilihan ?></td>
@@ -138,7 +135,7 @@
                                                 $rounded_value = substr($numeric_value, 0, -5) . '000';
 
                                                 // Format the integer part with dots
-                                                $formatted_value = number_format($rounded_value, 0, ',', '.');
+                                                $formatted_value = number_format($rounded_value)  ;
 
                                                 // Append the fixed fractional part ',00'
                                                 $formatted_value .= ',00';
@@ -202,7 +199,7 @@
                                                 // Cari nama tender di tabel paket menggunakan Id_kode_tender
                                                 foreach ($pakets as $paket) {
                                                     if ($paket->Id_kode_tender == $Id_kode_tender) {
-                                                        echo 'Rp ' . number_format($paket->Nilai_HPS, 0, ',', '.');
+                                                        echo 'Rp ' . $paket->Nilai_HPS ;
                                                         break;
                                                     }
                                                 }
@@ -221,7 +218,7 @@
                                                 // Cari nama tender di tabel paket menggunakan Id_kode_tender
                                                 foreach ($pakets as $paket) {
                                                     if ($paket->Id_kode_tender == $Id_kode_tender) {
-                                                        echo 'Rp ' . number_format($paket->Nilai_Pagu, 0, ',', '.');
+                                                        echo 'Rp ' . $paket->Nilai_Pagu ;
                                                         break;
                                                     }
                                                 }
