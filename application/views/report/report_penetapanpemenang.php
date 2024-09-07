@@ -328,7 +328,7 @@
                                             </tr>
                                             <tr style="font-size:   27px;">
                                                 <td style="text-transform: uppercase;">
-                                                    <span class="pokja-pemilihan"></span>
+                                                    Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -373,7 +373,7 @@
                                         Berdasarkan hasil evaluasi penawaran
                                         dan evaluasi kualifikasi pada Dokumen Penawaran dan Dokumen Kualifikasi dalam
                                         e-Tender Pascakualifikasi, Satu File, Harga Terendah yang dilaksanakan oleh
-                                        <span class="pokja-pemilihan"></span> Bagian Pengadaan Barang/Jasa Pemerintah
+                                        Pokja Pemilihan <span class="pokja-pemilihan"></span> Bagian Pengadaan Barang/Jasa Pemerintah
                                         Kabupaten Tapin Tahun Anggaran <span class="tahun-anggaran"></span> untuk <span
                                             class="nama-paket"></span>, maka ditetapkan Pemenang pada
                                         e-Tender Pascakualifikasi, Satu File, Harga Terendah adalah sebagai berikut :
@@ -533,7 +533,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="pokja-pemilihan"></span>
+                                        Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                     </td>
                                 </tr>
                             </table>

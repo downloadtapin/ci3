@@ -145,7 +145,7 @@
                                             </tr>
                                             <tr style="font-size:   27px;">
                                                 <td style="text-transform: uppercase;">
-                                                    <span class="pokja-pemilihan"></span>
+                                                    Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -184,8 +184,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="font-size: 17px; text-align : justify">
-                                                    kami yang bertanda tangan di bawah ini <span
-                                                        class="pokja-pemilihan"></span> Unit
+                                                    kami yang bertanda tangan di bawah ini Pokja Pemilihan <span class="pokja-pemilihan"></span> Unit
                                                     Kerja Pengadaan Barang/Jasa Kabupaten Tapin bersama dengan
                                                     Pejabat
                                                     Pembuat Komitmen (PPK), yaitu:
@@ -366,8 +365,8 @@
                                                 <td style="text-transform: uppercase;">
                                                     <u><span class="nama-ppk"></span></u>
                                                 </td>
-                                                <td class="pokja-pemilihan">
-
+                                                <td >
+                                                Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
 

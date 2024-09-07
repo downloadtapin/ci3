@@ -46,6 +46,7 @@
                     <table id="example" class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>Nomor Negosiasi</th>
                                 <th>Nama Tender</th>
                                 <th>Tanggal</th>
@@ -58,32 +59,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($negosiasis as $negosiasi): ?>
+                            <?php 
+                        $counter = 1; foreach ($negosiasis as $negosiasi): ?>
                             <tr>
-                                <td class="no-klarifikasi">
-                                    <?php 
-                                                echo $negosiasi->No_Negosiasi;
-                                        ?>
-                                </td>
-                                <td class="nama-paket">
-                                    <?php 
-                                        // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
-                                        foreach ($evaluasis as $evaluasi) {
-                                            if ($evaluasi->Id_evaluasi_penawaran == $negosiasi->Id_evaluasi_penawaran) {
-                                                // Dapatkan Id_kode_tender
-                                                $Id_kode_tender = $evaluasi->Id_kode_tender;
-                                                // Cari nama tender di tabel paket menggunakan Id_kode_tender
-                                                foreach ($pakets as $paket) {
-                                                    if ($paket->Id_kode_tender == $Id_kode_tender) {
-                                                        echo $paket->Nama_tender;
-                                                        break;
-                                                    }
-                                                }
-                                                break;
-                                            }
-                                        }
-                                        ?>
-                                </td>
+                                <td><?= $counter ?></td>
                                 <td class="kode-tender" hidden="true">
                                     <?php 
                                         // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
@@ -103,60 +82,27 @@
                                         }
                                         ?>
                                 </td>
-                                <td class="alamat" hidden="true">
+                                <td class="no-negosiasi"><?= $negosiasi->No_Negosiasi ?></td>
+                                <td class="nama-paket">
                                     <?php 
-                                        foreach ($pembuktians as $pembuktian) {
-                                            if ($pembuktian->Id_evaluasi_penawaran == $negosiasi->Id_evaluasi_penawaran) {
-                                                echo $pembuktian->Alamat;
-                                                break;
-                                            }
-                                        }
-                                        ?>
-                                </td>
-
-                                <td class="tahun-anggaran" hidden="true">
-                                    <?php 
+                                        // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
                                         foreach ($evaluasis as $evaluasi) {
                                             if ($evaluasi->Id_evaluasi_penawaran == $negosiasi->Id_evaluasi_penawaran) {
-                                                // Ekstrak tahun dari tanggal
-                                                echo date('Y', strtotime($evaluasi->Tanggal));
+                                                // Dapatkan Id_kode_tender
+                                                $Id_kode_tender = $evaluasi->Id_kode_tender;
+                                                // Cari nama tender di tabel paket menggunakan Id_kode_tender
+                                                foreach ($pakets as $paket) {
+                                                    if ($paket->Id_kode_tender == $Id_kode_tender) {
+                                                        echo $paket->Nama_tender;
+                                                        break;
+                                                    }
+                                                }
                                                 break;
                                             }
                                         }
                                         ?>
                                 </td>
-                                <td class="harga-pembulatan" hidden="true">
-                                    <?php 
-                                        foreach ($negosiasis as $negosiasi) {
-                                            if ($negosiasi->Id_negosiasi == $klarifikasi->Id_evaluasi_penawaran) {
-                                                // Get the original price
-                                                $harga_negosiasi = $negosiasi->harga_negosiasi;
-
-                                                // Remove any non-numeric characters
-                                                $numeric_value = preg_replace('/[^\d]/', '', $harga_negosiasi);
-
-                                                // If the value is not long enough, pad with zeros on the left
-                                                $numeric_value = str_pad($numeric_value, 7, '0', STR_PAD_LEFT);
-
-                                                // Round the last five digits to '000'
-                                                $rounded_value = substr($numeric_value, 0, -5) . '000';
-
-                                                // Format the integer part with dots
-                                                $formatted_value = number_format($rounded_value) ;
-
-                                                // Append the fixed fractional part ',00'
-                                                $formatted_value .= ',00';
-
-                                                // Print the formatted value with 'Rp ' prefix
-                                                echo 'Rp ' . $formatted_value;
-                                                break;
-                                            }
-                                        }
-                                        ?>
-
-                                </td>
-
-                                <td class="tanggal"><?= $evaluasi->Tanggal ?></td>
+                                <td><?= $negosiasi->Tanggal ?></td>
                                 <td class="pokja-pemilihan">
                                     <?php 
                                         foreach ($pakets as $paket) {
@@ -177,6 +123,7 @@
                                         }
                                         ?>
                                 </td>
+                                <td  hidden="true"><?= $negosiasi->hasil_evaluasi ?></td>
                                 <td class="hps">
                                     <?php 
                                         // Cari Id_kode_tender di tabel evaluasi menggunakan Id_evaluasi_penawaran dari tabel klarifikasi
@@ -196,45 +143,15 @@
                                         }
                                         ?>
                                 </td>
-                                <td class="harga-penawaran">
-                                    <?php 
-                                        foreach ($negosiasis as $negosiasi) {
-                                            if ($negosiasi->Id_negosiasi == $negosiasi->Id_evaluasi_penawaran) {
-                                                echo 'Rp ' . $negosiasi->harga_penawaran ;
-                                                break;
-                                            }
-                                        }
-                                        ?>
-                                </td>
-                                <td class="harga-terkoreksi">
-                                    <?php 
-                                        foreach ($negosiasis as $negosiasi) {
-                                            if ($negosiasi->Id_negosiasi == $negosiasi->Id_evaluasi_penawaran) {
-                                                echo 'Rp ' . $negosiasi->harga_terkoreksi ;
-                                                break;
-                                            }
-                                        }
-                                        ?>
-                                </td>
-                                <td class="harga-negosiasi" hidden="true">
-                                    <?php 
-                                        foreach ($negosiasis as $negosiasi) {
-                                            if ($negosiasi->Id_negosiasi == $negosiasi->Id_evaluasi_penawaran) {
-                                                echo 'Rp ' . $negosiasi->harga_negosiasi ;
-                                                break;
-                                            }
-                                        }
-                                        ?>
-                                </td>
-
-
+                                <td class="harga-negosiasi" hidden="true"><?= $negosiasi->harga_negosiasi ?></td>
+                                <td class="harga-penawaran"><?= $negosiasi->harga_penawaran?></td>
+                                <td class="harga-terkoreksi"><?= $negosiasi->harga_terkoreksi?></td>
                                 <td>
-                                    <button class="btn btn-primary cetak-btn"
-                                        data-id="<?= $negosiasi->Id_negosiasi ?>">
+                                    <button class="btn btn-primary cetak-btn" data-id="<?= $negosiasi->Id_negosiasi ?>">
                                         <i class="bi bi-printer"></i></button>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
+                            <?php $counter++; endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -279,7 +196,7 @@
                                             </tr>
                                             <tr style="font-size:   27px;">
                                                 <td style="text-transform: uppercase;">
-                                                    <span class="pokja-pemilihan"></span>
+                                                Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -312,7 +229,7 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2" style="text-align: center; font-size: 17px">
-                                                    Nomor : <span class="no-klarifikasi"></span>
+                                                    Nomor : <span class="no-negosiasi"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -359,7 +276,7 @@
                                                 <td>:</td>
                                                 <td class="nama-paket"></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td>&nbsp; </td>
                                             </tr>
@@ -457,7 +374,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <span class="pokja-pemilihan"></span>
+                                                    Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                         </table>
@@ -491,7 +408,7 @@
     $(document).on('click', '.cetak-btn', function() {
         var row = $(this).closest('tr');
         var clone = $('#halamancetak').clone();
-        clone.find('.no-klarifikasi').text(row.find('.no-klarifikasi').text());
+        clone.find('.no-negosiasi').text(row.find('.no-negosiasi').text());
         clone.find('.nama-paket').text(row.find('.nama-paket').text());
         clone.find('.hps').text(row.find('.hps').text());
         clone.find('.no-evaluasi').text(row.find('.no-evaluasi').text());

@@ -73,6 +73,17 @@
                         }
                         ?>
                                 </td>
+
+                                <td class="kode-tender" hidden="true">
+                                    <?php 
+                        foreach ($pakets as $paket) {
+                            if ($paket->Id_kode_tender == $penjelasan->Id_kode_tender) {
+                                echo $paket->kode_tender;
+                                break;
+                            }
+                        }
+                        ?>
+                                </td>
                                 <td class="hps">
                                     <?php 
                                         foreach ($pakets as $paket) {
@@ -181,7 +192,7 @@
                                             </tr>
                                             <tr style="font-size:   27px;">
                                                 <td style="text-transform: uppercase;">
-                                                    <span class="pokja-pemilihan"></span>
+                                                    Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -221,7 +232,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="font-size: 17px; text-align : justify">
-                                                    kami <span class="pokja-pemilihan"></span> Unit Kerja Pengadaan
+                                                    kami Pokja Pemilihan <span class="pokja-pemilihan"></span> Unit Kerja Pengadaan
                                                     Barang/Jasa Kabupaten
                                                     Tapin melaksanakan Penjelasan:
                                                 </td>
@@ -250,7 +261,7 @@
                                                 <td>
                                                     :
                                                 </td>
-                                                <td class="nama-paket">
+                                                <td class="kode-tender">
 
                                                 </td>
                                             </tr>
@@ -387,8 +398,8 @@
                                                 <td>&nbsp; </td>
                                             </tr>
                                             <tr>
-                                                <td class="pokja-pemilihan">
-
+                                                <td >
+                                                Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                         </table>
@@ -422,6 +433,7 @@
     $(document).on('click', '.cetak-btn', function() {
         var row = $(this).closest('tr');
         var clone = $('#halamancetak').clone();
+        clone.find('.kode-tender').text(row.find('.kode-tender').text());
         clone.find('.nama-paket').text(row.find('.nama-paket').text());
         clone.find('.hps').text(row.find('.hps').text());
         clone.find('.metode-tender').text(row.find('.metode-tender').text());

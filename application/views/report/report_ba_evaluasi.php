@@ -66,7 +66,16 @@
                         <tbody>
                             <?php foreach ($evaluasis as $evaluasi): ?>
                             <tr>
-                                <td class="kode-tender"><?= $evaluasi->Tanggal ?></td>
+                                <td class="kode-tender">
+                                <?php 
+                                    foreach ($pakets as $paket) {
+                                        if ($paket->Id_kode_tender == $evaluasi->Id_kode_tender) {
+                                            echo $paket->kode_tender;
+                                            break;
+                                        }
+                                    }
+                                    ?>
+                                </td>
                                 <td class="nama-paket">
                                     <?php 
                                     foreach ($pakets as $paket) {
@@ -175,7 +184,7 @@
                                             </tr>
                                             <tr style="font-size:   27px;">
                                                 <td style="text-transform: uppercase;">
-                                                    <span class="pokja-pemilihan"></span>
+                                                Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -396,7 +405,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <span class="pokja-pemilihan"></span>
+                                                Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                         </table>

@@ -425,7 +425,7 @@
                                             </tr>
                                             <tr style="font-size:   27px;">
                                                 <td style="text-transform: uppercase;">
-                                                    <span class="pokja-pemilihan"></span>
+                                                    Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -465,7 +465,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="font-size: 17px; text-align : justify">
-                                                    kami <span class="pokja-pemilihan"></span> Unit Kerja Pengadaan
+                                                    kami Pokja Pemilihan <span class="pokja-pemilihan"></span> Unit Kerja Pengadaan
                                                     Barang/Jasa Kabupaten
                                                     Tapin melaksanakan Penjelasan:
                                                 </td>
@@ -717,7 +717,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <span class="pokja-pemilihan"></span>
+                                                    Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                         </table>

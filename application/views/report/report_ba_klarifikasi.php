@@ -255,7 +255,7 @@
                                             </tr>
                                             <tr style="font-size:   27px;">
                                                 <td style="text-transform: uppercase;">
-                                                    <span class="pokja-pemilihan"></span>
+                                                    Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -358,10 +358,10 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="text-align: justify; line-height: 1em">
-                                        kami <span class="pokja-pemilihan"></span>, bertempat di Kantor UKPBJ Kabupaten
+                                        kami Pokja Pemilihan <span class="pokja-pemilihan"></span>, bertempat di Kantor UKPBJ Kabupaten
                                         Tapin yang
                                         beralamat di Jl. Brigjend. H.Hasan Basry Km.1,5 Komplek Islamic Center - Rantau,
-                                        yang bertanda tangan dibawah ini <span class="pokja-pemilihan"></span>, telah
+                                        yang bertanda tangan dibawah ini Pokja Pemilihan <span class="pokja-pemilihan"></span>, telah
                                         melaksanakan
                                         klarifikasi, administrasi, kualifikasi, teknis dan negosiasi harga/biaya untuk
                                         paket pekerjaan tersebut diatas sebelum penetapan pemenang sesuai ketentuan IKP
@@ -579,7 +579,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <span class="pokja-pemilihan"></span>
+                                                    Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                         </table>
