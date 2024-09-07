@@ -63,6 +63,8 @@
                             <tr>
                                 <td class="no-pemilihan"><?= $pemilihan->No_Pemilihan ?></td>
                                 <td class="no-penetapan"><?= $pemilihan->no_penetapan ?></td>
+                                <td hidden="true" class="pertanyaan"><?= $pemilihan->Pertanyaan_sanggah ?></td>
+                                <td hidden="true"  class="jawaban"><?= $pemilihan->Jawaban_sanggah ?></td>
 
 
                                 <td class="nama-paket">
@@ -665,11 +667,14 @@
                                 <tr>
                                     <td style="height: 70px">
                                         A. Pertanyaan Sanggah :
+                                    </br><span class="pertanyaan"></span>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td style="height: 70px">
                                         B. Jawaban Sanggah :
+                                    </br><span class="jawaban"></span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -778,6 +783,8 @@
         clone.find('.pokja-pemilihan').text(row.find('.pokja-pemilihan').text());
         clone.find('.metode-tender').text(row.find('.metode-tender').text());
         clone.find('.metode-evaluasi').text(row.find('.metode-evaluasi').text());
+        clone.find('.pertanyaan').text(row.find('.pertanyaan').text());
+        clone.find('.jawaban').text(row.find('.jawaban').text());
 
 
         $('#halamancetak').html(clone.html());

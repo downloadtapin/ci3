@@ -185,7 +185,7 @@
                                 <td class="harga-terkoreksi">
                                     <?php 
                                         foreach ($negosiasis as $negosiasi) {
-                                            if ($negosiasi->Id_negosiasi == $klarifikasi->Id_evaluasi_penawaran) {
+                                            if ($negosiasi->Id_evaluasi_penawaran == $klarifikasi->Id_evaluasi_penawaran) {
                                                 echo 'Rp '  . $negosiasi->harga_penawaran ;
                                                 break;
                                             }
@@ -195,7 +195,7 @@
                                 <td class="harga-negosiasi">
                                     <?php 
                                         foreach ($negosiasis as $negosiasi) {
-                                            if ($negosiasi->Id_negosiasi == $klarifikasi->Id_evaluasi_penawaran) {
+                                            if ($negosiasi->Id_evaluasi_penawaran == $klarifikasi->Id_evaluasi_penawaran) {
                                                 echo 'Rp '  . $negosiasi->harga_negosiasi ;
                                                 break;
                                             }
