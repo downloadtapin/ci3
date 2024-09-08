@@ -27,9 +27,12 @@ class Penjelasan extends CI_Controller {
         $this->form_validation->set_rules('Nama_penyedia', 'Nama Penyedia', 'required');
         $this->form_validation->set_rules('Pertanyaan', 'Pertanyaan', 'required');
         $this->form_validation->set_rules('Jawaban', 'Jawaban', 'required');
-
+    
         if ($this->form_validation->run() == FALSE) {
-            $data['pakets'] = $this->Paket_model->get_all_paket();
+            $data['pakets'] = $this->Paket_model->get_all_paket(); // Semua paket
+            $selected_pakets = $this->Penjelasan_model->get_selected_paket(); // Paket yang sudah dipilih
+            $data['pakets_dipilih'] = array_column($selected_pakets, 'Id_kode_tender'); // Ambil array dari Id_kode_tender yang sudah dipilih
+    
             $this->load->view('Header/Head');
             $this->load->view('Header/Header');
             $this->load->view('penjelasan/add', $data);
@@ -49,6 +52,7 @@ class Penjelasan extends CI_Controller {
             redirect('penjelasan');
         }
     }
+    
 
     public function edit($Id_penjelasan) {
         $this->form_validation->set_rules('Id_kode_tender', 'ID Kode Tender', 'required');

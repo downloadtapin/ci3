@@ -8,17 +8,29 @@ class Paket extends CI_Controller {
         $this->load->model('Paket_model');
         $this->load->model('PokjaMil_model'); // Load model PokjaMil
         $this->load->library('session');
+        $this->load->model('Penjelasan_model');
+        $this->load->model('Pemilihan_model');
     }
     
     // Index page showing all pakets
     public function index() {
         $data['pokjas'] = $this->PokjaMil_model->get_all_pokja();
         $data['pakets'] = $this->Paket_model->get_all_paket();
+    
+        // Ambil Id_kode_tender yang sudah diinput di penjelasan
+
+        $inputted_pakets2 = $this->Pemilihan_model->get_all_inputted_pakets2();
+        $data['inputted_pakets2'] = array_column($inputted_pakets2, 'Id_paket');
+    
+        $inputted_pakets = $this->Penjelasan_model->get_all_inputted_pakets();
+        $data['inputted_pakets'] = array_column($inputted_pakets, 'Id_kode_tender');
+    
         $this->load->view('Header/Head');
         $this->load->view('Header/Header');
         $this->load->view('paket/list', $data);
         $this->load->view('Footer/Footer');
     }
+    
     
     // Add new paket
     public function add() {

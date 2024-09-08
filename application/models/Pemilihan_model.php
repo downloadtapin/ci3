@@ -24,4 +24,14 @@ class Pemilihan_model extends CI_Model {
         $this->db->where('Id_pemilihan', $id);
         $this->db->delete('pemilihan');
     }
+    public function get_all_inputted_pakets2() {
+        $this->db->select('Id_paket');
+        $query = $this->db->get('pemilihan'); // Asumsikan tabel penjelasan menyimpan Id_kode_tender
+        return $query->result_array();
+    }
+    public function get_selected_paket() {
+        $this->db->select('Id_paket');
+        $query = $this->db->get('pemilihan');
+        return $query->result_array(); // Mengembalikan array dari Id_kode_tender yang sudah dipilih
+    }
 }

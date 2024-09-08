@@ -51,6 +51,8 @@ class Pemilihan extends CI_Controller {
             $data['pakets'] = $this->Paket_model->get_all_paket();
             $data['pembuktians'] = $this->Pembuktian_model->get_all();
             $data['penjelasans'] = $this->Penjelasan_model->get_all();
+            $selected_pakets = $this->Pemilihan_model->get_selected_paket(); // Paket yang sudah dipilih
+            $data['pakets_dipilih'] = array_column($selected_pakets, 'Id_paket'); // Ambil array dari Id_kode_tender yang sudah dipilih
             $this->load->view('Header/Head');
             $this->load->view('Header/Header');
             $this->load->view('pemilihan/add',$data);

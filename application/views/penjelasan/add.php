@@ -10,7 +10,9 @@
                     <label for="Id_kode_tender">Nama Paket Tender:</label>
                     <select class="form-control" id="Id_kode_tender" name="Id_kode_tender" required>
                         <?php foreach($pakets as $paket): ?>
+                        <?php if(!in_array($paket->Id_kode_tender, $pakets_dipilih)): // Paket belum dipilih ?>
                         <option value="<?= $paket->Id_kode_tender ?>"><?= $paket->Nama_tender ?></option>
+                        <?php endif; ?>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -37,7 +39,8 @@
                 </div>
                 <div class="form-group">
                     <label for="Keterangan_lain">Keterangan Lain:</label>
-                    <textarea class="form-control" id="Keterangan_lain" name="Keterangan_lain" required rows="3"></textarea>
+                    <textarea class="form-control" id="Keterangan_lain" name="Keterangan_lain" required
+                        rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
                 <a href="<?= site_url('penjelasan') ?>" class="btn btn-secondary">Batal</a>

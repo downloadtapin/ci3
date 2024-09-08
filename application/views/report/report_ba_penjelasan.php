@@ -126,6 +126,7 @@
                         ?>
                                 </td>
                                 <td class="no-penjelasan"><?= $penjelasan->No_Penjelasan ?></td>
+                                
                                 <td class="tanggal"><?= date('d-m-Y', strtotime($penjelasan->Tanggal)) ?></td>
                                 <td class="nama-penyedia"><?= $penjelasan->Nama_penyedia ?></td>
                                 <td style="vertical-align: top" class="pertanyaan">
@@ -307,6 +308,17 @@
                                                     :
                                                 </td>
                                                 <td class="metode-evaluasi">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Nama Penyedia
+                                                </td>
+                                                <td>
+                                                    :
+                                                </td>
+                                                <td class="nama-penyedia">
 
                                                 </td>
                                             </tr>

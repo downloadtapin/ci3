@@ -5,17 +5,17 @@
             <form method="post" action="<?= site_url('pemilihan/add') ?>" id="formPemilihan">
                 <div class="form-group">
                     <label for="Id_paket">Nama Paket Tender:</label>
-                    <select class="form-control" id="Id_paket" name="Id_paket" required>
+                    <select class="form-control" id="Id_kode_tender" name="Id_kode_tender" required>
                         <option value="">
                             ----Pilih---
                         </option>
                         <?php foreach($pakets as $paket): ?>
-                        <option value="<?= $paket->Id_kode_tender ?>"
-                            data-no-dokumen="<?= $paket->no_dokumen_pemilihan ?>">
-                            <?= $paket->Nama_tender ?>
-                        </option>
+                        <?php if(!in_array($paket->Id_kode_tender, $pakets_dipilih)): // Paket belum dipilih ?>
+                        <option value="<?= $paket->Id_kode_tender ?>"><?= $paket->Nama_tender ?></option>
+                        <?php endif; ?>
                         <?php endforeach; ?>
                     </select>
+
                 </div>
                 <div class="form-group">
                     <label for="no_dokumen_pemilihan">No Dokumen Pemilihan:</label>
