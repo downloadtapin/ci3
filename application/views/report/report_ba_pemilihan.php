@@ -698,8 +698,8 @@
                                     <td>
                                         <table
                                             style="text-align: center; font-size: 17px; width:100%; font-weight: bold">
-                                            <tr>
-                                                <td>
+                                            <tr >
+                                                <td colspan="2">
                                                     UKPBJ Kabupaten Tapin
                                                 </td>
                                             </tr>
@@ -708,14 +708,16 @@
                                             </tr>
                                             <tr>
                                                 <td>&nbsp; </td>
+                                                <td>Mengetahui, </br> Kepala UKPBJ Kab. Tapin</td>
+                                            </tr>
+                                            <tr>
+                                                <td>&nbsp; </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     ttd
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>&nbsp; </td>
+                                                <td> <img src="<?php echo base_url('assets/img/qr-code.png'); ?>" alt="Gambar Contoh" style="width: 50px; height: auto;"></td>
                                             </tr>
                                             <tr>
                                                 <td>&nbsp; </td>
@@ -724,6 +726,7 @@
                                                 <td>
                                                     Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
+                                                <td>Ihya Innal Akrimullah, SH., MM</td>
                                             </tr>
                                         </table>
                                     </td>
