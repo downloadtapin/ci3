@@ -126,20 +126,10 @@
                         ?>
                                 </td>
                                 <td class="no-penjelasan"><?= $penjelasan->No_Penjelasan ?></td>
-                                
+
                                 <td class="tanggal"><?= date('d-m-Y', strtotime($penjelasan->Tanggal)) ?></td>
                                 <td class="nama-penyedia"><?= $penjelasan->Nama_penyedia ?></td>
-                                <td style="vertical-align: top" class="pertanyaan">
-                                    <?php 
-                                            // Memisahkan pertanyaan menjadi array berdasarkan spasi
-                                            $pertanyaan_array = explode(";", $penjelasan->Pertanyaan);
-                                            
-                                            // Menampilkan setiap pertanyaan dalam baris tersendiri
-                                            foreach ($pertanyaan_array as $pertanyaan) {
-                                                echo "<br>$pertanyaan";
-                                            }
-                                            ?>
-                                </td>
+                                <td style="vertical-align: top" class="pertanyaan"><?= $penjelasan->Pertanyaan ?></td>
                                 <td class="jawaban"><?= $penjelasan->Jawaban ?></td>
                                 <td class="keterangan-lain"><?= $penjelasan->Keterangan_lain ?></td>
                                 <td>
@@ -165,7 +155,7 @@
                 <table style="font-family:Bookman Old Style, serif;color:black;">
                     <tr>
                         <td>
-                            <table>
+                            <table >
                                 <tr style="border-bottom: 1px solid black">
                                     <td colspan="2">
                                         <table width="100%" style="text-align: center;line-height:1.3em">
@@ -233,7 +223,8 @@
                                             </tr>
                                             <tr>
                                                 <td style="font-size: 17px; text-align : justify">
-                                                    kami Pokja Pemilihan <span class="pokja-pemilihan"></span> Unit Kerja Pengadaan
+                                                    kami Pokja Pemilihan <span class="pokja-pemilihan"></span> Unit
+                                                    Kerja Pengadaan
                                                     Barang/Jasa Kabupaten
                                                     Tapin melaksanakan Penjelasan:
                                                 </td>
@@ -311,7 +302,7 @@
 
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td>
                                                     Nama Penyedia
                                                 </td>
@@ -321,7 +312,7 @@
                                                 <td class="nama-penyedia">
 
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </table>
                                     </td>
                                 </tr>
@@ -335,18 +326,18 @@
                                                 <td style="vertical-align: top; width: 200px">
                                                     A. Daftar Pertanyaan
                                                 </td>
-                                                <td style="vertical-align: top">
+                                                <td style="vertical-align: top ">
                                                     :
                                                 </td>
-                                                <td style="vertical-align: top">
-                                                    <span class="pertanyaan"></span>
+                                                <td style="vertical-align: top " class="pertanyaan">
+
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td style="width: 30px">
+                                                <td style="width: 30px;vertical-align: top">
                                                     B. Daftar Jawaban
                                                 </td>
-                                                <td>
+                                                <td style="vertical-align: top ">
                                                     :
                                                 </td>
                                                 <td style="vertical-align: top" class="jawaban">
@@ -354,10 +345,10 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>
+                                                <td style="vertical-align: top ">
                                                     C. Keterangan Lain
                                                 </td>
-                                                <td>
+                                                <td style="vertical-align: top ">
                                                     :
                                                 </td>
                                                 <td style="vertical-align: top" class="keterangan-lain">
@@ -410,8 +401,8 @@
                                                 <td>&nbsp; </td>
                                             </tr>
                                             <tr>
-                                                <td >
-                                                Pokja Pemilihan <span class="pokja-pemilihan"></span>
+                                                <td>
+                                                    Pokja Pemilihan <span class="pokja-pemilihan"></span>
                                                 </td>
                                             </tr>
                                         </table>
@@ -442,9 +433,15 @@
         document.body.innerHTML = originalContent;
     }
 
+
     $(document).on('click', '.cetak-btn', function() {
         var row = $(this).closest('tr');
         var clone = $('#halamancetak').clone();
+
+        function formatList(text) {
+            var items = text.split(';');
+            return items.map((item, index) => `${index + 1}. ${item.trim()}`).join('<br>');
+        }
         clone.find('.kode-tender').text(row.find('.kode-tender').text());
         clone.find('.nama-paket').text(row.find('.nama-paket').text());
         clone.find('.hps').text(row.find('.hps').text());
@@ -453,8 +450,8 @@
         clone.find('.no-penjelasan').text(row.find('.no-penjelasan').text());
         clone.find('.tanggal').text(row.find('.tanggal').text());
         clone.find('.nama-penyedia').text(row.find('.nama-penyedia').text());
-        clone.find('.pertanyaan').text(row.find('.pertanyaan').text());
-        clone.find('.jawaban').text(row.find('.jawaban').text());
+        clone.find('.pertanyaan').html(formatList(row.find('.pertanyaan').text()));
+        clone.find('.jawaban').html(formatList(row.find('.jawaban').text()));
         clone.find('.keterangan-lain').text(row.find('.keterangan-lain').text());
         clone.find('.pokja-pemilihan').text(row.find('.pokja-pemilihan').text());
 
