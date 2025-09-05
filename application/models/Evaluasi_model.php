@@ -24,4 +24,8 @@ class Evaluasi_model extends CI_Model {
         $this->db->where('Id_evaluasi_penawaran', $Id_evaluasi_penawaran);
         return $this->db->delete('Evaluasi');
     }
+
+    public function get_all_evaluasi() {
+        return $this->db->get('evaluasi')->result();
+    }
 }

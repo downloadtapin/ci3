@@ -32,9 +32,8 @@
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <!-- Custom styles for this template-->
     <link href="<?= base_url('assets/css/sb-admin-2.min.css') ?>" rel="stylesheet">
-
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -65,8 +64,18 @@
 
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
+    <!-- Matikan jQuery lama (slim) -->
+<script>
+    if (typeof jQuery !== "undefined") {
+        console.warn("Menghapus jQuery lama:", jQuery.fn.jquery);
+        jQuery.noConflict(true);
+    }
+</script>
+
+<!-- Load jQuery Full -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </head>

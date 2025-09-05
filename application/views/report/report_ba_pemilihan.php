@@ -378,9 +378,22 @@
 
 
                                 <td>
-                                    <button class="btn btn-primary cetak-btn" data-id="<?= $pemilihan->Id_pemilihan ?>">
-                                        <i class="bi bi-printer"></i></button>
+                                    <?php
+                                    $sudah_bayar = $this->db->get_where('pembayaran', [
+                                        'id_paket' => $pemilihan->Id_paket,
+                                        'status' => true
+                                    ])->row();
+                                    ?>
+
+                                    <?php if ($sudah_bayar): ?>
+                                        <button class="btn btn-primary cetak-btn" data-id="<?= $pemilihan->Id_pemilihan ?>">
+                                            <i class="bi bi-printer"></i>
+                                        </button>
+                                    <?php else: ?>
+                                        <span class="badge badge-danger">Belum Selesai</span>
+                                    <?php endif; ?>
                                 </td>
+
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

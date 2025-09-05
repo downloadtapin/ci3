@@ -100,13 +100,25 @@
                             <td><?= $pemilihan->Cek_list ?></td>
                             <td><?= $pemilihan->Keterangan_lain ?></td>
                             <td>
-                                <a href="<?= site_url('pemilihan/edit/'.$pemilihan->Id_pemilihan) ?>"
-                                    class="btn btn-sm btn-info"><i class="bi bi-pencil text-white"></i></a>
-                                <a href="<?= site_url('pemilihan/delete/'.$pemilihan->Id_pemilihan) ?>"
-                                    class="btn btn-sm btn-danger"
-                                    onclick="return confirm('Are you sure you want to delete this item?')"><i
-                                        class="bi bi-trash icon-custom"></i></a>
-                            </td>
+    <?php
+    $sudah_bayar = $this->db->get_where('pembayaran', [
+        'id_paket' => $pemilihan->Id_paket,
+        'status' => true
+    ])->row();
+    ?>
+
+    <?php if ($sudah_bayar): ?>
+        <span class="badge badge-success">Selesai</span>
+    <?php else: ?>
+        <a href="<?= site_url('pemilihan/edit/'.$pemilihan->Id_pemilihan) ?>"
+            class="btn btn-sm btn-info"><i class="bi bi-pencil text-white"></i></a>
+        <a href="<?= site_url('pemilihan/delete/'.$pemilihan->Id_pemilihan) ?>"
+            class="btn btn-sm btn-danger"
+            onclick="return confirm('Are you sure you want to delete this item?')"><i
+                class="bi bi-trash icon-custom"></i></a>
+    <?php endif; ?>
+</td>
+
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

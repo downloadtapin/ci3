@@ -34,4 +34,8 @@ class Pemilihan_model extends CI_Model {
         $query = $this->db->get('pemilihan');
         return $query->result_array(); // Mengembalikan array dari Id_kode_tender yang sudah dipilih
     }
+
+    public function get_all_pemilihan() {
+        return $this->db->get('pemilihan')->result();
+    }
 }
