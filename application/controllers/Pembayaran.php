@@ -7,6 +7,17 @@ class Pembayaran extends CI_Controller {
         parent::__construct();
         $this->load->database();
     }
+    public function get_pembayaran()
+{
+    $id_paket = $this->input->post('id_paket');
+    $data = $this->db->get_where('pembayaran', ['id_paket' => $id_paket, 'status' => 1])->row_array();
+
+    if ($data) {
+        echo json_encode(['success' => true, 'data' => $data]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Data pembayaran tidak ditemukan']);
+    }
+}
 
     public function proses_bayar() {
         $id_paket = $this->input->post('id_paket');
