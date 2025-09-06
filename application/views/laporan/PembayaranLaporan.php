@@ -7,129 +7,145 @@
     <title>Laporan Pembayaran</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .printable,
+            .printable * {
+                visibility: visible;
+            }
+            .printable {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                padding: 20px;
+                background: #fff;
+            }
+            .btn {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
-<div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">LAPORAN PEMBAYARAN</h1>
-    <div class="card shadow mb-4">
-        <div class="card-body">
-            <div id="notifPembayaran" class="alert" style="display:none;"></div>
-            <div class="table-responsive">
-                <table id="example" class="table table-bordered" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>No Pemilihan</th>
-                            <th>Nilai Kontrak</th>
-                            <th>Nama Paket</th>
-                            <th>Pokja Pemilihan</th>
-                            <th>Tanggal</th>
-                            <th>Nama Penyedia</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($pemilihans as $pemilihan): ?>
-                        <tr>
-                            <td class="no-pemilihan"><?= $pemilihan->No_Pemilihan ?></td>
-                            <td class="nilai-kontrak">
-                                <?php 
-                                    foreach ($negosiasis as $negosiasi) {
-                                        if ($negosiasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
-                                            echo $negosiasi->harga_negosiasi;
-                                            break;
-                                        }
-                                    }
-                                ?>
-                            </td>
-                            <td class="nama-paket">
-                                <?php 
-                                    foreach ($evaluasis as $evaluasi) {
-                                        if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
-                                            foreach ($pakets as $paket) {
-                                                if ($paket->Id_kode_tender == $evaluasi->Id_kode_tender) {
-                                                    echo $paket->Nama_tender;
-                                                    break;
-                                                }
+    <div class="container-fluid">
+        <h1 class="h3 mb-2 text-gray-800">LAPORAN PEMBAYARAN</h1>
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <div id="notifPembayaran" class="alert" style="display:none;"></div>
+                <div class="table-responsive">
+                    <table id="example" class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No Pemilihan</th>
+                                <th>Nilai Kontrak</th>
+                                <th>Nama Paket</th>
+                                <th>Pokja Pemilihan</th>
+                                <th>Tanggal</th>
+                                <th>Nama Penyedia</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($pemilihans as $pemilihan): ?>
+                            <tr>
+                                <td class="no-pemilihan"><?= $pemilihan->No_Pemilihan ?></td>
+                                <td class="nilai-kontrak">
+                                    <?php 
+                                        foreach ($negosiasis as $negosiasi) {
+                                            if ($negosiasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                echo $negosiasi->harga_negosiasi;
+                                                break;
                                             }
-                                            break;
                                         }
-                                    }
-                                ?>
-                            </td>
-                            <td class="pokja-pemilihan">
-                                <?php 
-                                    foreach ($evaluasis as $evaluasi) {
-                                        if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
-                                            foreach ($pakets as $paket) {
-                                                if ($paket->Id_kode_tender == $evaluasi->Id_kode_tender) {
-                                                    echo $paket->Pokja_pemilihan;
-                                                    break;
+                                    ?>
+                                </td>
+                                <td class="nama-paket">
+                                    <?php 
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                foreach ($pakets as $paket) {
+                                                    if ($paket->Id_kode_tender == $evaluasi->Id_kode_tender) {
+                                                        echo $paket->Nama_tender;
+                                                        break;
+                                                    }
                                                 }
+                                                break;
                                             }
-                                            break;
                                         }
-                                    }
-                                ?>
-                            </td>
-                            <td class="tanggal"><?= $pemilihan->Tanggal ?></td>
-                            <td class="nama-penyedia">
-                                <?php 
-                                    foreach ($evaluasis as $evaluasi) {
-                                        if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
-                                            echo $evaluasi->nama_Penyedia;
-                                            break;
+                                    ?>
+                                </td>
+                                <td class="pokja-pemilihan">
+                                    <?php 
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                foreach ($pakets as $paket) {
+                                                    if ($paket->Id_kode_tender == $evaluasi->Id_kode_tender) {
+                                                        echo $paket->Pokja_pemilihan;
+                                                        break;
+                                                    }
+                                                }
+                                                break;
+                                            }
                                         }
-                                    }
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                $sudah_bayar = $this->db->get_where('pembayaran', [
-                                    'id_paket' => $pemilihan->Id_paket,
-                                    'status' => 1
-                                ])->row();
-                                ?>
-                                <?php if ($sudah_bayar): ?>
-                                    <button type="button" 
-                                        class="btn btn-info btn-buka" 
+                                    ?>
+                                </td>
+                                <td class="tanggal"><?= $pemilihan->Tanggal ?></td>
+                                <td class="nama-penyedia">
+                                    <?php 
+                                        foreach ($evaluasis as $evaluasi) {
+                                            if ($evaluasi->Id_evaluasi_penawaran == $pemilihan->Id_evaluasi_Penawaran) {
+                                                echo $evaluasi->nama_Penyedia;
+                                                break;
+                                            }
+                                        }
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    $sudah_bayar = $this->db->get_where('pembayaran', [
+                                        'id_paket' => $pemilihan->Id_paket,
+                                        'status' => 1
+                                    ])->row();
+                                    ?>
+                                    <?php if ($sudah_bayar): ?>
+                                    <button type="button" class="btn btn-info btn-buka"
                                         data-id="<?= $pemilihan->Id_paket ?>">Buka</button>
-                                <?php else: ?>
-                                    <button type="button" 
-                                        class="btn btn-success btn-bayar" 
+                                    <?php else: ?>
+                                    <button type="button" class="btn btn-success btn-bayar"
                                         data-id="<?= $pemilihan->Id_paket ?>">Bayar</button>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables -->
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
-<script>
-$(document).ready(function() {
-    var table = $('#example').DataTable();
+    <script>
+    $(document).ready(function() {
+        var table = $('#example').DataTable();
 
-    // === TOMBOL BAYAR ===
-    $('#example tbody').on('click', '.btn-bayar', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row(tr);
+        // === TOMBOL BAYAR ===
+        $('#example tbody').on('click', '.btn-bayar', function() {
+            var tr = $(this).closest('tr');
+            var row = table.row(tr);
 
-        if (row.child.isShown()) {
-            row.child.hide();
-            tr.removeClass('shown');
-        } else {
             table.rows().every(function() {
                 if (this.child.isShown()) {
                     this.child.hide();
@@ -175,123 +191,169 @@ $(document).ready(function() {
             `;
             row.child(childHtml).show();
             tr.addClass('shown');
-        }
-    });
+        });
 
-    // === UPDATE TOTAL ===
-    $(document).on('input', '.ppn, .pph', function () {
-        var form = $(this).closest('form');
-        var nilaiKontrak = form.find('.nilai-kontrak').val();
-        var kontrak = parseInt(nilaiKontrak.replace(/[^0-9]/g, '')) || 0;
-        var ppn = parseInt(form.find('.ppn').val()) || 0;
-        var pph = parseInt(form.find('.pph').val()) || 0;
-        var total = kontrak - ppn - pph;
-        form.find('.total').val('Rp ' + total.toLocaleString('id-ID'));
-    });
+        // === UPDATE TOTAL ===
+        $(document).on('input', '.ppn, .pph', function() {
+            var form = $(this).closest('form');
+            var nilaiKontrak = form.find('.nilai-kontrak').val();
+            var kontrak = parseInt(nilaiKontrak.replace(/[^0-9]/g, '')) || 0;
+            var ppn = parseInt(form.find('.ppn').val()) || 0;
+            var pph = parseInt(form.find('.pph').val()) || 0;
+            var total = kontrak - ppn - pph;
+            form.find('.total').val('Rp ' + total.toLocaleString('id-ID'));
+        });
 
-  // === PROSES BAYAR ===
-$(document).on('click', '.btn-bayar-accordion', function() {
-    var card = $(this).closest('.card');
-    var form = card.find('form');
+        // === PROSES BAYAR ===
+        $(document).on('click', '.btn-bayar-accordion', function() {
+            var card = $(this).closest('.card');
+            var form = card.find('form');
 
-    var id_paket = form.find('.inputIdPaket').val();
-    var ppn = form.find('.ppn').val() || 0;
-    var pph = form.find('.pph').val() || 0;
-    var total = form.find('.total').val().replace(/[^0-9]/g, '') || 0;
+            var id_paket = form.find('.inputIdPaket').val();
+            var ppn = form.find('.ppn').val() || 0;
+            var pph = form.find('.pph').val() || 0;
+            var total = form.find('.total').val().replace(/[^0-9]/g, '') || 0;
 
-    var tr = card.closest('tr').prev();
-    var btnBayar = tr.find('.btn-bayar');
+            var tr = card.closest('tr').prev();
+            var btnBayar = tr.find('.btn-bayar');
+            var namaPaket = tr.find('.nama-paket').text();
+            var penyedia = tr.find('.nama-penyedia').text();
+            var tanggal = tr.find('.tanggal').text();
 
-    $.post('<?= site_url('Pembayaran/proses_bayar') ?>', {
-        id_paket: id_paket,
-        ppn: ppn,
-        pph: pph,
-        total: total
-    }, function(response) {
-        var res = JSON.parse(response);
-        if (res.success) {
-            // tombol di baris utama berubah jadi Buka
-            btnBayar.replaceWith(`<button type="button" class="btn btn-info btn-buka" data-id="${id_paket}">Buka</button>`);
-
-            // ganti form accordion jadi invoice
-            var invoiceHtml = `
-                <div class="invoice-content">
-                    <h3 class="mb-4 text-center">Invoice Pembayaran</h3>
-                    <table class="table">
-                        <tr><th>PPN</th><td>Rp ${parseInt(ppn).toLocaleString('id-ID')}</td></tr>
-                        <tr><th>PPH</th><td>Rp ${parseInt(pph).toLocaleString('id-ID')}</td></tr>
-                        <tr><th>Total Bayar</th><td>Rp ${parseInt(total).toLocaleString('id-ID')}</td></tr>
-                    </table>
-                </div>
-                <button type="button" class="btn btn-primary btn-cetak-invoice">Cetak Invoice</button>
-            `;
-            card.find('.card-body').html(invoiceHtml);
-
-            alert('Pembayaran berhasil disimpan!');
-        } else {
-            alert('Gagal: ' + res.message);
-        }
-    });
-});
-
-
-
-    // === TOMBOL BUKA ===
-    $('#example tbody').on('click', '.btn-buka', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row(tr);
-        var id_paket = $(this).data('id');
-
-        if (row.child.isShown()) {
-            row.child.hide();
-            tr.removeClass('shown');
-        } else {
-            $.post('<?= site_url('Pembayaran/get_pembayaran') ?>', { id_paket: id_paket }, function(response) {
+            $.post('<?= site_url('Pembayaran/proses_bayar') ?>', {
+                id_paket: id_paket,
+                ppn: ppn,
+                pph: pph,
+                total: total
+            }, function(response) {
                 var res = JSON.parse(response);
                 if (res.success) {
-                    var data = res.data;
+                    btnBayar.replaceWith(`<button type="button" class="btn btn-info btn-buka" data-id="${id_paket}">Buka</button>`);
+
                     var invoiceHtml = `
-                        <div class="card mt-2">
-                            <div class="card-body">
-                                <div class="invoice-content">
-                                    <h3 class="mb-4 text-center">Invoice Pembayaran</h3>
-                                    <table class="table">
-                                        <tr><th>PPN</th><td>Rp ${parseInt(data.ppn).toLocaleString('id-ID')}</td></tr>
-                                        <tr><th>PPH</th><td>Rp ${parseInt(data.pph).toLocaleString('id-ID')}</td></tr>
-                                        <tr><th>Total Bayar</th><td>Rp ${parseInt(data.total).toLocaleString('id-ID')}</td></tr>
-                                    </table>
+                        <div class="invoice printable">
+                            <div class="text-center mb-4">
+                                <h2><strong>SALFORD & CO.</strong></h2>
+                                <p>Fashion Terlengkap</p>
+                                <hr>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <div>
+                                    <p><strong>Kepada:</strong> ${penyedia}</p>
+                                    <p><strong>Paket:</strong> ${namaPaket}</p>
                                 </div>
-                                <button type="button" class="btn btn-primary btn-cetak-invoice">Cetak Invoice</button>
+                                <div class="text-right">
+                                    <p><strong>Tanggal:</strong> ${tanggal}</p>
+                                    <p><strong>No Invoice:</strong> INV-${id_paket}</p>
+                                </div>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="bg-light">
+                                        <th>Keterangan</th>
+                                        <th>Nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>PPN</td><td>Rp ${parseInt(ppn).toLocaleString('id-ID')}</td></tr>
+                                    <tr><td>PPH</td><td>Rp ${parseInt(pph).toLocaleString('id-ID')}</td></tr>
+                                    <tr><td><strong>Total Bayar</strong></td><td><strong>Rp ${parseInt(total).toLocaleString('id-ID')}</strong></td></tr>
+                                </tbody>
+                            </table>
+                            <div class="mt-5 text-right">
+                                <p>Hormat Kami,</p>
+                                <br><br>
+                                <p><strong>Juliana Silva</strong><br>(Tanda Tangan)</p>
                             </div>
                         </div>
+                        <button type="button" class="btn btn-primary btn-cetak-invoice mt-3">Cetak Invoice</button>
                     `;
-                    row.child(invoiceHtml).show();
-                    tr.addClass('shown');
+                    card.find('.card-body').html(invoiceHtml);
                 } else {
-                    alert('Data pembayaran tidak ditemukan');
+                    alert('Gagal: ' + res.message);
                 }
             });
-        }
-    });
+        });
 
-    // === CETAK INVOICE ===
-    $(document).on('click', '.btn-cetak-invoice', function() {
-        var invoiceContent = $(this).closest('.card-body').find('.invoice-content').html();
-        var originalContents = document.body.innerHTML;
-        document.body.innerHTML = `<div style="max-width:600px;margin:auto;">${invoiceContent}</div>`;
-        window.print();
-        document.body.innerHTML = originalContents;
-        location.reload();
-    });
+        // === TOMBOL BUKA ===
+        $('#example tbody').on('click', '.btn-buka', function() {
+            var tr = $(this).closest('tr');
+            var row = table.row(tr);
+            var id_paket = $(this).data('id');
+            var namaPaket = tr.find('.nama-paket').text();
+            var penyedia = tr.find('.nama-penyedia').text();
+            var tanggal = tr.find('.tanggal').text();
 
-    // === BATAL ===
-    $(document).on('click', '.btn-batal-accordion', function () {
-        table.rows().every(function() {
-            this.child.hide();
-            $(this.node()).removeClass('shown');
+            if (row.child.isShown()) {
+                row.child.hide();
+                tr.removeClass('shown');
+            } else {
+                $.post('<?= site_url('Pembayaran/get_pembayaran') ?>', {
+                    id_paket: id_paket
+                }, function(response) {
+                    var res = JSON.parse(response);
+                    if (res.success) {
+                        var data = res.data;
+                        var invoiceHtml = `
+                            <div class="invoice printable">
+                                <div class="text-center mb-4">
+                                    <h2><strong>INVOICE</strong></h2>
+                                    <p></p>
+                                    <hr>
+                                </div>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <div>
+                                        <p><strong>Kepada:</strong> ${penyedia}</p>
+                                        <p><strong>Nama Paket Tender:</strong> ${namaPaket}</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p><strong>Tanggal:</strong> ${tanggal}</p>
+                                        <p><strong>No Invoice:</strong> INV-${id_paket}</p>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="bg-light">
+                                            <th>Keterangan</th>
+                                            <th>Nilai</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>PPN</td><td>Rp ${parseInt(data.ppn).toLocaleString('id-ID')}</td></tr>
+                                        <tr><td>PPH</td><td>Rp ${parseInt(data.pph).toLocaleString('id-ID')}</td></tr>
+                                        <tr><td><strong>Total Bayar</strong></td><td><strong>Rp ${parseInt(data.total).toLocaleString('id-ID')}</strong></td></tr>
+                                    </tbody>
+                                </table>
+                                <div class="mt-5 text-right">
+                                    <p>Hormat Kami,</p>
+                                    <br><br>
+                                    <p><strong>....................</strong><br>(Tanda Tangan)</p>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-cetak-invoice mt-3">Cetak Invoice</button>
+                        `;
+                        row.child(invoiceHtml).show();
+                        tr.addClass('shown');
+                    } else {
+                        alert('Data pembayaran tidak ditemukan');
+                    }
+                });
+            }
+        });
+
+        // === CETAK INVOICE ===
+        $(document).on('click', '.btn-cetak-invoice', function() {
+            window.print();
+        });
+
+        // === BATAL ===
+        $(document).on('click', '.btn-batal-accordion', function() {
+            table.rows().every(function() {
+                this.child.hide();
+                $(this.node()).removeClass('shown');
+            });
         });
     });
-});
-</script>
+    </script>
 </body>
 </html>
