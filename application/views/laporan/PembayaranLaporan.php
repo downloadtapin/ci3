@@ -128,8 +128,7 @@
             </div>
         </div>
     </div>
-
-    <!-- jQuery -->
+<!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
@@ -138,6 +137,15 @@
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
     <script>
+    // === Fungsi Format Rupiah ===
+    function formatRupiah(angka) {
+        if (angka === null || angka === undefined || angka === "") return "0,00";
+        var number = parseFloat(angka).toFixed(2); 
+        var parts = number.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return parts.join(",");
+    }
+
     $(document).ready(function() {
         var table = $('#example').DataTable();
 
@@ -155,7 +163,7 @@
 
             var namaPaket = tr.find('.nama-paket').text();
             var nilaiKontrak = tr.find('.nilai-kontrak').text();
-            var kontrak = parseInt(nilaiKontrak.replace(/[^0-9]/g, '')) || 0;
+            var kontrak = parseFloat(nilaiKontrak.replace(/\./g, '').replace(',', '.')) || 0;
 
             var childHtml = `
                 <div class="card mt-2" data-id="${$(this).data('id')}">
@@ -169,7 +177,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Nilai Kontrak</label>
-                                <input type="text" class="form-control nilai-kontrak" value="${nilaiKontrak}" readonly>
+                                <input type="text" class="form-control nilai-kontrak" value="${formatRupiah(kontrak)}" readonly>
                             </div>
                             <div class="form-group">
                                 <label>PPN</label>
@@ -181,7 +189,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Total</label>
-                                <input type="text" class="form-control total" value="Rp ${kontrak.toLocaleString('id-ID')}" readonly>
+                                <input type="text" class="form-control total" value="Rp ${formatRupiah(kontrak)}" readonly>
                             </div>
                             <button type="button" class="btn btn-success btn-bayar-accordion">Proses Bayar</button>
                             <button type="button" class="btn btn-secondary btn-batal-accordion">Batal</button>
@@ -197,11 +205,11 @@
         $(document).on('input', '.ppn, .pph', function() {
             var form = $(this).closest('form');
             var nilaiKontrak = form.find('.nilai-kontrak').val();
-            var kontrak = parseInt(nilaiKontrak.replace(/[^0-9]/g, '')) || 0;
-            var ppn = parseInt(form.find('.ppn').val()) || 0;
-            var pph = parseInt(form.find('.pph').val()) || 0;
+            var kontrak = parseFloat(nilaiKontrak.replace(/\./g, '').replace(',', '.')) || 0;
+            var ppn = parseFloat(form.find('.ppn').val()) || 0;
+            var pph = parseFloat(form.find('.pph').val()) || 0;
             var total = kontrak - ppn - pph;
-            form.find('.total').val('Rp ' + total.toLocaleString('id-ID'));
+            form.find('.total').val('Rp ' + formatRupiah(total));
         });
 
         // === PROSES BAYAR ===
@@ -212,7 +220,7 @@
             var id_paket = form.find('.inputIdPaket').val();
             var ppn = form.find('.ppn').val() || 0;
             var pph = form.find('.pph').val() || 0;
-            var total = form.find('.total').val().replace(/[^0-9]/g, '') || 0;
+            var total = form.find('.total').val().replace(/[^0-9,-]/g, '').replace('.', '').replace(',', '.');
 
             var tr = card.closest('tr').prev();
             var btnBayar = tr.find('.btn-bayar');
@@ -228,13 +236,14 @@
             }, function(response) {
                 var res = JSON.parse(response);
                 if (res.success) {
+                    alert('Pembayaran berhasil disimpan!');
+                    location.reload(); 
                     btnBayar.replaceWith(`<button type="button" class="btn btn-info btn-buka" data-id="${id_paket}">Buka</button>`);
 
                     var invoiceHtml = `
                         <div class="invoice printable">
                             <div class="text-center mb-4">
-                                <h2><strong>SALFORD & CO.</strong></h2>
-                                <p>Fashion Terlengkap</p>
+                                <h2><strong>INVOICE</strong></h2>
                                 <hr>
                             </div>
                             <div class="d-flex justify-content-between mb-3">
@@ -255,15 +264,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td>PPN</td><td>Rp ${parseInt(ppn).toLocaleString('id-ID')}</td></tr>
-                                    <tr><td>PPH</td><td>Rp ${parseInt(pph).toLocaleString('id-ID')}</td></tr>
-                                    <tr><td><strong>Total Bayar</strong></td><td><strong>Rp ${parseInt(total).toLocaleString('id-ID')}</strong></td></tr>
+                                    <tr><td>PPN</td><td>Rp ${formatRupiah(ppn)}</td></tr>
+                                    <tr><td>PPH</td><td>Rp ${formatRupiah(pph)}</td></tr>
+                                    <tr><td><strong>Total Bayar</strong></td><td><strong>Rp ${formatRupiah(total)}</strong></td></tr>
                                 </tbody>
                             </table>
                             <div class="mt-5 text-right">
                                 <p>Hormat Kami,</p>
                                 <br><br>
-                                <p><strong>Juliana Silva</strong><br>(Tanda Tangan)</p>
+                                <p><strong>....................</strong><br>(Tanda Tangan)</p>
                             </div>
                         </div>
                         <button type="button" class="btn btn-primary btn-cetak-invoice mt-3">Cetak Invoice</button>
@@ -284,74 +293,75 @@
             var penyedia = tr.find('.nama-penyedia').text();
             var tanggal = tr.find('.tanggal').text();
 
+            // Tutup semua accordion sebelum membuka baru
+            table.rows().every(function() {
+                if (this.child.isShown()) {
+                    this.child.hide();
+                    $(this.node()).removeClass('shown');
+                }
+            });
+
+            // Kalau baris ini sudah terbuka, jangan buka lagi
             if (row.child.isShown()) {
                 row.child.hide();
                 tr.removeClass('shown');
-            } else {
-                $.post('<?= site_url('Pembayaran/get_pembayaran') ?>', {
-                    id_paket: id_paket
-                }, function(response) {
-                    var res = JSON.parse(response);
-                    if (res.success) {
-                        var data = res.data;
-                        var invoiceHtml = `
-                            <div class="invoice printable">
-                                <div class="text-center mb-4">
-                                    <h2><strong>INVOICE</strong></h2>
-                                    <p></p>
-                                    <hr>
+                return;
+            }
+
+            $.post('<?= site_url('Pembayaran/get_pembayaran') ?>', {
+                id_paket: id_paket
+            }, function(response) {
+                var res = JSON.parse(response);
+                if (res.success) {
+                    var data = res.data;
+                    var invoiceHtml = `
+                        <div class="invoice printable">
+                            <div class="text-center mb-4">
+                                <h2><strong>INVOICE</strong></h2>
+                                <hr>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <div>
+                                    <p><strong>Kepada:</strong> ${penyedia}</p>
+                                    <p><strong>Nama Paket Tender:</strong> ${namaPaket}</p>
                                 </div>
-                                <div class="d-flex justify-content-between mb-3">
-                                    <div>
-                                        <p><strong>Kepada:</strong> ${penyedia}</p>
-                                        <p><strong>Nama Paket Tender:</strong> ${namaPaket}</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <p><strong>Tanggal:</strong> ${tanggal}</p>
-                                        <p><strong>No Invoice:</strong> INV-${id_paket}</p>
-                                    </div>
-                                </div>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="bg-light">
-                                            <th>Keterangan</th>
-                                            <th>Nilai</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td>PPN</td><td>Rp ${parseInt(data.ppn).toLocaleString('id-ID')}</td></tr>
-                                        <tr><td>PPH</td><td>Rp ${parseInt(data.pph).toLocaleString('id-ID')}</td></tr>
-                                        <tr><td><strong>Total Bayar</strong></td><td><strong>Rp ${parseInt(data.total).toLocaleString('id-ID')}</strong></td></tr>
-                                    </tbody>
-                                </table>
-                                <div class="mt-5 text-right">
-                                    <p>Hormat Kami,</p>
-                                    <br><br>
-                                    <p><strong>....................</strong><br>(Tanda Tangan)</p>
+                                <div class="text-right">
+                                    <p><strong>Tanggal:</strong> ${tanggal}</p>
+                                    <p><strong>No Invoice:</strong> INV-${id_paket}</p>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-primary btn-cetak-invoice mt-3">Cetak Invoice</button>
-                        `;
-                        row.child(invoiceHtml).show();
-                        tr.addClass('shown');
-                    } else {
-                        alert('Data pembayaran tidak ditemukan');
-                    }
-                });
-            }
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="bg-light">
+                                        <th>Keterangan</th>
+                                        <th>Nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>PPN</td><td>Rp ${formatRupiah(data.ppn)}</td></tr>
+                                    <tr><td>PPH</td><td>Rp ${formatRupiah(data.pph)}</td></tr>
+                                    <tr><td><strong>Total Bayar</strong></td><td><strong>Rp ${formatRupiah(data.total)}</strong></td></tr>
+                                </tbody>
+                            </table>
+                            <div class="mt-5 text-right">
+                                <p>Hormat Kami,</p>
+                                <br><br>
+                                <p><strong>....................</strong><br>(Tanda Tangan)</p>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-cetak-invoice mt-3">Cetak Invoice</button>
+                    `;
+                    row.child(invoiceHtml).show();
+                    tr.addClass('shown');
+                } else {
+                    alert('Data pembayaran tidak ditemukan');
+                }
+            });
         });
 
         // === CETAK INVOICE ===
         $(document).on('click', '.btn-cetak-invoice', function() {
             window.print();
-        });
-
-        // === BATAL ===
-        $(document).on('click', '.btn-batal-accordion', function() {
-            table.rows().every(function() {
-                this.child.hide();
-                $(this.node()).removeClass('shown');
-            });
         });
     });
     </script>
